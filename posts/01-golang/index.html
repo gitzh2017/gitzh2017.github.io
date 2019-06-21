@@ -122,9 +122,7 @@
                         </div>
                         
                         <div class="post-content">
-                            
-
-<h1 id="golang-下载">Golang 下载</h1>
+                            <h1 id="golang-下载">Golang 下载</h1>
 
 <p>要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 <a href="http://www.flysnow.org/2017/08/26/go-1-9-type-alias.html">Go语言 | Go 1.9 新特性 Type Alias详解</a> 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。</p>
 
@@ -581,7 +579,7 @@ each named variable on its own line.
 
 <p>从其名字上我们不难猜出这个命令是做什么的，它和<code>go build</code>类似，不过它可以在编译后，把生成的可执行文件或者库安装到对应的目录下，以供使用。</p>
 
-<pre><code>➜  hello go help install
+<pre><code class="language-go">➜  hello go help install
 usage: go install [build flags] [packages]
 
 Install compiles and installs the packages named by the import paths,
@@ -673,7 +671,7 @@ main.go:8: no formatting directive in Printf call
 
 <p>看，提示多明显。其使用方式和<code>go fmt</code>一样，也是接受一个包名作为参数。</p>
 
-<pre><code>usage: go vet [-n] [-x] [build flags] [packages]
+<pre><code class="language-go">usage: go vet [-n] [-x] [build flags] [packages]
 </code></pre>
 
 <p>养成在代码提交或者测试前，使用<code>go vet</code>检查代码的好习惯，可以避免一些常见问题。</p>
@@ -733,7 +731,6 @@ ok  	flysnow.org/hello	0.006s
 
 Use &quot;go help [topic]&quot; for more information about that topic.
 </code></pre>
-
                         </div>
 
                         
