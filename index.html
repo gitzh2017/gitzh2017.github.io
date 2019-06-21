@@ -68,7 +68,7 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://gitzh2017.github.io/posts/01-golang/" title="Golang 开发环境" >Golang 开发环境</a>
+                                    <a href="http://gitzh2017.github.io/posts/01-golang/" title="【Golang系列】Go语言环境搭建" >【Golang系列】Go语言环境搭建</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -76,9 +76,23 @@
                             </date>
                             
                             <div class="post-content">
-                                在Go语言中，函数和方法不太一样，有明确的概念区分。其他语言中，比如Java，一般来说，函数就是方法，方法就是函数，但是在Go语言中，函数是指不属于任何结构体、类型的方法，也就是说，函数是没有接收者的；而方法是有接收者的，我们说的方法要么是属于一个结构体的，要么属于一个新定义的类型的。
-函数 函数和方法，虽然概念不同，但是定义非常相似。函数的定义声明没有接收者，所以我们直接在go文件里，go包之下定义声明即可。
-func main() { sum := add(1, 2) fmt.Println(sum) } func add(a, b int) int { return a + b }  例子中，我们定义了add就是一个函数，它的函数签名是func add(a, b int) int,没有接收者，直接定义在go的一个包之下，可以直接调用，比如例子中的main函数调用了add函数。……
+                                Golang 下载 要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 Go语言 | Go 1.9 新特性 Type Alias详解 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。
+我们可以根据自己的机器操作系统选择相应的开发工具包，比如你的是Windows 64位的，就选择windows-amd64的工具包；是Linux 32位的就选择linux-386的工具包。可以自己查看下自己的操作系统，然后选择，Mac的现在都是64位的，直接选择就可以了。
+开发工具包又分为安装版和压缩版。安装版是Mac和Windows特有的，他们的名字类似于：
+ go1.9.darwin-amd64.pkg go1.9.windows-386.msi go1.9.windows-amd64.msi  安装版，顾名思义，双击打开会出现安装向导，让你选择安装的路径，帮你设置好环境比安康等信息，比较省事方便一些。
+压缩版的就是一个压缩文件，可以解压得到里面的内容，他们的名字类似于：
+ go1.9.darwin-amd64.tar.gz go1.9.linux-386.tar.gz go1.9.linux-amd64.tar.gz go1.9.windows-386.zip go1.9.windows-amd64.zip  压缩版我们下载后需要解压，然后自己移动到要存放的路径下，并且配置环境变量等信息，相比安装版来说，比较复杂一些，手动配置的比较多。
+根据自己的操作系统选择后，就可以下载开发工具包了，Go语言的官方下载地址是 https://golang.org/dl/ 可以打开选择版本下载，如果该页面打不开，或者打开了下载不了，可以使用镜像网站 http://mirrors.flysnow.org/ ,打开后搜索或者找到Golang，选择相应的版本下载，这个镜像网站会同步更新官方版本，基本上都是最新版，可以放心使用。
+Golang 安装 Linux下安装 我们以Ubuntu 64位为例进行演示，CentOS等其他Linux发行版大同小异。
+下载go1.9.linux-amd64.tar.gz后，进行解压，你可以采用自带的解压软件解压，如果没有可以在终端行使用tar命令行工具解压，我们这里选择的安装目录是/usr/local/go,可以使用如下命令：
+tar -C /usr/local -xzf go1.9.linux-amd64.tar.gz  如果提示没有权限，在最前面加上sudo以root用户的身份运行。运行后，在／usr/local/下就可以看到go目录了。如果是自己用软件解压的，可以拷贝到/usr/local/go下，但是要保证你的go文件夹下是bin、src、doc等目录，不要go文件夹下又是一个go文件夹，这样就双重嵌套了。
+然后就要配置环境变量了，Linux下又两个文件可以配置，其中/etc/profile是针对所有用户都有效的；$HOME/.profile是针对当前用户有效的，可以根据自己的情况选择。
+针对所有用户的需要重启电脑才可以生效；针对当前用户的，在终端里使用source命令加载这个$HOME/.profile即可生效。
+source ~/.profile  使用文本编辑器比如VIM编辑他们中的任意一个文件，在文件的末尾添加如下配置保存即可：
+export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin  其中GOROOT环境变量表示我们GO的安装目录，这样其他软件比如我们使用的Go开发IDE就可以自动的找到我们的Go安装目录，达到自动配置Go SDK的目的。
+第二句配置是把/usr/local/go/bin这个目录加入到环境变量PATH里，这样我可以在终端里直接输入go等常用命令使用了，而不用再加上/usr/local/go/bin这一串绝对路径，更简洁方便。
+以上配置好之后，我们打开终端，属于如下命令，就可以看到go的版本等信息了。
+➜ ~ go version go version go1.……
                             </div>
                             <p class="readmore"><a href="http://gitzh2017.github.io/posts/01-golang/">阅读全文</a></p>
                         </article>
@@ -107,7 +121,7 @@ func main() { sum := add(1, 2) fmt.Println(sum) } func add(a, b int) int { retur
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/01-golang/" title="Golang 开发环境">Golang 开发环境</a>
+        <a href="http://gitzh2017.github.io/posts/01-golang/" title="【Golang系列】Go语言环境搭建">【Golang系列】Go语言环境搭建</a>
     </li>
     
 </ul>
