@@ -17,9 +17,7 @@
       <pubDate>Fri, 21 Jun 2019 16:20:51 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/01-golang/</guid>
-      <description>&lt;h1 id=&#34;golang-下载&#34;&gt;Golang 下载&lt;/h1&gt;
-
-&lt;p&gt;要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 &lt;a href=&#34;http://www.flysnow.org/2017/08/26/go-1-9-type-alias.html&#34;&gt;Go语言 | Go 1.9 新特性 Type Alias详解&lt;/a&gt; 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。&lt;/p&gt;</description>
+      <description>&lt;p&gt;要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 &lt;a href=&#34;http://www.flysnow.org/2017/08/26/go-1-9-type-alias.html&#34;&gt;Go语言 | Go 1.9 新特性 Type Alias详解&lt;/a&gt; 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。&lt;/p&gt;</description>
     </item>
     
   </channel>
