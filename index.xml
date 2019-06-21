@@ -17,7 +17,8 @@
       <pubDate>Fri, 21 Jun 2019 16:20:51 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/01-golang/</guid>
-      <description>Golang 下载 要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 Go语言 | Go 1.9 新特性 Type Alias详解 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。
+      <description>[TOC]
+Golang 下载 要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 Go语言 | Go 1.9 新特性 Type Alias详解 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。
 我们可以根据自己的机器操作系统选择相应的开发工具包，比如你的是Windows 64位的，就选择windows-amd64的工具包；是Linux 32位的就选择linux-386的工具包。可以自己查看下自己的操作系统，然后选择，Mac的现在都是64位的，直接选择就可以了。
 开发工具包又分为安装版和压缩版。安装版是Mac和Windows特有的，他们的名字类似于：
  go1.9.darwin-amd64.pkg go1.9.windows-386.msi go1.9.windows-amd64.msi  安装版，顾名思义，双击打开会出现安装向导，让你选择安装的路径，帮你设置好环境比安康等信息，比较省事方便一些。
