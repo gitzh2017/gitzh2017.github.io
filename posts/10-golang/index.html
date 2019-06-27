@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>10 Golang | 凡夫俗子的博客</title>
-    <meta property="og:title" content="10 Golang - 凡夫俗子的博客">
+    <title>[Golang系列]-Go基础语法之map | 凡夫俗子的博客</title>
+    <meta property="og:title" content="[Golang系列]-Go基础语法之map - 凡夫俗子的博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-06-24T14:50:12&#43;08:00">
+    <meta property="article:published_time" content="2019-06-28T01:14:25&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-06-24T14:50:12&#43;08:00">
+    <meta property="article:modified_time" content="2019-06-28T01:14:25&#43;08:00">
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,kubernetes,项目管理,python">
-    <meta name="description" content="10 Golang">
+    <meta name="description" content="[Golang系列]-Go基础语法之map">
         
     <meta name="author" content="凡夫俗子">
     <meta property="og:url" content="http://gitzh2017.github.io/posts/10-golang/">
@@ -72,10 +72,10 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">10 Golang</h1>
+                            <h1 class="post-title">[Golang系列]-Go基础语法之map</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年6月24日
+                            2019年6月28日
                         </date>
                         
                         
@@ -83,79 +83,12 @@
                         <div class="clear">
                             <div class="toc-article">
                                 <div class="toc-title">文章目录</div>
-                                <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#函数">函数</a></li>
-<li><a href="#方法">方法</a></li>
-</ul></li>
-</ul>
-</nav>
+                                
                             </div>
                         </div>
                         
                         <div class="post-content">
                             
-
-<p>在Go语言中，函数和方法不太一样，有明确的概念区分。其他语言中，比如Java，一般来说，函数就是方法，方法就是函数，但是在Go语言中，函数是指不属于任何结构体、类型的方法，也就是说，函数是没有接收者的；而方法是有接收者的，我们说的方法要么是属于一个结构体的，要么属于一个新定义的类型的。
-<!-- more --></p>
-
-<h2 id="函数">函数</h2>
-
-<p>函数和方法，虽然概念不同，但是定义非常相似。函数的定义声明没有接收者，所以我们直接在go文件里，go包之下定义声明即可。</p>
-
-<pre><code class="language-go">func main() {
-	sum := add(1, 2)
-	fmt.Println(sum)
-}
-
-func add(a, b int) int {
-	return a + b
-}
-</code></pre>
-
-<p>例子中，我们定义了<code>add</code>就是一个函数，它的函数签名是<code>func add(a, b int) int</code>,没有接收者，直接定义在go的一个包之下，可以直接调用，比如例子中的<code>main</code>函数调用了<code>add</code>函数。</p>
-
-<p>例子中的这个函数名称是小写开头的<code>add</code>，所以它的作用域只属于所声明的包内使用，不能被其他包使用，如果我们把函数名以大写字母开头，该函数的作用域就大了，可以被其他包调用。这也是Go语言中大小写的用处，比如Java中，就有专门的关键字来声明作用域<code>private</code>、<code>protect</code>、<code>public</code>等。</p>
-
-<pre><code class="language-go">/*
- 提供的常用库，有一些常用的方法，方便使用
-*/
-package lib
-
-// 一个加法实现
-// 返回a+b的值
-func Add(a, b int) int {
-	return a + b
-}
-</code></pre>
-
-<p>如上例子中定义的Add方法就可以被其他包调用。</p>
-
-<h2 id="方法">方法</h2>
-
-<p>方法的声明和函数类似，他们的区别是：方法在定义的时候，会在func和方法名之间增加一个参数，这个参数就是接收者，这样我们定义的这个方法就和接收者绑定在了一起，称之为这个接收者的方法。</p>
-
-<pre><code class="language-go">type person struct {
-	name string
-}
-
-func (p person) String() string{
-	return &quot;the person name is &quot;+p.name
-}
-</code></pre>
-
-<p>留意例子中，<code>func</code>和方法名之间增加的参数<code>(p person)</code>,这个就是接收者。现在我们说，类型<code>person</code>有了一个<code>String</code>方法，现在我们看下如何使用它。</p>
-
-<pre><code class="language-go">func main() {
-	p:=person{name:&quot;张三&quot;}
-	fmt.Println(p.String())
-}
-</code></pre>
-
-<p>调用的方法非常简单，使用类型的变量进行调用即可，类型变量和方法之前是一个.操作符，表示要调用这个类型变量的某个方法的意思。</p>
-
                         </div>
 
                         
@@ -167,7 +100,15 @@ func (p person) String() string{
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/posts/01-golang/">【Golang系列】Go语言环境搭建</a></li>
+        <li><a href="/posts/09-golang/">[Golang系列]-Go基础语法之切片</a></li>
+        
+        <li><a href="/posts/08-golang/">[Golang系列]-Go基础语法之数组</a></li>
+        
+        <li><a href="/posts/07-golang/">[Golang系列]-Go基础语法之函数</a></li>
+        
+        <li><a href="/posts/06-golang/">[Golang系列]-Go基础语法之流程控制</a></li>
+        
+        <li><a href="/posts/05-golang/">[Golang系列]-Go基础语法之运算符</a></li>
         
     </ul>
 </div>
@@ -201,19 +142,43 @@ func (p person) String() string{
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/01-english/" title="01 English">01 English</a>
+        <a href="http://gitzh2017.github.io/posts/11-golang/" title="[Golang系列]-Go基础语法之指针">[Golang系列]-Go基础语法之指针</a>
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/02-golang/" title="【Golang系列】Go包管理">【Golang系列】Go包管理</a>
+        <a href="http://gitzh2017.github.io/posts/10-golang/" title="[Golang系列]-Go基础语法之map">[Golang系列]-Go基础语法之map</a>
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/10-golang/" title="10 Golang">10 Golang</a>
+        <a href="http://gitzh2017.github.io/posts/09-golang/" title="[Golang系列]-Go基础语法之切片">[Golang系列]-Go基础语法之切片</a>
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/01-golang/" title="【Golang系列】Go语言环境搭建">【Golang系列】Go语言环境搭建</a>
+        <a href="http://gitzh2017.github.io/posts/08-golang/" title="[Golang系列]-Go基础语法之数组">[Golang系列]-Go基础语法之数组</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/07-golang/" title="[Golang系列]-Go基础语法之函数">[Golang系列]-Go基础语法之函数</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/06-golang/" title="[Golang系列]-Go基础语法之流程控制">[Golang系列]-Go基础语法之流程控制</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/05-golang/" title="[Golang系列]-Go基础语法之运算符">[Golang系列]-Go基础语法之运算符</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/04-golang/" title="[Golang系列]-Go基础语法之基础数据类型">[Golang系列]-Go基础语法之基础数据类型</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/03-golang/" title="[Golang系列]-Go基础语法之变量与常量">[Golang系列]-Go基础语法之变量与常量</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/02-golang/" title="[Golang系列]-Go开发环境 VS Code">[Golang系列]-Go开发环境 VS Code</a>
     </li>
     
 </ul>

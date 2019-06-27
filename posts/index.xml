@@ -6,63 +6,117 @@
     <description>Recent content in Posts on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 24 Jun 2019 19:51:01 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 01:17:32 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>01 English</title>
-      <link>http://gitzh2017.github.io/posts/01-english/</link>
-      <pubDate>Mon, 24 Jun 2019 19:51:01 +0800</pubDate>
+      <title>[Golang系列]-Go基础语法之指针</title>
+      <link>http://gitzh2017.github.io/posts/11-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:17:32 +0800</pubDate>
       
-      <guid>http://gitzh2017.github.io/posts/01-english/</guid>
-      <description> Unit01 lesson01-part1 工作人员：What&#39;s your name Shen.li：My name&#39;s Shen li 工作人员：Shen.li (貌似没听懂) 工作人员：Can you spell shen li Shen.li：Yes,S H E N L I,Shen.li 工作人员：Thank you,Welcome to American  Shen.li初次来到了美国，下机以后登记信息，工作人员问Shen.li：你叫什么名字，Shen.li说：Shen.li，工作人员貌似没有听懂，问道：你能拼写(spell)一下你的名字吗Shen.li，Shen.li 只好乖乖的说可以:S.H.E.N.L.I,工作人员说了声谢谢，并盖了章，并欢迎Shen.li来到了美国(American)
-lesson01-part2 lesson01-part3 lesson02-part1 lesson02-part2 lesson02-part3 lesson03-part1 lesson03-part2 lesson03-part3 </description>
+      <guid>http://gitzh2017.github.io/posts/11-golang/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>【Golang系列】Go包管理</title>
-      <link>http://gitzh2017.github.io/posts/02-golang/</link>
-      <pubDate>Mon, 24 Jun 2019 15:00:08 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/02-golang/</guid>
-      <description>我们在使用其他语言，比如Java，是有包的概念的，它是Java语言中组织我们的Java文件的一个概念，比如java.lang这个包，他里面有很多我们常用的类，比如String。在Go语言中，包也是类似的概念，它是把我们的go文件组织起来，可以方便进行归类、复用等目的。 比如Go内置的net包 net ├── http ├── internal ├── mail ├── rpc ├── smtp ├── testdata ├── textproto └── url  以上是net包的一个目录结构，net本身是一个包，net目录下的http又是一个包。从这个大家可以看到，go语言的包其实就是我们计算机里的目录，或者叫文件夹，通过它们进行目录结构和文件组织，go只是对目录名字做了一个翻译，叫【包】而已。比如这里的net包其实就是net目录，http包其实就是http目录，这也是go语言中的一个命名习惯，包名和文件所在的目录名是一样的。
-包的命名 go语言的包的命名，遵循简洁、小写、和go文件所在目录同名的原则，这样就便于我们引用，书写以及快速定位查找。
-比如go自带的http这个包，它这个http目录下的所有go文件都属于这个http包,所以我们使用http包里的函数、接口的时候，导入这个http包就可以了。
-package main import &amp;quot;net/http&amp;quot; func main() { http.ListenAndServe(&amp;quot;127.0.0.1:80&amp;quot;,handler); }  从这个例子可以看到，我们导入的是net/http,这在go里叫做全路径，因为http包在net里面，net是最顶级的包，所以必须使用全路径导入，go编译程序才能找到http这个包，和我们文件系统的目录路径是一样的。
-因为有了全路径，所以命名的包名可以和其他库的一样，只要它们的全路径不同就可以了，使用全路径的导入，也增加了包名命名的灵活性。
-对于自己或者公司开发的程序而言，我们一般采用域名作为顶级包名的方式，这样就不用担心和其他开发者包名重复的问题了，比如我的个人域名是www.flysnow.org,那么我自己开发的go程序都以flysnow.org作为全路径中的最顶层部分，比如导入我开发的一个工具包:
-package main import &amp;quot;flysnow.org/tools&amp;quot;  如果你没有自己的域名，怎么办呢？这时候可以使用github.com。干研发这一行的，在github都会有个账号，如果没有赶紧申请一个，这时候我们就可以使用github.com/&amp;lt;username&amp;gt;作为你的顶级路径了，别人是不会和你重名的。
-package main import &amp;quot;github.com/rujews/tools&amp;quot;  这就是换成github.com命名的方式。
-main包 当把一个go文件的包名声明为main时，就等于告诉go编译程序，我这个是一个可执行的程序，那么go编译程序就会尝试把它编译为一个二进制的可执行文件。
-一个main的包，一定会包含一个main()函数，这种我们也不陌生，比如C和Java都有main()函数,它是一个程序的入口，没这个函数，程序就无法执行。 &amp;gt;在go语言里，同时要满足main包和包含main()函数，才会被编译成一个可执行文件。
-我们看一个Hello World的Go语言版本，来说明main包。
-package main import &amp;quot;fmt&amp;quot; func main() { fmt.Println(&amp;quot;Hello, 世界&amp;quot;) }  假设该go文件叫hello.go,放在$GOPATH/src/hello目录下，那么我们在这个目录下执行go build命令就会生成二进制的可执行文件，在window系统下生成的是hello.exe，在Unix，MAC和Linux下生成的是hello,我们在CMD或者终端里执行它，就可以看到控制台打印的:
-Hello, 世界   二进制可执行文件的名字，就是该main包的go文件所在目录的名字，因为hello.</description>
-    </item>
-    
-    <item>
-      <title>10 Golang</title>
+      <title>[Golang系列]-Go基础语法之map</title>
       <link>http://gitzh2017.github.io/posts/10-golang/</link>
-      <pubDate>Mon, 24 Jun 2019 14:50:12 +0800</pubDate>
+      <pubDate>Fri, 28 Jun 2019 01:14:25 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/10-golang/</guid>
-      <description>在Go语言中，函数和方法不太一样，有明确的概念区分。其他语言中，比如Java，一般来说，函数就是方法，方法就是函数，但是在Go语言中，函数是指不属于任何结构体、类型的方法，也就是说，函数是没有接收者的；而方法是有接收者的，我们说的方法要么是属于一个结构体的，要么属于一个新定义的类型的。 函数 函数和方法，虽然概念不同，但是定义非常相似。函数的定义声明没有接收者，所以我们直接在go文件里，go包之下定义声明即可。
-func main() { sum := add(1, 2) fmt.Println(sum) } func add(a, b int) int { return a + b }  例子中，我们定义了add就是一个函数，它的函数签名是func add(a, b int) int,没有接收者，直接定义在go的一个包之下，可以直接调用，比如例子中的main函数调用了add函数。
-例子中的这个函数名称是小写开头的add，所以它的作用域只属于所声明的包内使用，不能被其他包使用，如果我们把函数名以大写字母开头，该函数的作用域就大了，可以被其他包调用。这也是Go语言中大小写的用处，比如Java中，就有专门的关键字来声明作用域private、protect、public等。
-/* 提供的常用库，有一些常用的方法，方便使用 */ package lib // 一个加法实现 // 返回a+b的值 func Add(a, b int) int { return a + b }  如上例子中定义的Add方法就可以被其他包调用。
-方法 方法的声明和函数类似，他们的区别是：方法在定义的时候，会在func和方法名之间增加一个参数，这个参数就是接收者，这样我们定义的这个方法就和接收者绑定在了一起，称之为这个接收者的方法。
-type person struct { name string } func (p person) String() string{ return &amp;quot;the person name is &amp;quot;+p.</description>
+      <description></description>
     </item>
     
     <item>
-      <title>【Golang系列】Go语言环境搭建</title>
+      <title>[Golang系列]-Go基础语法之切片</title>
+      <link>http://gitzh2017.github.io/posts/09-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:14:21 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/09-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之数组</title>
+      <link>http://gitzh2017.github.io/posts/08-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:14:18 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/08-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之函数</title>
+      <link>http://gitzh2017.github.io/posts/07-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:14:14 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/07-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之流程控制</title>
+      <link>http://gitzh2017.github.io/posts/06-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:14:10 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/06-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之运算符</title>
+      <link>http://gitzh2017.github.io/posts/05-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:12:01 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/05-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之基础数据类型</title>
+      <link>http://gitzh2017.github.io/posts/04-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:11:58 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/04-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之变量与常量</title>
+      <link>http://gitzh2017.github.io/posts/03-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:11:53 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/03-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go开发环境 VS Code</title>
+      <link>http://gitzh2017.github.io/posts/02-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:09:26 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/02-golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go环境安装</title>
       <link>http://gitzh2017.github.io/posts/01-golang/</link>
-      <pubDate>Fri, 21 Jun 2019 16:20:51 +0800</pubDate>
+      <pubDate>Fri, 28 Jun 2019 01:09:17 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/01-golang/</guid>
-      <description>&lt;p&gt;要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9，Go1.9增加了一些新特性，我这里有一篇讲 &lt;a href=&#34;http://www.flysnow.org/2017/08/26/go-1-9-type-alias.html&#34;&gt;Go语言 | Go 1.9 新特性 Type Alias详解&lt;/a&gt; 的，大家可以参考。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。&lt;/p&gt;</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Golang系列]-Go语言介绍</title>
+      <link>http://gitzh2017.github.io/posts/00-golang/</link>
+      <pubDate>Fri, 28 Jun 2019 01:09:06 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/00-golang/</guid>
+      <description></description>
     </item>
     
   </channel>

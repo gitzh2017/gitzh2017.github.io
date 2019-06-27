@@ -3,17 +3,84 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://gitzh2017.github.io/posts/</loc>
+    <lastmod>2019-06-28T01:17:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/11-golang/</loc>
+    <lastmod>2019-06-28T01:17:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/</loc>
+    <lastmod>2019-06-28T01:17:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/10-golang/</loc>
+    <lastmod>2019-06-28T01:14:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/09-golang/</loc>
+    <lastmod>2019-06-28T01:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/08-golang/</loc>
+    <lastmod>2019-06-28T01:14:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/07-golang/</loc>
+    <lastmod>2019-06-28T01:14:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/06-golang/</loc>
+    <lastmod>2019-06-28T01:14:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/05-golang/</loc>
+    <lastmod>2019-06-28T01:12:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/04-golang/</loc>
+    <lastmod>2019-06-28T01:11:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/03-golang/</loc>
+    <lastmod>2019-06-28T01:11:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/02-golang/</loc>
+    <lastmod>2019-06-28T01:09:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/01-golang/</loc>
+    <lastmod>2019-06-28T01:09:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/00-golang/</loc>
+    <lastmod>2019-06-28T01:09:06+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://gitzh2017.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitzh2017.github.io/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/</loc>
     <priority>0</priority>
   </url>
   
