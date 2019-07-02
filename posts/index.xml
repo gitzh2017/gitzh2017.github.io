@@ -98,7 +98,7 @@
       <pubDate>Fri, 28 Jun 2019 01:09:26 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/02-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;VS Code是微软开源的一款编辑器，插件系统十分的丰富。本文就介绍了如何使用VS Code搭建Go语言开发环境。说在前面的话，Go语言是采用UTF8编码的，理论上使用任何文本编辑器都能做Go语言开发。大家可以根据自己的喜好自行选择。编辑器/IDE没有最好只有最适合。&lt;/p&gt;</description>
     </item>
     
     <item>

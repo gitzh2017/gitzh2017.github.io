@@ -83,12 +83,79 @@
                         <div class="clear">
                             <div class="toc-article">
                                 <div class="toc-title">文章目录</div>
-                                
+                                <nav id="TableOfContents">
+<ul>
+<li><a href="#安装go语言开发工具包">安装Go语言开发工具包</a></li>
+<li><a href="#配置自动保存">配置自动保存</a></li>
+<li><a href="#配置代码片段快捷键">配置代码片段快捷键</a></li>
+</ul>
+</nav>
                             </div>
                         </div>
                         
                         <div class="post-content">
-                            
+                            <p>VS Code是微软开源的一款编辑器，插件系统十分的丰富。本文就介绍了如何使用VS Code搭建Go语言开发环境。说在前面的话，Go语言是采用UTF8编码的，理论上使用任何文本编辑器都能做Go语言开发。大家可以根据自己的喜好自行选择。编辑器/IDE没有最好只有最适合。</p>
+
+<p>上篇文章我们有讲VsCode的安装，这次重点讲一下VsCode的Golang环境配置</p>
+
+<h1 id="安装go语言开发工具包">安装Go语言开发工具包</h1>
+
+<p>在座Go语言开发的时候为我们提供诸如代码提示、代码自动补全等功能。Windows平台按下Ctrl+Shift+P，Mac平台按Command+Shift+P，这个时候VS Code界面会弹出一个输入框，如下图：
+<img src="/images/02Golang/01.png" alt="01" />
+选中并会回车执行该命令（或者使用鼠标点击该命令）
+<img src="/images/02Golang/02.png" alt="02" />
+然后点击“确定”按钮，进行安装。 会弹出如下输入窗口：
+<img src="/images/02Golang/03.png" alt="03" />
+VS Code此时会下载并安装上图列出来的16个工具，但是由于国内的网络环境基本上都会出现安装失败，如下图各种FAILED:
+<img src="/images/02Golang/04.png" alt="04" /></p>
+
+<p>我们可以手动从github上下载工具，(执行此步骤前提需要你的电脑上已经安装了git)
+- 第一步：现在自己的GOPATH的src目录下创建golang.org/x目录
+- 第二步：在终端/cmd中cd到GOPATH/src/golang.org/x目录下
+- 第三步：执行git clone <a href="https://github.com/golang/tools.git">https://github.com/golang/tools.git</a> tools命令
+- 第四步：执行git clone <a href="https://github.com/golang/lint.git命令">https://github.com/golang/lint.git命令</a>
+- 第五步：按下Ctrl/Command+Shift+P再次执行Go:Install/Update Tools命令，在弹出的窗口全选并点击确定，这一次的安装都会SUCCESSED了。</p>
+
+<p>经过上面的步骤就可以安装成功了。 这个时候创建一个Go文件，就能正常使用代码提示、代码格式化等工具了。</p>
+
+<h1 id="配置自动保存">配置自动保存</h1>
+
+<p>依次点击 首选项-&gt;设置，打开设置页面就能看到自动保存相关配置如图，可以根据自己的喜好选择自动保存的方式：
+<img src="/images/02Golang/05.png" alt="05" /></p>
+
+<h1 id="配置代码片段快捷键">配置代码片段快捷键</h1>
+
+<p>还是按<code>Ctrl/Command+Shift+P</code>,按下图输入<code>&gt;snippets</code>，选择命令并执行：
+<img src="/images/02Golang/06.png" alt="06" />
+然后弹出如下页面：
+<img src="/images/02Golang/07.png" alt="07" />
+大家可以简单看下上面的注释，介绍了主要用法：</p>
+
+<pre><code class="language-bash">“这里放个名字”:{
+    &quot;prefix&quot;: &quot;这个是快捷键&quot;,
+    &quot;body&quot;: &quot;这里是按快捷键插入的代码片段&quot;,
+    &quot;description&quot;: &quot;这里放提示信息的描述&quot;
+}
+</code></pre>
+
+<p>其中<code>$0</code>表示最终光标提留的位置。 举个例子，我这里创建了两个快捷方式，一个是输入pln就会在编辑器中插入<code>fmt.Println()</code>代码；输入<code>plf</code>，就会插入<code>fmt.Printf(&quot;&quot;)</code>代码。</p>
+
+<pre><code class="language-bash">{
+	&quot;println&quot;:{
+		&quot;prefix&quot;: &quot;pln&quot;,
+		&quot;body&quot;:&quot;fmt.Println($0)&quot;,
+		&quot;description&quot;: &quot;println&quot;
+	},
+	&quot;printf&quot;:{
+		&quot;prefix&quot;: &quot;plf&quot;,
+		&quot;body&quot;: &quot;fmt.Printf(\&quot;$0\&quot;)&quot;,
+		&quot;description&quot;: &quot;printf&quot;
+	}
+}
+</code></pre>
+
+<p>添加如上配置后，保存。 我们打开一个go文件，测试一下效果：
+<img src="/images/02Golang/demo1.gif" alt="demo" /></p>
                         </div>
 
                         
