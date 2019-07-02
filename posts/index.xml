@@ -107,10 +107,7 @@
       <pubDate>Fri, 28 Jun 2019 01:09:17 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/01-golang/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;Go官网下载地址：&lt;a href=&#34;https://golang.org/dl/&#34;&gt;https://golang.org/dl/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Go官方镜像站（推荐）：&lt;a href=&#34;https://golang.google.cn/dl/&#34;&gt;https://golang.google.cn/dl/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。我们可以根据自己的机器操作系统选择相应的开发工具包，比如你的是Windows 64位的，就选择windows-amd64的工具包；是Linux 32位的就选择linux-386的工具包。可以自己查看下自己的操作系统，然后选择，Mac的现在都是64位的，直接选择就可以了。根据自己的操作系统选择后，就可以下载开发工具包了，Go语言的官方下载地址是 &lt;a href=&#34;https://golang.org/dl/&#34;&gt;https://golang.org/dl/&lt;/a&gt; 可以打开选择版本下载，如果该页面打不开，或者打开了下载不了，可以使用镜像网站 &lt;a href=&#34;http://mirrors.flysnow.org/&#34;&gt;http://mirrors.flysnow.org/&lt;/a&gt; ,打开后搜索或者找到Golang，选择相应的版本下载，这个镜像网站会同步更新官方版本，基本上都是最新版，可以放心使用。&lt;/p&gt;</description>
     </item>
     
     <item>
