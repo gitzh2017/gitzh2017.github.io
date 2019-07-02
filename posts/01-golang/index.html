@@ -107,11 +107,7 @@
 <ul>
 <li><a href="#vs-code介绍">VS Code介绍</a></li>
 <li><a href="#下载与安装">下载与安装</a></li>
-<li><a href="#配置">配置</a>
-<ul>
-<li><a href="#安装中文简体插件">安装中文简体插件</a></li>
-<li><a href="#安装go扩展">安装go扩展</a></li>
-</ul></li>
+<li><a href="#配置">配置</a></li>
 </ul></li>
 <li><a href="#第一个go程序">第一个Go程序</a>
 <ul>
@@ -138,13 +134,14 @@ Go官方镜像站（推荐）：<a href="https://golang.google.cn/dl/">https://g
 
 <ul>
 <li>Go官网下载地址：<a href="https://golang.org/dl/">https://golang.org/dl/</a></li>
-
-<li><p>Go官方镜像站（推荐）：<a href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a></p>
+<li>Go官方镜像站（推荐）：<a href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a></li>
+</ul>
 
 <h2 id="版本选择">版本选择</h2>
 
-<p>Windows平台和Mac平台推荐下载可执行文件版，Linux平台下载压缩文件版。
-{{ % img src=&ldquo;/images/01Golang/Golang01.png&rdquo; alt=&ldquo;install_go&rdquo; %}}</p>
+<p>Windows平台和Mac平台推荐下载可执行文件版，Linux平台下载压缩文件版。</p>
+
+<p>{{ % img src=&ldquo;/images/01Golang/Golang01.png&rdquo; alt=&ldquo;install_go&rdquo; %}}</p>
 
 <h1 id="安装">安装</h1>
 
@@ -179,14 +176,15 @@ go version go1.11.5 linux/amd64
 
 <h2 id="mac-安装">Mac 安装</h2>
 
-<p>1.下载可执行文件版，直接点击下一步安装即可，默认会将go安装到/usr/local/go目录下。
-{{ % img src=&ldquo;/images/01Golang/mac_install_go.png&rdquo; alt=&ldquo;mac_install_go&rdquo; %}}
-上一步安装过程执行完毕后，可以打开终端窗口，输入go version命令，查看安装的Go版本。</p>
+<p>1.下载可执行文件版，直接点击下一步安装即可，默认会将go安装到/usr/local/go目录下。</p>
+
+<p>{{ % img src=&ldquo;/images/01Golang/mac_install_go.png&rdquo; alt=&ldquo;mac_install_go&rdquo; %}}</p>
+
+<p>上一步安装过程执行完毕后，可以打开终端窗口，输入go version命令，查看安装的Go版本。</p>
 
 <h1 id="设置工作目录">设置工作目录</h1>
 
-<p>工作目录就是我们用来存放开发的源代码的地方，对应的也是Go里的GOPATH这个环境变量。这个环境变量指定之后，我们编译源代码等生成的文件都会放到这个目录下，GOPATH环境变量的配置参考上面的安装Go，配置到/etc/profile或者Windows下的系统变量里。</p></li>
-</ul>
+<p>工作目录就是我们用来存放开发的源代码的地方，对应的也是Go里的GOPATH这个环境变量。这个环境变量指定之后，我们编译源代码等生成的文件都会放到这个目录下，GOPATH环境变量的配置参考上面的安装Go，配置到/etc/profile或者Windows下的系统变量里。</p>
 
 <p>这个工作目录我们可以根据自己的设置指定，比如我的Mac在$HOME/code/go下，Window的可以放到d:\code\go下等。该目录下有3个子目录，他们分别是：</p>
 
@@ -199,13 +197,12 @@ go version go1.11.5 linux/amd64
 <ul>
 <li><code>bin</code>文件夹存放go install命名生成的可执行文件，可以把[Math Processing Error]GOROOT/bin一样，这样就可以直接在终端里使用我们go开发生成的程序了。</li>
 <li><code>pkg</code>文件夹是存在go编译生成的文件。</li>
-
-<li><p><code>src</code>存放的是我们的go源代码，不同工程项目的代码以包名区分。</p>
+<li><code>src</code>存放的是我们的go源代码，不同工程项目的代码以包名区分。</li>
+</ul>
 
 <h1 id="go目录结构">Go目录结构</h1>
 
-<p>在进行Go语言开发的时候，我们的代码总是会保存在<code>$GOPATH/src</code>目录下。在工程经过<code>go build、go install</code>或<code>go get</code>等指令后，会将下载的第三方包源代码文件放在<code>$GOPATH/src</code>目录下， 产生的二进制可执行文件放在 <code>$GOPATH/bin</code>目录下，生成的中间缓存文件会被保存在 <code>$GOPATH/pkg</code> 下。</p></li>
-</ul>
+<p>在进行Go语言开发的时候，我们的代码总是会保存在<code>$GOPATH/src</code>目录下。在工程经过<code>go build、go install</code>或<code>go get</code>等指令后，会将下载的第三方包源代码文件放在<code>$GOPATH/src</code>目录下， 产生的二进制可执行文件放在 <code>$GOPATH/bin</code>目录下，生成的中间缓存文件会被保存在 <code>$GOPATH/pkg</code> 下。</p>
 
 <p>如果我们使用版本管理工具<code>（Version Control System，VCS。常用如Git）</code>来管理我们的项目代码时，我们只需要添加<code>$GOPATH/src</code>目录的源代码即可。<code>bin</code> 和 <code>pkg</code> 目录的内容无需版本控制。</p>
 
@@ -260,15 +257,12 @@ go version go1.11.5 linux/amd64
 
 <h2 id="配置">配置</h2>
 
-<h3 id="安装中文简体插件">安装中文简体插件</h3>
-
-<p>点击左侧菜单栏最后一项管理扩展，在搜索框中输入chinese ，选中结果列表第一项，点击install安装。
+<p><strong>安装中文简体插件</strong>
+点击左侧菜单栏最后一项管理扩展，在搜索框中输入chinese ，选中结果列表第一项，点击install安装。
 {{ % img src=&ldquo;/images/01Golang/vscode1.gif&rdquo; alt=&ldquo;vscode1&rdquo; %}}
-安装完毕后右下角会提示重启VS Code，重启之后你的VS Code就显示中文啦！</p>
-
-<h3 id="安装go扩展">安装go扩展</h3>
-
-<p>现在我们要为我们的VS Code编辑器安装Go扩展插件，让它支持Go语言开发。
+安装完毕后右下角会提示重启VS Code，重启之后你的VS Code就显示中文啦！
+<strong>安装go扩展</strong>
+现在我们要为我们的VS Code编辑器安装Go扩展插件，让它支持Go语言开发。
 {{ % img src=&ldquo;/images/01Golang/1550241460281.png&rdquo; alt=&ldquo;1550241460281&rdquo; %}}</p>
 
 <h1 id="第一个go程序">第一个Go程序</h1>
