@@ -178,7 +178,7 @@ go version go1.11.5 linux/amd64
 
 <p>1.下载可执行文件版，直接点击下一步安装即可，默认会将go安装到/usr/local/go目录下。</p>
 
-<p>{{ % img src=&ldquo;/images/01Golang/mac_install_go.png&rdquo; alt=&ldquo;mac_install_go&rdquo; %}}</p>
+<p><img src="/images/01Golang/mac_install_go.png" alt="mac_install_go" /></p>
 
 <p>上一步安装过程执行完毕后，可以打开终端窗口，输入go version命令，查看安装的Go版本。</p>
 
@@ -209,14 +209,14 @@ go version go1.11.5 linux/amd64
 <h2 id="适合个人开发者">适合个人开发者</h2>
 
 <p>我们知道源代码都是存放在GOPATH的src目录下，那我们可以按照下图来组织我们的代码。
-{{ % img src=&ldquo;/images/01Golang/1550805203054.png&rdquo; alt=&ldquo;1550805203054&rdquo; %}}</p>
+<img src="/images/01Golang/1550805203054.png" alt="1550805203054" /></p>
 
 <h2 id="目前流行的项目结构">目前流行的项目结构</h2>
 
 <p>Go语言中也是通过包来组织代码文件，我们可以引用别人的包也可以发布自己的包，但是为了防止不同包的项目名冲突，我们通常使用顶级域名来作为包名的前缀，这样就不担心项目名冲突的问题了。</p>
 
 <p>因为不是每个个人开发者都拥有自己的顶级域名，所以目前流行的方式是使用个人的github用户名来区分不同的包。
-{{ % img src=&ldquo;/images/01Golang/1550805044488.png&rdquo; alt=&ldquo;1550805044488&rdquo; %}}}
+<img src="/images/01Golang/1550805044488.png" alt="1550805044488" />
 举个例子：张三和李四都有一个名叫studygo的项目，那么这两个包的路径就会是：</p>
 
 <pre><code class="language-go">import &quot;github.com/zhangsan/studygo&quot;
