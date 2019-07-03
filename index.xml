@@ -62,7 +62,9 @@
       <pubDate>Fri, 28 Jun 2019 01:14:10 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/06-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;流程控制是每种编程语言控制逻辑走向和执行次序的重要部分，流程控制可以说是一门语言的“经脉”。&lt;/p&gt;
+
+&lt;p&gt;Go语言中最常用的流程控制有&lt;code&gt;if&lt;/code&gt;和&lt;code&gt;for&lt;/code&gt;，而&lt;code&gt;switch&lt;/code&gt;和&lt;code&gt;goto&lt;/code&gt;主要是为了简化代码、降低重复代码而生的结构，属于扩展类的流程控制。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -71,7 +73,7 @@
       <pubDate>Fri, 28 Jun 2019 01:12:01 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/05-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;运算符用于在程序运行时执行数学或逻辑运算。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,7 +82,7 @@
       <pubDate>Fri, 28 Jun 2019 01:11:58 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/04-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;Go语言中有丰富的数据类型，除了基本的整型、浮点型、布尔型、字符串外，还有数组、切片、结构体、函数、map、通道（channel）等。Go 语言的基本类型和其他语言大同小异。&lt;/p&gt;</description>
     </item>
     
     <item>
