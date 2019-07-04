@@ -3,6 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://gitzh2017.github.io/00-elasticsearch/</loc>
+    <lastmod>2019-07-04T11:47:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/</loc>
+    <lastmod>2019-07-04T11:47:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://gitzh2017.github.io/posts/</loc>
     <lastmod>2019-06-28T01:17:32+08:00</lastmod>
     <priority>0</priority>
@@ -11,12 +22,6 @@
   <url>
     <loc>http://gitzh2017.github.io/posts/11-golang/</loc>
     <lastmod>2019-06-28T01:17:32+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/</loc>
-    <lastmod>2019-06-28T01:17:32+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
