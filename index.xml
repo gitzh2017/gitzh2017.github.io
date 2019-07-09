@@ -21,12 +21,12 @@
     </item>
     
     <item>
-      <title>01 Elasticsearch</title>
+      <title>[Elasticsearch系列]-Elasticsearch Operator快速部署Elasticsearch集群</title>
       <link>http://gitzh2017.github.io/01-elasticsearch/</link>
       <pubDate>Thu, 04 Jul 2019 11:47:40 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/01-elasticsearch/</guid>
-      <description> Elasticsearch 安装 Elasticsearch 集群安装 Kibana 安装 Kibana 安装配置 Kibana 插件安装 Docker运行Elasticsearch和Cerebro 通过Logstash导入数据 </description>
+      <description>&lt;p&gt;随着 kubernetes 的快速发展，很多应用都在往 kubernetes 上面迁移，现阶段对于无状态应用的迁移是非常容易做到的，但是对于有状态应用的迁移还是有一定门槛的，主要是有状态应用的运行方式各有不同，比如 MySQL、MongoDB、Redis 这些应用运行的方式方法都不太相同，特别是对于线上环境需要高可用的集群模式的时候，则差别就更大了，这就导致了有状态应用向 Kubernetes 的迁移必然进度会很慢。现在比较好的解决方案就是针对有状态应用开发对应的 Operator 应用，比如 prometheus-operator、etcd-operator 等等&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Fri, 28 Jun 2019 01:14:21 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/09-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;本文主要介绍Go语言中切片（slice）及它的基本使用。&lt;/p&gt;</description>
     </item>
     
     <item>
