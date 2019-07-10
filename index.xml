@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>00 Django</title>
+      <link>http://gitzh2017.github.io/posts/00-django/</link>
+      <pubDate>Wed, 10 Jul 2019 21:35:09 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/00-django/</guid>
+      <description>&lt;p&gt;我们都知道，Django是一种基于Python的Web开发框架。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>02 Elasticsearch</title>
       <link>http://gitzh2017.github.io/02-elasticsearch/</link>
       <pubDate>Thu, 04 Jul 2019 11:47:45 +0800</pubDate>
