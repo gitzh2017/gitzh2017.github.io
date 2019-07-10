@@ -6,10 +6,19 @@
     <description>Recent content on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 04 Jul 2019 11:47:45 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jul 2019 22:31:16 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Golang系列]-Go基础语法之错误处理</title>
+      <link>http://gitzh2017.github.io/posts/12-golang/</link>
+      <pubDate>Wed, 10 Jul 2019 22:31:16 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/12-golang/</guid>
+      <description>&lt;p&gt;对于Go语言（golang）的错误设计，相信很多人已经体验过了，它是通过返回值的方式，来强迫调用者对错误进行处理，要么你忽略，要么你处理（处理也可以是继续返回给调用者），对于golang这种设计方式，我们会在代码中写大量的if判断，以便做出决定。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>02 Elasticsearch</title>
@@ -53,7 +62,7 @@
       <pubDate>Fri, 28 Jun 2019 01:14:25 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/10-golang/</guid>
-      <description></description>
+      <description>&lt;p&gt;Go语言中提供的映射关系容器为map，其内部使用散列表（hash）实现。&lt;/p&gt;</description>
     </item>
     
     <item>

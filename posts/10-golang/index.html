@@ -83,12 +83,226 @@
                         <div class="clear">
                             <div class="toc-article">
                                 <div class="toc-title">文章目录</div>
-                                
+                                <nav id="TableOfContents">
+<ul>
+<li><a href="#map">map</a>
+<ul>
+<li><a href="#map基本使用">map基本使用</a></li>
+<li><a href="#判断某个键是否存在">判断某个键是否存在</a></li>
+<li><a href="#map的遍历">map的遍历</a></li>
+<li><a href="#使用delete-函数删除键值对">使用delete()函数删除键值对</a></li>
+<li><a href="#按照指定顺序遍历map">按照指定顺序遍历map</a></li>
+<li><a href="#元素为map类型的切片">元素为map类型的切片</a></li>
+<li><a href="#值为切片类型的map">值为切片类型的map</a></li>
+</ul></li>
+</ul>
+</nav>
                             </div>
                         </div>
                         
                         <div class="post-content">
-                            
+                            <p>Go语言中提供的映射关系容器为map，其内部使用散列表（hash）实现。</p>
+
+<h1 id="map">map</h1>
+
+<p>map是一种无序的基于key-value的数据结构，Go语言中的map是引用类型，必须初始化才能使用。</p>
+
+<p>##map定义
+Go语言中 <code>map</code>的定义语法如下：</p>
+
+<pre><code class="language-go">map[KeyType]ValueType
+</code></pre>
+
+<p><strong>其中：</strong>
+- KeyType:表示键的类型。
+- ValueType:表示键对应的值的类型。</p>
+
+<p>map类型的变量默认初始值为<code>nil</code>，需要使用<code>make()</code>函数来分配内存。语法为：</p>
+
+<pre><code class="language-go">make(map[KeyType]ValueType, [cap])
+</code></pre>
+
+<p>其中<code>cap</code>表示map的容量，该参数虽然不是必须的，但是我们应该在初始化map的时候就为其指定一个合适的容量。</p>
+
+<h2 id="map基本使用">map基本使用</h2>
+
+<p>map中的数据都是成对出现的，map的基本使用示例代码如下：</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main()  {
+	scoreMap := make(map[string]int,8)
+	scoreMap[&quot;张三&quot;] = 90
+	scoreMap[&quot;李四&quot;] = 100
+	fmt.Println(scoreMap)
+	fmt.Println(scoreMap[&quot;李四&quot;])
+	fmt.Printf(&quot;type of a:%T\n&quot;,scoreMap)
+}
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code class="language-go">map[小明:100 张三:90]
+100
+type of a:map[string]int
+</code></pre>
+
+<p>map也支持在声明的时候填充元素，例如：</p>
+
+<pre><code class="language-go">func main() {
+	userInfo := map[string]string{
+		&quot;username&quot;: &quot;沙河小王子&quot;,
+		&quot;password&quot;: &quot;123456&quot;,
+	}
+	fmt.Println(userInfo) //
+}
+</code></pre>
+
+<h2 id="判断某个键是否存在">判断某个键是否存在</h2>
+
+<p>Go语言中有个判断map中键是否存在的特殊写法，格式如下:</p>
+
+<pre><code class="language-go">value, ok := map[key]
+</code></pre>
+
+<p>举个例子：</p>
+
+<pre><code class="language-go">func main() {
+	scoreMap := make(map[string]int)
+	scoreMap[&quot;张三&quot;] = 90
+	scoreMap[&quot;小明&quot;] = 100
+	// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值
+	v, ok := scoreMap[&quot;张三&quot;]
+	if ok {
+		fmt.Println(v)
+	} else {
+		fmt.Println(&quot;查无此人&quot;)
+	}
+}
+</code></pre>
+
+<h2 id="map的遍历">map的遍历</h2>
+
+<p>Go语言中使用<code>for range</code>遍历map。</p>
+
+<pre><code class="language-go">func main() {
+	scoreMap := make(map[string]int)
+	scoreMap[&quot;张三&quot;] = 90
+	scoreMap[&quot;小明&quot;] = 100
+	scoreMap[&quot;娜扎&quot;] = 60
+	for k, v := range scoreMap {
+		fmt.Println(k, v)
+	}
+}
+</code></pre>
+
+<p>但我们只想遍历key的时候，可以按下面的写法：</p>
+
+<pre><code class="language-go">func main() {
+	scoreMap := make(map[string]int)
+	scoreMap[&quot;张三&quot;] = 90
+	scoreMap[&quot;小明&quot;] = 100
+	scoreMap[&quot;娜扎&quot;] = 60
+	for k := range scoreMap {
+		fmt.Println(k)
+	}
+}
+</code></pre>
+
+<p><strong>注意</strong>： 遍历map时的元素顺序与添加键值对的顺序无关。</p>
+
+<h2 id="使用delete-函数删除键值对">使用delete()函数删除键值对</h2>
+
+<p>使用<code>delete()</code>内建函数从map中删除一组键值对，<code>delete()</code>函数的格式如下：</p>
+
+<pre><code class="language-go">delete(map, key)
+</code></pre>
+
+<p><strong>其中：</strong>
+- <code>map</code>:表示要删除键值对的map
+- <code>key</code>:表示要删除的键值对的键</p>
+
+<p>示例代码如下：</p>
+
+<pre><code class="language-go">func main(){
+	scoreMap := make(map[string]int)
+	scoreMap[&quot;张三&quot;] = 90
+	scoreMap[&quot;小明&quot;] = 100
+	scoreMap[&quot;娜扎&quot;] = 60
+	delete(scoreMap, &quot;小明&quot;)//将小明:100从map中删除
+	for k,v := range scoreMap{
+		fmt.Println(k, v)
+	}
+}
+</code></pre>
+
+<h2 id="按照指定顺序遍历map">按照指定顺序遍历map</h2>
+
+<pre><code class="language-go">func main() {
+	rand.Seed(time.Now().UnixNano()) //初始化随机数种子
+
+	var scoreMap = make(map[string]int, 200)
+
+	for i := 0; i &lt; 100; i++ {
+		key := fmt.Sprintf(&quot;stu%02d&quot;, i) //生成stu开头的字符串
+		value := rand.Intn(100)          //生成0~99的随机整数
+		scoreMap[key] = value
+	}
+	//取出map中的所有key存入切片keys
+	var keys = make([]string, 0, 200)
+	for key := range scoreMap {
+		keys = append(keys, key)
+	}
+	//对切片进行排序
+	sort.Strings(keys)
+	//按照排序后的key遍历map
+	for _, key := range keys {
+		fmt.Println(key, scoreMap[key])
+	}
+}
+</code></pre>
+
+<h2 id="元素为map类型的切片">元素为map类型的切片</h2>
+
+<p>下面的代码演示了切片中的元素为map类型时的操作：</p>
+
+<pre><code class="language-go">func main() {
+	var mapSlice = make([]map[string]string, 3)
+	for index, value := range mapSlice {
+		fmt.Printf(&quot;index:%d value:%v\n&quot;, index, value)
+	}
+	fmt.Println(&quot;after init&quot;)
+	// 对切片中的map元素进行初始化
+	mapSlice[0] = make(map[string]string, 10)
+	mapSlice[0][&quot;name&quot;] = &quot;小王子&quot;
+	mapSlice[0][&quot;password&quot;] = &quot;123456&quot;
+	mapSlice[0][&quot;address&quot;] = &quot;沙河&quot;
+	for index, value := range mapSlice {
+		fmt.Printf(&quot;index:%d value:%v\n&quot;, index, value)
+	}
+}
+</code></pre>
+
+<h2 id="值为切片类型的map">值为切片类型的map</h2>
+
+<p>下面的代码演示了map中值为切片类型的操作：</p>
+
+<pre><code class="language-go">func main() {
+	var sliceMap = make(map[string][]string, 3)
+	fmt.Println(sliceMap)
+	fmt.Println(&quot;after init&quot;)
+	key := &quot;中国&quot;
+	value, ok := sliceMap[key]
+	if !ok {
+		value = make([]string, 0, 2)
+	}
+	value = append(value, &quot;北京&quot;, &quot;上海&quot;)
+	sliceMap[key] = value
+	fmt.Println(sliceMap)
+}
+</code></pre>
                         </div>
 
                         
@@ -142,6 +356,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://gitzh2017.github.io/posts/12-golang/" title="[Golang系列]-Go基础语法之错误处理">[Golang系列]-Go基础语法之错误处理</a>
+    </li>
+    
+    <li>
         <a href="http://gitzh2017.github.io/posts/11-golang/" title="[Golang系列]-Go基础语法之指针">[Golang系列]-Go基础语法之指针</a>
     </li>
     
@@ -175,10 +393,6 @@
     
     <li>
         <a href="http://gitzh2017.github.io/posts/03-golang/" title="[Golang系列]-Go基础语法之变量与常量">[Golang系列]-Go基础语法之变量与常量</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/posts/02-golang/" title="[Golang系列]-Go开发环境 VS Code">[Golang系列]-Go开发环境 VS Code</a>
     </li>
     
 </ul>
