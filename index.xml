@@ -6,10 +6,19 @@
     <description>Recent content on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Jul 2019 22:31:16 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jul 2019 16:46:25 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Golang系列]-包依赖管理工具Govendor</title>
+      <link>http://gitzh2017.github.io/posts/000-golang/</link>
+      <pubDate>Mon, 15 Jul 2019 16:46:25 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/000-golang/</guid>
+      <description>&lt;p&gt;&lt;code&gt;govendor&lt;/code&gt; 是一个基于&lt;code&gt;vendor&lt;/code&gt;机制实现的 Go 包依赖管理命令行工具。与原生 vendor 无侵入性融合，也支持从其他依赖管理工具迁移，可以很方便的实现同一个包在不同项目中不同版本、以及无相互侵入的开发和管理。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>[Golang系列]-Go基础语法之错误处理</title>
@@ -21,7 +30,7 @@
     </item>
     
     <item>
-      <title>00 Django</title>
+      <title>[Django系列]-Django初识</title>
       <link>http://gitzh2017.github.io/posts/00-django/</link>
       <pubDate>Wed, 10 Jul 2019 21:35:09 +0800</pubDate>
       

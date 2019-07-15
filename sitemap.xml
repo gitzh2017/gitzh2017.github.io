@@ -4,19 +4,24 @@
   
   <url>
     <loc>http://gitzh2017.github.io/posts/</loc>
-    <lastmod>2019-07-10T22:31:16+08:00</lastmod>
+    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/posts/000-golang/</loc>
+    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/</loc>
+    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitzh2017.github.io/posts/12-golang/</loc>
     <lastmod>2019-07-10T22:31:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/</loc>
-    <lastmod>2019-07-10T22:31:16+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
