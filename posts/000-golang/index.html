@@ -175,54 +175,64 @@
 <h3 id="常用命令">常用命令</h3>
 
 <ul>
-<li><p>将已被引用且在 <code>$GOPATH</code> 下的所有包复制到 <code>vendor</code> 目录</p>
+<li>将已被引用且在 <code>$GOPATH</code> 下的所有包复制到 <code>vendor</code> 目录</li>
+</ul>
 
-<pre><code>govendor add +external
-</code></pre></li>
+<pre><code class="language-sh">govendor add +external
+</code></pre>
 
-<li><p>仅从 <code>$GOPATH</code> 中复制指定包</p>
+<ul>
+<li>仅从 <code>$GOPATH</code> 中复制指定包</li>
+</ul>
 
-<pre><code>govendor add gopkg.in/yaml.v2
-</code></pre></li>
+<pre><code class="language-sh">govendor add gopkg.in/yaml.v2
+</code></pre>
 
-<li><p>列出代码中所有被引用到的包及其状态</p>
+<ul>
+<li>列出代码中所有被引用到的包及其状态</li>
+</ul>
 
-<pre><code>govendor list
-e  github.com/gin-contrib/sse
-e  github.com/gin-gonic/gin
-e  github.com/gin-gonic/gin/binding
-e  github.com/gin-gonic/gin/internal/json
-e  github.com/gin-gonic/gin/render
-e  github.com/golang/protobuf/proto
-e  github.com/mattn/go-isatty
-e  github.com/ugorji/go/codec
-e  gopkg.in/go-playground/validator.v8
-e  gopkg.in/yaml.v2
+<pre><code class="language-sh">govendor list
+ e  github.com/gin-contrib/sse
+ e  github.com/gin-gonic/gin
+ e  github.com/gin-gonic/gin/binding
+ e  github.com/gin-gonic/gin/internal/json
+ e  github.com/gin-gonic/gin/render
+ e  github.com/golang/protobuf/proto
+ e  github.com/mattn/go-isatty
+ e  github.com/ugorji/go/codec
+ e  gopkg.in/go-playground/validator.v8
+ e  gopkg.in/yaml.v2
 pl  govendor-example
-m github.com/json-iterator/go
-m golang.org/x/sys/unix
-</code></pre></li>
+  m github.com/json-iterator/go
+  m golang.org/x/sys/unix
+</code></pre>
 
-<li><p>列出一个包被哪些包引用</p>
+<ul>
+<li>列出一个包被哪些包引用</li>
+</ul>
 
-<pre><code>govendor list -v fmt
-s  fmt
-├──  e  github.com/gin-contrib/sse
-├──  e  github.com/gin-gonic/gin
-├──  e  github.com/gin-gonic/gin/render
-├──  e  github.com/golang/protobuf/proto
-├──  e  github.com/ugorji/go/codec
-├──  e  gopkg.in/go-playground/validator.v8
-├──  e  gopkg.in/yaml.v2
-└── pl  govendor-example
-</code></pre></li>
+<pre><code class="language-sh">govendor list -v fmt
+ s  fmt
+    ├──  e  github.com/gin-contrib/sse
+    ├──  e  github.com/gin-gonic/gin
+    ├──  e  github.com/gin-gonic/gin/render
+    ├──  e  github.com/golang/protobuf/proto
+    ├──  e  github.com/ugorji/go/codec
+    ├──  e  gopkg.in/go-playground/validator.v8
+    ├──  e  gopkg.in/yaml.v2
+    └── pl  govendor-example
+</code></pre>
 
-<li><p>从远程仓库添加或更新某个包(<strong>不会</strong>在 <code>$GOPATH</code> 也存一份)</p>
+<ul>
+<li>从远程仓库添加或更新某个包(<strong>不会</strong>在 <code>$GOPATH</code> 也存一份)</li>
+</ul>
 
-<pre><code>govendor fetch golang.org/x/net/context
-</code></pre></li>
+<pre><code class="language-sh">govendor fetch golang.org/x/net/context
+</code></pre>
 
-<li><p>安装指定版本的包</p></li>
+<ul>
+<li>安装指定版本的包</li>
 </ul>
 
 <pre><code class="language-sh">govendor fetch golang.org/x/net/context@a4bbce9fcae005b22ae5443f6af064d80a6f5a55
@@ -231,55 +241,69 @@ govendor fetch golang.org/x/net/context@=v1  # Get the tag or branch named &quot
 </code></pre>
 
 <ul>
-<li><p>只格式化项目自身代码(<code>vendor</code> 目录下的不变动)</p>
-
-<pre><code>govendor fmt +local
-</code></pre></li>
-
-<li><p>只构建编译项目内部的包</p>
-
-<pre><code>govendor install +local
-</code></pre></li>
-
-<li><p>只测试项目内部的测试案例</p>
-
-<pre><code>govendor test +local
-</code></pre></li>
-
-<li><p>构建所有 <code>vendor</code> 包</p>
-
-<pre><code>govendor install +vendor,^program
-</code></pre></li>
-
-<li><p>拉取所有依赖的包到 <code>vendor</code> 目录(包括 <code>$GOPATH</code> 存在或不存在的包)</p>
-
-<pre><code>govendor fetch +out
-</code></pre></li>
-
-<li><p>包已在 <code>vendor</code> 目录，但想从 <code>$GOPATH</code> 更新</p>
-
-<pre><code>govendor update +vendor
-</code></pre></li>
-
-<li><p>已修改了 <code>$GOPATH</code> 里的某个包，现在想将已修改且未提交的包更新到 <code>vendor</code></p>
-
-<pre><code>govendor update -uncommitted &lt;updated-package-import-path&gt;
-</code></pre></li>
-
-<li><p>Fork 了某个包，但尚未合并，该如何引用到最新的代码包</p>
-
-<pre><code>govendor fetch github.com/normal/pkg::github.com/myfork/pkg
-</code></pre></li>
+<li>只格式化项目自身代码(<code>vendor</code> 目录下的不变动)</li>
 </ul>
+
+<pre><code class="language-sh">govendor fmt +local
+</code></pre>
+
+<ul>
+<li>只构建编译项目内部的包</li>
+</ul>
+
+<pre><code class="language-sh">govendor install +local
+</code></pre>
+
+<ul>
+<li>只测试项目内部的测试案例</li>
+</ul>
+
+<pre><code class="language-sh">govendor test +local
+</code></pre>
+
+<ul>
+<li>构建所有 <code>vendor</code> 包</li>
+</ul>
+
+<pre><code class="language-sh">govendor install +vendor,^program
+</code></pre>
+
+<ul>
+<li>拉取所有依赖的包到 <code>vendor</code> 目录(包括 <code>$GOPATH</code> 存在或不存在的包)</li>
+</ul>
+
+<pre><code class="language-sh">govendor fetch +out
+</code></pre>
+
+<ul>
+<li>包已在 <code>vendor</code> 目录，但想从 <code>$GOPATH</code> 更新</li>
+</ul>
+
+<pre><code class="language-sh">govendor update +vendor
+</code></pre>
+
+<ul>
+<li>已修改了 <code>$GOPATH</code> 里的某个包，现在想将已修改且未提交的包更新到 <code>vendor</code></li>
+</ul>
+
+<pre><code class="language-sh">govendor update -uncommitted &lt;updated-package-import-path&gt;
+</code></pre>
+
+<ul>
+<li>Fork 了某个包，但尚未合并，该如何引用到最新的代码包</li>
+</ul>
+
+<pre><code class="language-sh">govendor fetch github.com/normal/pkg::github.com/myfork/pkg
+</code></pre>
 
 <p>此时将从 <code>myfork</code> 拉取代码，而不是 <code>normal</code>。</p>
 
 <ul>
-<li><p><code>vendor.json</code> 中记录了依赖包信息，该如何拉取更新</p>
-
-<pre><code>govendor sync
-</code></pre></li>
+<li><code>vendor.json</code> 中记录了依赖包信息，该如何拉取更新</li>
 </ul>
+
+<pre><code class="language-sh">govendor sync
+</code></pre>
 
 <h2 id="govendor-子命令">govendor 子命令</h2>
 
