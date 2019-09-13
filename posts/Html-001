@@ -1,0 +1,327 @@
+---
+title: "前端知识-Html基础"
+date: 2019-09-13T17:57:38+08:00
+weight: 70
+keywords: ["Html"]
+description: "Html基础"
+tags: ["Html", "pages"]
+categories: ["pages"]
+author: "Henry"
+---
+
+# HTML介绍
+## 什么是HTML
+超文本标记语言`（Hypertext Markup Language, HTML）`是一种用于创建网页的标记语言。本质上是浏览器可识别的规则，我们按照规则写网页，浏览器根据规则渲染我们的网页。对于不同的浏览器，对同一个标签可能会有不同的解释。（兼容性问题）`网页文件的扩展名：.html或.htm`
+
+## HTML的文档结构
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>css样式优先级</title>
+</head>
+<body>
+
+</body>
+</html>
+```
+- `<!DOCTYPE html>`：声明必须是 HTML 文档的第一行，位于 <html> 标签之前，声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。此处声明为HTML5文档。
+- `<html>、</html>`：是文档的开始标记和结束的标记。是HTML页面的根元素，在它们之间是文档的头部（head）和主体（body）。
+- `<head>、</head>`：定义了HTML文档的开头部分。它们之间的内容不会在浏览器的文档窗口显示。包含了文档的元（meta）数据。
+- `<title>、</title>`：定义了网页标题，在浏览器标题栏显示。
+- `<body>、</body>`：之间的文本是可见的网页主体内容。
+
+## HTML标签格式
+### 标签格式
+HTML标签是由尖括号包围的关键字，如<html>, <div>等。HTML标签通常是成对出现的，比如：<div>和</div>，第一个标签是开始，第二个标签是结束，结束标签会有斜线，也有一部分标签是单独呈现的，比如：<br/>、<hr/>、<img src="1.jpg" alt="HTML基础" />等。标签里面可以有若干属性，也可以不带属性。
+
+### 标签语法
+```html
+<标签名 属性1=“属性值1” 属性2=“属性值2”……>内容部分</标签名>
+<标签名 属性1=“属性值1” 属性2=“属性值2”…… />
+```
+### 重要属性
+- `id`：定义标签的唯一ID，HTML文档树中唯一
+- `class`：为html元素定义一个或多个类名（classname）(CSS样式类名)
+- `style`：规定元素的行内样式（CSS样式）
+
+# HTML常用标签
+## head内常用标签
+
+| **标签**          | **意义**                   |
+| ----------------- | -------------------------- |
+| <title></title>   | 定义网页标题               |
+| <style></style>   | 定义内部样式表             |
+| <script></script> | 定义JS代码或引入外部JS文件 |
+| <link/>           | 引入外部样式表文件         |
+| <meta/>           | 定义网页原信息             |
+
+## body内常用展示标签
+### 基本标签
+#### 块级标签
+```html
+<!—段落标签-->
+<div></div>
+<p></p>
+
+<!—标题标签-->
+<h1></h1>
+<h2></h2>
+<h3></h3>
+<h4></h4>
+<h5></h5>
+<h6></h6>
+
+<!--水平线-->
+<hr>
+
+<!—列表标签-->
+<ul></ul>
+<li></li>
+<ol></ol>
+```
+**块级标签特点：**
+```
+默认占浏览器宽度
+可以手动设置长和宽
+```
+#### 内联标签
+```html
+<!--字体样式-->
+<b>加粗</b>
+<i>斜体</i>
+<u>下划线</u>
+<s>删除</s>
+
+<!--换行-->
+<br>
+
+<!—段落标签-->
+<span></span>
+
+<!—图片标签-->
+<img></img>
+
+<!—超链接标签-->
+<a></a>
+```
+**内联标签（行内标签）特点：**
+```
+根据内容决定长度
+不能手动设置长和宽
+```
+### 特殊字符
+
+| **内容** | **对应代码** |
+| -------- | ------------ |
+| 空格     | &nbsp;       |
+| >        | &gt;         |
+| <        | &lt;         |
+| &        | &amp;        |
+| ￥       | &yen;        |
+| 版权     | &copy;       |
+| 注册     | &reg;        |
+
+### div标签和span标签
+- `div`标签用来定义一个块级元素，并无实际的意义。主要通过CSS样式为其赋予不同的表现。
+- `span`标签用来定义内联(行内)元素，并无实际的意义。主要通过CSS样式为其赋予不同的表现。
+
+**块级元素与行内元素的区别：**
+块元素是以另起一行开始渲染的元素，行内元素则不需另起一行。如果单独在网页中插入这两个元素，不会对页面产生任何的影响。这两个元素是专门为定义CSS样式而生的。
+
+### img标签
+```html
+<img src="图片的路径" alt="图片未加载成功时的提示" title="鼠标悬浮时提示信息" width="宽" height="高(宽高两个属性只用一个会自动等比缩放)">
+```
+### a标签
+超链接标签是指从一个网页指向一个目标的连接关系，这个目标可以是另一个网页，也可以是相同网页上的不同位置，还可以是一个图片，一个电子邮件地址，一个文件，甚至是一个应用程序。
+```html
+<a href="https://www.baidu.com" target="_blank" >博客</a>
+```
+**【href属性】：**
+href属性指定目标网页地址。该地址可以有几种类型：
+- 绝对URL - 指向另一个站点（比如 href="https://www.baidu.com"）
+- 相对URL - 指当前站点中确切的路径（href="index.htm"）
+- 锚URL - 指向页面中的锚（href="#top"）
+**【target属性】：**
+- _blank表示在新标签页中打开目标网页
+- _self表示在当前标签页中打开目标网页
+
+### 列表标签
+#### 无序列表
+```html
+<ul type="disc">
+  <li>第一项</li>
+  <li>第二项</li>
+</ul>
+```
+**【type属性】：**
+- disc（实心圆点，默认值）
+- circle（空心圆圈）
+- square（实心方块）
+- none（无样式）
+
+#### 有序列表
+```html
+<ol type="1" start="2">
+  <li>第一项</li>
+  <li>第二项</li>
+</ol>
+```
+**【type属性】：**
+- 1 数字列表，默认值
+- A 大写字母
+- a 小写字母
+- Ⅰ大写罗马
+- ⅰ小写罗马
+
+### 标题列表
+```html
+<dl>
+  <dt>标题1</dt>
+  <dd>内容1</dd>
+  <dt>标题2</dt>
+  <dd>内容1</dd>
+  <dd>内容2</dd>
+</dl>
+```
+### 表格标签
+```html
+<table>
+  <!--表格表头开始-->
+  <thead>
+  <tr> <!—行-->
+    <th>序号</th>  <!—列-->
+    <th>姓名</th>
+    <th>性别</th>
+  </tr>
+  </thead>
+<!--表格表头结束-->
+<!--表格开始-->
+  <tbody>
+  <tr> <!—行-->
+    <td>1</td>  <!—列-->
+    <td>leon</td>
+    <td>男</td>
+  </tr>
+  <tr> <!—行-->
+    <td>2</td>  <!—列-->
+    <td>shadow</td>
+    <td>女</td>
+  </tr>
+  </tbody>
+<!--表格结束-->
+</table>
+```
+**【表格属性】:**
+- border: 表格边框.
+- cellpadding: 内边距
+- cellspacing: 外边距.
+- width: 像素 百分比.（最好通过css来设置长宽）
+- rowspan: 单元格竖跨多少行
+- colspan: 单元格横跨多少列（即合并单元格）
+
+## body内常用交互标签
+### from标签
+HTML表单是HTML元素中较为复杂的部分，表单往往和脚本、动态页面、数据处理等功能相结合，因此它是制作动态网站很重要的内容。表单一般用来收集用户的输入信息。
+#### 表单功能
+表单用于向服务器传输数据，从而实现用户与Web服务器的交互。表单能够包含input系列标签，比如文本字段、复选框、单选框、提交按钮等等，还可以包含textarea、select、fieldset和 label标签。
+#### 表单工作原理
+- 访问者在浏览有表单的网页时，可填写必需的信息，然后按某个按钮提交。这些信息通过Internet传送到服务器上。
+- 服务器上专门的程序对这些数据进行处理，如果有错误会返回错误信息，并要求纠正错误。当数据完整无误后，服务器反馈一个输入完成的信息。
+#### 表单属性
+
+| **属性**       | **描述**                                                   |
+| -------------- | ---------------------------------------------------------- |
+| accept-charset | 规定在被提交表单中使用的字符集（默认：页面字符集）。       |
+| action         | 规定向何处提交表单的地址（URL）（提交页面）。              |
+| autocomplete   | 规定浏览器应该自动完成表单（默认：开启）。                 |
+| enctype        | 规定被提交数据的编码（默认：url-encoded）。                |
+| method         | 规定在提交表单时所用的 HTTP 方法（默认：GET）。            |
+| name           | 规定识别表单的名称（对于 DOM 使用：document.forms.name）。 |
+| novalidate     | 规定浏览器不验证表单，如邮箱格式等。                       |
+| target         | 规定 action 属性中地址的目标（默认：_self）。              |
+
+**注意事项**
+- 所有获取用户输入的标签都必须放在form表单里面
+- action控制着往哪儿提交
+- input\select\textarea 都需要有name属性，方便后期程序调用
+- 提交按钮 <input type="submit">，type必须为submit，否则无法正常提交
+
+### input标签
+`<input> `元素会根据不同的 type 属性，变化为多种形态：
+
+| **type****属性值** | **表现形式** | **对应代码**                               |
+| ------------------ | ------------ | ------------------------------------------ |
+| text               | 单行输入文本 | <input type=text"/>                        |
+| password           | 密码输入框   | <input type="password"/>                   |
+| date               | 日期输入框   | <input type="date"/>                       |
+| datetime           | 时间输入框   | <input type="datetime"/>                   |
+| checkbox           | 复选框       | <input type="checkbox" checked="checked"/> |
+| radio              | 单选框       | <input type="radio"/>                      |
+| submit             | 提交按钮     | <input type="submit" value="提交"/>        |
+| reset              | 重置按钮     | <input type="reset" value="重置"/>         |
+| button             | 普通按钮     | <input type="button" value="普通按钮"/>    |
+| hidden             | 隐藏输入框   | <input type="hidden"/>                     |
+| file               | 文本选择框   | <input type="file"/>                       |
+
+**【属性说明】:**
+- name：表单提交时的“键”，注意和id的区别
+- value：表单提交时对应项的值
+- type="button", "reset", "submit"时，为按钮上显示的文本年内容
+- type="text","password","hidden"时，为输入框的初始值
+- type="checkbox", "radio", "file"，为输入相关联的值
+- checked：radio和checkbox默认被选中的项
+- readonly：text和password设置只读
+- disabled：所有input均适用
+- placeholder：提供可描述输入字段预期值的提示信息（hint），该提示会在输入字段为空时显示，并会在字段获得焦点时消失。placeholder 属性适用于以下的 <input> 类型：text, search, url, telephone, email 以及 password。
+
+### select标签
+```html
+<select name="from" id="s1">
+    <optgroup label="北京">
+        <option value="cp">昌平</option>
+        <option value="cy">朝阳</option>
+        <option value="hd">海淀</option>
+        <option value="ft">丰台</option>
+    </optgroup>
+    <optgroup label="上海">
+        <option value="pdxq">浦东新区</option>
+        <option value="mhq">闵行区</option>
+        <option value="hpq">黄浦区</option>
+    </optgroup>
+    <optgroup label="四川">
+        <option value="pzh">攀枝花</option>
+        <option value="zg">自贡</option>
+        <option value="my">绵阳</option>
+    </optgroup>
+</select>
+```
+**【属性说明】：**
+- multiple：布尔属性，设置后为多选，否则默认单选
+- disabled：禁用
+- selected：默认选中该项
+- value：定义提交时的选项值
+- optgroup：分组显示下拉菜单
+- option：下来菜单选项
+
+### label标签
+`<label>` 标签为 input 元素定义标注（标记）。label 元素不会向用户呈现任何特殊效果，<label> 标签的 for 属性值应当与相关元素的 id 属性值相同。
+```html
+<form action="">
+  <label for="username">用户名</label>
+  <input type="text" id="username" name="username">
+</form>
+```
+### textarea多行文本
+```html
+<textarea name="memo" id="memo" cols="30" rows="10">
+  默认内容
+</textarea>
+```
+**【属性说明】：**
+- name：名称
+- rows：行数
+- cols：列数
+- disabled：禁用

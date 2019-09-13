@@ -3,114 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://gitzh2017.github.io/posts/</loc>
-    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/000-golang/</loc>
-    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/</loc>
-    <lastmod>2019-07-15T16:46:25+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/12-golang/</loc>
-    <lastmod>2019-07-10T22:31:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/00-django/</loc>
-    <lastmod>2019-07-10T21:35:09+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/02-elasticsearch/</loc>
-    <lastmod>2019-07-04T11:47:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/01-elasticsearch/</loc>
-    <lastmod>2019-07-04T11:47:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/00-elasticsearch/</loc>
-    <lastmod>2019-07-04T11:47:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/11-golang/</loc>
-    <lastmod>2019-06-28T01:17:32+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/10-golang/</loc>
-    <lastmod>2019-06-28T01:14:25+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/09-golang/</loc>
-    <lastmod>2019-06-28T01:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/08-golang/</loc>
-    <lastmod>2019-06-28T01:14:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/07-golang/</loc>
-    <lastmod>2019-06-28T01:14:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/06-golang/</loc>
-    <lastmod>2019-06-28T01:14:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/05-golang/</loc>
-    <lastmod>2019-06-28T01:12:01+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/04-golang/</loc>
-    <lastmod>2019-06-28T01:11:58+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/03-golang/</loc>
-    <lastmod>2019-06-28T01:11:53+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/02-golang/</loc>
-    <lastmod>2019-06-28T01:09:26+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/01-golang/</loc>
-    <lastmod>2019-06-28T01:09:17+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/00-golang/</loc>
-    <lastmod>2019-06-28T01:09:06+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://gitzh2017.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://gitzh2017.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://gitzh2017.github.io/</loc>
     <priority>0</priority>
   </url>
   
