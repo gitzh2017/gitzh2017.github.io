@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ansible系列-Ansible快速入门 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Ansible系列-Ansible快速入门 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-09-13T17:57:38&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-09-13T17:57:38&#43;08:00">
+        
+    <meta name="Keywords" content="[Ansible]">
+    <meta name="description" content="Ansible快速入门">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/ansible-001/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Ansible系列-Ansible快速入门</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年9月13日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/ansible">Ansible</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="ansible介绍">Ansible介绍</h1>
+
+<h2 id="ansible-简介">Ansible 简介</h2>
+
+<p>Ansible是2013年推出的自动化工具，Ansible是一个IT自动化工具。它可以配置系统、部署软件、以及编排更高级的IT任务，例如持续部署或零宕机滚动升级。Ansible在2015年被Redhat公司收购，Ansible 是使用了 Python 作为开发语言，简单易用、功能强大的自动化运维管理工具，可以出色地完成配置管理、应用部署、任务编排等多方面工作。与 Puppet、Saltstack 等其它自动化产品相比较，Ansible 无需在远程服务器上安装 agent 客户端代理，它只依赖 SSH 连接，而且它的学习曲线非常低。</p>
+
+<p><strong>使用范围</strong>
+- 自动化部署应用
+- 自动化管理配置
+- 自动化持续交付
+- 自动化云服务管理
+- 自动化网络设备管理</p>
+
+<h2 id="ansible-架构">Ansible 架构</h2>
+
+<p><img src="/static/images/ansible-architecture.png" alt="image-20191002174451485" /></p>
+
+<p>各组件的详细说明请参考： <a href="https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html">https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html</a></p>
+
+<ul>
+<li><code>Host Inventory</code>： 定义了 Ansible 能够管理的远程主机资源清单，默认为 <code>/etc/ansible/hosts</code> 文件。也可以编写一个 <a href="https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html#developing-inventory">inventory plugin</a> 来连接到任何返回 JSON 的数据源（比如你的 CMDB）</li>
+<li><code>Modules</code>： Ansible 执行命令的功能模块，包括内置核心模块或用户自定义模块</li>
+<li><code>Plugins</code>： 功能模块的补充，比如上面的 <code>inventory plugin</code>，或者提供转换数据、记录输出、日志记录等附加功能。插件只能使用 Python 编写</li>
+<li><code>API</code>： 提供给第三方应用调用的接口</li>
+</ul>
+
+<h2 id="ansible-特性">Ansible 特性</h2>
+
+<ul>
+<li><code>模块化</code>： Ansible 依靠 <code>模块（Modules）</code> 来实现批量部署，模块就是实现了指定功能的 Python 脚本程序，通过 SFTP 或 SCP 拷贝到远程受管节点的临时目录中，执行后（返回 JSON 数据）会被删除。Ansible 内置了大量的模块，使用它们可以完成软件包安装、重启服务、拷贝配置文件等诸多操作</li>
+<li><code>支持自定义模块</code>： 由于模块支持可插拔，所以你也可以开发自己的模块来扩展它的功能，可以使用任何能够返回 JSON 数据的语言（比如 Python、Ruby、Shell 等）来编写专用模块</li>
+<li><code>部署简单</code>： 基于 Python 和 SSH，无需代理客户端（agentless），很多 Linux 发行版默认已安装了 Python 和 OpenSSH</li>
+<li><code>安全性</code>： 基于 OpenSSH</li>
+<li><code>支持任务编排</code>： 通过 playbook 来描述任务（使用非常简单的 YAML 语言）</li>
+<li><code>幂等性（idempotent）</code>： 一个任务执行 1 遍和执行 n 遍的结果是一样的，不会因为重复执行带来意外情况</li>
+</ul>
+
+<h2 id="ansible-社区">Ansible 社区</h2>
+
+<ul>
+<li>Ansible releases 210+</li>
+<li>Ansible modules 210+</li>
+<li>Github starts 3000+</li>
+<li>全球会议 230+</li>
+<li>社区贡献者 3500+</li>
+</ul>
+
+<p><code>Ansible Galaxy</code>是用于一个查找，共享，使用ansible role的在线社区：<a href="https://galaxy.ansible.com">https://galaxy.ansible.com</a></p>
+
+<p><code>Ansible Container</code>是一个开源项目，旨在实现整个容器构建，部署和管理过程的自动化：<a href="https://github.com/ansible/ansible-container">https://github.com/ansible/ansible-container</a></p>
+
+<p><code>Ansible Tower</code>商业项目，用于可视化仪表盘，基于角色的访问控制，作业调度，集成通知和图形化管理来集中和控制IT基础架构：<a href="https://www.ansible.com/products/tower">https://www.ansible.com/products/tower</a></p>
+
+<h1 id="ansible-开始">Ansible 开始</h1>
+
+<h2 id="ansible-安装">Ansible 安装</h2>
+
+<p>目前 Ansible 可以从安装了 Python 2（2.7 版）或 Python 3（3.5 及更高版本）的任何机器上运行，<strong>注意： 控制节点不支持 Windows</strong></p>
+
+<pre><code class="language-bash">[root@CentOS ~]# cat /etc/yum.repos.d/ansible.repo
+[ansible-el7]
+name=Ansible noarch packages
+baseurl=https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/
+enabled=1
+gpgcheck=0
+
+[root@CentOS ~]# yum -y install ansible
+
+[root@CentOS ~]# ansible --version
+ansible 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Nov  6 2016, 00:28:07) [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+</code></pre>
+
+<h2 id="ansible-配置文件">Ansible 配置文件</h2>
+
+<p><code>/etc/ansible/ansible.cfg</code>： 主配置文件</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# cat /etc/ansible/ansible.cfg 
+# config file for ansible -- https://ansible.com/
+# ===============================================
+
+# nearly all parameters can be overridden in ansible-playbook
+# or with command line flags. ansible will read ANSIBLE_CONFIG,
+# ansible.cfg in the current working directory, .ansible.cfg in
+# the home directory or /etc/ansible/ansible.cfg, whichever it
+# finds first
+
+[defaults]
+
+# some basic default values...
+
+#inventory      = /etc/ansible/hosts
+#library        = /usr/share/my_modules/
+#module_utils   = /usr/share/my_module_utils/
+#remote_tmp     = ~/.ansible/tmp
+#local_tmp      = ~/.ansible/tmp
+#plugin_filters_cfg = /etc/ansible/plugin_filters.yml
+#forks          = 5
+#poll_interval  = 15
+#sudo_user      = root
+#ask_sudo_pass = True
+#ask_pass      = True
+#transport      = smart
+#remote_port    = 22
+#module_lang    = C
+#module_set_locale = False
+
+...
+</code></pre>
+
+<p>下面介绍基本参数及含义:</p>
+
+<ul>
+<li>inventory: 财产目录，一般指向你ansible使用的hosts文件的绝对路径。我这里可以设置为/etc/ansible/hosts, 因为我建立了软链。</li>
+<li>library: 指向共享模块所在目录。</li>
+<li>module_utils: 工具模块目录地址。</li>
+<li>remote_tmp: 远程tmp目录地址。</li>
+<li>local_tmp: 本地ansible tmp目录地址。</li>
+<li>plugin_filters_cfg: 插件过滤配置文件。可指定一个yml文件。</li>
+<li>forks: ansible默认多少个进程执行，默认为<code>5</code>。</li>
+<li>poll_interval: 拉取时间间隔。</li>
+<li>sudo_user: 本地sudo过去的用户名，一般都是root。</li>
+<li>ask_sudo_pass: 是否询问sudo密码。</li>
+<li>ask_pass: 是否询问密码。</li>
+<li>transport: 传输方式, 默认smart。</li>
+<li>remote_port: 远程机器ssh的端口号。</li>
+<li>module_lang: 模块语言，默认C。</li>
+<li>module_set_locale: -。</li>
+<li>gathering: 使用它的话，默认会收集事实，包括远程机器的信息。
+
+<ul>
+<li>smart: 默认会收集信息，但是如果已经收集了的话就不会再收集了。</li>
+<li>implicit: 默认会收集信息，可以使用gather_facts为False来关闭。</li>
+<li>explicit: 默认不收集信息，必须设置gather_facts为Ture来开启。</li>
+</ul></li>
+<li>roles_path: 查找角色的目录，可以包含多个，使用分号分隔开来。</li>
+<li>remote_user: 设置ssh远程机器的默认用户。</li>
+<li>log_path: 记录ansible的日志文件地址。</li>
+<li>private_key_file: 指定本地私匙文件的位置。即使用ssh-keygen命令产生的私匙文件的位置。因为要ssh到远程机器需要使用私匙来配合ssh-copy-id到远程机器的公匙才能免密登录上去。</li>
+</ul>
+
+<p>还有其他更多配置参数可以参照后面的配置文件样本来查看。</p>
+
+<p><code>/etc/ansible/hosts</code>： 默认用来保存远程受管节点的清单文件</p>
+
+<p>Ansible 使用的第一步必须提供受管节点的 <strong>主机清单（Host Inventory）</strong>，默认为 <code>/etc/ansible/hosts</code> ，它是 <code>INI</code> 格式的配置文件，其注释信息写的很详细，我们可以参照示例来提供主机 IP、主机名，还可以将主机分组等（当然，你也可以创建新的主机清单文件，后续通过 <code>ansible -i INVENTORY</code> 指定新主机清单文件即可）。假设我们的受管节点有三个，在此文件末尾添加：</p>
+
+<pre><code>[webservers]
+192.168.40.121
+192.168.40.122
+
+[dbservers]
+192.168.40.122
+192.168.40.123
+</code></pre>
+
+<blockquote>
+<p>同一个主机可以同时属于不同的主机组，如果主机使用的 SSH 端口并非默认的 <code>22</code>，可以在主机名或 IP 的后面添加 <code>:</code> 和端口号，比如 <code>192.168.40.123:26789</code></p>
+</blockquote>
+
+<p>另外主机还可以使用正则表达式来指定，一次性指定多个。例如:</p>
+
+<pre><code class="language-bash">www[01:99].example.com
+
+db-[a-z].example.com
+</code></pre>
+
+<h2 id="ansible-ssh">Ansible SSH</h2>
+
+<p>要实现自动化运维，需要远程机器对本地机器进行认证。通过ssh-keygen产生公私匙，并通过ssh-copy-id命令向远程机器复制对本地机器的信任。</p>
+
+<p>ssh-copy-id会将本地公匙复制到远程机器的~/.ssh/authorized_keys文件中。 这样本地机器ssh的时候可以使用本地私匙进行远程机器访问。</p>
+
+<pre><code class="language-bash">1. 生成 SSH 密钥对
+[root@CentOS ~]# ssh-keygen
+
+2. 将公钥分发给受管节点
+[root@CentOS ~]# ssh-copy-id root@192.168.40.121
+[root@CentOS ~]# ssh-copy-id root@192.168.40.122
+[root@CentOS ~]# ssh-copy-id root@192.168.40.123
+</code></pre>
+
+<h2 id="ansible-常用命令">Ansible 常用命令</h2>
+
+<h3 id="1-ansible">(1) ansible</h3>
+
+<p><code>ansible</code> 命令是 Ansible 的主程序，用来执行 Ad-Hoc 临时命令</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible -h
+Usage: ansible &lt;host-pattern&gt; [options]
+
+Define and run a single task 'playbook' against a set of hosts
+
+Options:
+  -m MODULE_NAME, --module-name=MODULE_NAME
+                        module name to execute (default=command)
+  -a MODULE_ARGS, --args=MODULE_ARGS
+                        module arguments
+  -C, --check           don't make any changes; instead, try to predict some
+                        of the changes that may occur
+  -k, --ask-pass        ask for connection password
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -u REMOTE_USER, --user=REMOTE_USER
+                        connect as this user (default=None)
+  -b, --become          run operations with become (does not imply password
+                        prompting)
+  -i INVENTORY, --inventory=INVENTORY, --inventory-file=INVENTORY
+                        specify inventory host path or comma separated host
+                        list. --inventory-file is deprecated
+  -v, --verbose         verbose mode (-vvv for more, -vvvv to enable
+                        connection debugging)
+</code></pre>
+
+<p>其中 <code>&lt;host-pattern&gt;</code> 支持如下几种模式来匹配受管节点列表：</p>
+
+<ul>
+<li><code>all</code>： 表示 <strong>主机清单（Host Inventory）</strong> 中的所有主机</li>
+<li><code>*</code>： 通配符，比如 <code>*</code>、<code>192.168.40.12*</code>、<code>*servers</code></li>
+<li><code>:</code>： 或关系，比如 <code>192.168.40.121:192.168.40.122</code>、<code>webservers:dbservers</code></li>
+<li><code>:&amp;</code>： 与关系，比如 <code>webservers:&amp;dbservers</code> 表示在 webservers 组中且在 dbservers 组中，即 192.168.40.122 主机</li>
+<li><code>:!</code>： 非关系，比如 <code>webservers:!dbservers</code> 表示在 webservers 组中但不在 dbservers 组中，即 192.168.40.121 主机</li>
+<li>可以组合上述关系，或者使用正则表达式</li>
+</ul>
+
+<h3 id="2-ansible-doc">(2) ansible-doc</h3>
+
+<p><code>ansible-doc</code> 命令可以用来查看 <code>模块</code> 的帮助文档</p>
+
+<pre><code class="language-bash">1. 列出所有的内置模块
+[root@CentOS ~]# ansible-doc -l
+[root@CentOS ~]# ansible-doc -l | wc -l
+
+2. 查看指定模块的帮助文档
+[root@CentOS ~]# ansible-doc shell
+
+3. 仅显示指定模块的选项参数在 playbook 中的示例用法
+[root@CentOS ~]# ansible-doc -s shell
+</code></pre>
+
+<h3 id="3-ansible-galaxy">(3) ansible-galaxy</h3>
+
+<p><code>ansible-galaxy</code> 命令会到 <code>https://galaxy.ansible.com/</code> 去上传或下载 role，类似于 Docker 的镜像仓库</p>
+
+<pre><code class="language-bash">1. 安装 geerlingguy 用户所上传的 docker 这个角色
+[root@CentOS ~]# ansible-galaxy install geerlingguy.docker
+- downloading role 'docker', owned by geerlingguy
+- downloading role from https://github.com/geerlingguy/ansible-role-docker/archive/2.5.2.tar.gz
+- extracting geerlingguy.docker to /root/.ansible/roles/geerlingguy.docker
+- geerlingguy.docker (2.5.2) was installed successfully
+
+2. 查看下载的 role 文件结构
+[root@CentOS ~]# tree /root/.ansible/roles/geerlingguy.docker
+/root/.ansible/roles/geerlingguy.docker
+├── defaults
+│   └── main.yml
+├── handlers
+│   └── main.yml
+├── LICENSE
+├── meta
+│   └── main.yml
+├── molecule
+│   └── default
+│       ├── molecule.yml
+│       ├── playbook.yml
+│       └── yaml-lint.yml
+├── README.md
+├── tasks
+│   ├── docker-1809-shim.yml
+│   ├── docker-compose.yml
+│   ├── docker-users.yml
+│   ├── main.yml
+│   ├── setup-Debian.yml
+│   └── setup-RedHat.yml
+└── templates
+    └── override.conf.j2
+
+7 directories, 15 files
+
+3. 查看已安装的 role 列表
+[root@CentOS ~]# ansible-galaxy list
+# /root/.ansible/roles
+- geerlingguy.docker, 2.5.2
+# /etc/ansible/roles
+ [WARNING]: - the configured path /usr/share/ansible/roles does not exist.
+
+4. 删除指定 role
+[root@CentOS ~]# ansible-galaxy remove geerlingguy.docker
+- successfully removed geerlingguy.docker
+</code></pre>
+
+<h3 id="4-ansible-playbook">(4) ansible-playbook</h3>
+
+<p><code>ansible-playbook</code> 命令用来执行编排后的任务列表（YAML 格式的 <code>playbook</code> 文件），类似于 <code>docker-compose</code></p>
+
+<h3 id="5-ansible-vault">(5) ansible-vault</h3>
+
+<p>如果你不想让别人查看你的 playbook 文件内容，可以使用 <code>ansible-vault</code> 命令</p>
+
+<pre><code class="language-bash">1. 加密已有的 playbook，此时查看 hello.yml 时显示密文
+[root@CentOS ~]# ansible-vault encrypt hello.yml
+
+2. 输入密码后，可查看 hello.yml 的原文
+[root@CentOS ~]# ansible-vault view hello.yml
+
+3. 输入密码后，可编辑 hello.yml 的原文
+[root@CentOS ~]# ansible-vault edit hello.yml
+
+4. 修改密码
+[root@CentOS ~]# ansible-vault rekey hello.yml
+
+5. 解密，此时 hello.yml 又变成明文
+[root@CentOS ~]# ansible-vault decrypt hello.yml
+
+6. 直接创建加密的 playbook
+[root@CentOS ~]# ansible-vault create new.yml
+</code></pre>
+
+<h2 id="ansible-执行模式">Ansible 执行模式</h2>
+
+<h3 id="ad-hoc-命令模式">Ad-Hoc 命令模式</h3>
+
+<p><code>Ad-Hoc</code> 命令模式使用单个模块，你可以非常快速地、批量地在多个远程主机上执行某些操作</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible all -m ping
+node3 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    }, 
+    &quot;changed&quot;: false, 
+    &quot;ping&quot;: &quot;pong&quot;
+}
+node2 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    }, 
+    &quot;changed&quot;: false, 
+    &quot;ping&quot;: &quot;pong&quot;
+}
+node1 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    }, 
+    &quot;changed&quot;: false, 
+    &quot;ping&quot;: &quot;pong&quot;
+}
+</code></pre>
+
+<blockquote>
+<p>说明：</p>
+</blockquote>
+
+<ul>
+<li><code>all</code>： 表示在所有受管节点上执行此操作，也可以单独指定主机组、主机范围或单个主机，比如 <code>ansible 192.168.40.121 -m ping</code></li>
+<li><code>-m ping</code>： 表示使用 <code>ping</code> 这个模块</li>
+</ul>
+
+<p>我们可以使用如下命令确定将会操作哪些主机，比如查看 webservers 主机组对应哪些主机：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible webservers --list-hosts
+  hosts (2):
+    192.168.40.121
+    192.168.40.122
+</code></pre>
+
+<p>可以使用 <code>ansible-doc -l</code> 命令查看内置的所有模块，使用 <code>ansible-doc ping</code> 命令查看 ping 模块的帮助信息（<code>ansible-doc -s ping</code> 仅显示各选项参数的示例说明）</p>
+
+<h3 id="playbook-模式">playbook 模式</h3>
+
+<p>我们可以将复杂的批量操作（类似于多条 Ad-Hoc 命令操作）记录到 <code>YAML</code> 格式的 <code>任务编排文件，playbook</code> 中，后续通过此文件就能够再现批量部署操作，它与 <code>Docker Compose</code> 或 <code>Kubernetes</code> 的配置文件的作用非常类似</p>
+
+<pre><code class="language-bash">1. 创建 hello.yml 文件
+[root@CentOS ~]# vim hello.yml
+内容如下：
+
+---
+- hosts: webservers
+  remote_user: root
+
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: Provide index.html
+      copy:
+        src: index.html
+        dest: /var/www/html
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+
+
+2. 提供 index.html
+[root@CentOS ~]# echo &quot;&lt;h1&gt;Hello, Ansible&lt;/h1&gt;&quot; &gt;&gt; index.html
+
+3. 使用 -C 选项检查 playbook 有没有问题，不会真的在远程受管节点上执行
+[root@CentOS ~]# ansible-playbook -C hello.yml
+
+4. 真正执行 playbook
+[root@CentOS ~]# ansible-playbook hello.yml
+</code></pre>
+
+<h1 id="ansible-hello-world">Ansible Hello,World!</h1>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible all -m shell -a 'echo &quot;hello,world!&quot;'
+192.168.25.169 | CHANGED | rc=0 &gt;&gt;
+hello,world!
+
+192.168.25.170 | CHANGED | rc=0 &gt;&gt;
+hello,world!
+
+192.168.25.171 | CHANGED | rc=0 &gt;&gt;
+hello,world!
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/ansible">Ansible</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/linux">Linux</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/html-001/" title="前端知识-Html基础">前端知识-Html基础</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/pages/">pages(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/html/">html</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pages/">pages</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
