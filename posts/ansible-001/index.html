@@ -96,6 +96,8 @@
 
 <p>Ansible是2013年推出的自动化工具，Ansible是一个IT自动化工具。它可以配置系统、部署软件、以及编排更高级的IT任务，例如持续部署或零宕机滚动升级。Ansible在2015年被Redhat公司收购，Ansible 是使用了 Python 作为开发语言，简单易用、功能强大的自动化运维管理工具，可以出色地完成配置管理、应用部署、任务编排等多方面工作。与 Puppet、Saltstack 等其它自动化产品相比较，Ansible 无需在远程服务器上安装 agent 客户端代理，它只依赖 SSH 连接，而且它的学习曲线非常低。</p>
 
+<p>&lt;&ndash; !more &ndash;&gt;</p>
+
 <p><strong>使用范围</strong>
 - 自动化部署应用
 - 自动化管理配置
@@ -241,7 +243,7 @@ ansible 2.8.2
 
 <p>Ansible 使用的第一步必须提供受管节点的 <strong>主机清单（Host Inventory）</strong>，默认为 <code>/etc/ansible/hosts</code> ，它是 <code>INI</code> 格式的配置文件，其注释信息写的很详细，我们可以参照示例来提供主机 IP、主机名，还可以将主机分组等（当然，你也可以创建新的主机清单文件，后续通过 <code>ansible -i INVENTORY</code> 指定新主机清单文件即可）。假设我们的受管节点有三个，在此文件末尾添加：</p>
 
-<pre><code>[webservers]
+<pre><code class="language-bash">[webservers]
 192.168.40.121
 192.168.40.122
 

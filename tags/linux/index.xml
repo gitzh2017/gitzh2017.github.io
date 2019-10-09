@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>凡夫俗子的博客</title>
-    <link>http://gitzh2017.github.io/</link>
-    <description>Recent content on 凡夫俗子的博客</description>
+    <title>Linux on 凡夫俗子的博客</title>
+    <link>http://gitzh2017.github.io/tags/linux/</link>
+    <description>Recent content in Linux on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 13 Sep 2019 17:57:38 +0800</lastBuildDate>
     
-	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://gitzh2017.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,17 +22,6 @@
 使用范围 - 自动化部署应用 - 自动化管理配置 - 自动化持续交付 - 自动化云服务管理 - 自动化网络设备管理
 Ansible 架构 各组件的详细说明请参考： https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html
  Host Inventory： 定义了 Ansible 能够管理的远程主机资源清单，默认为 /etc/ansible/hosts 文件。也可以编写一个 inventory plugin 来连接到任何返回 JSON 的数据源（比如你的 CMDB） Modules： Ansible 执行命令的功能模块，包括内置核心模块或用户自定义模块 Plugins： 功能模块的补充，比如上面的 inventory plugin，或者提供转换数据、记录输出、日志记录等附加功能。插件只能使用 Python 编写 API： 提供给第三方应用调用的接口  Ansible 特性  模块化： Ansible 依靠 模块（Modules） 来实现批量部署，模块就是实现了指定功能的 Python 脚本程序，通过 SFTP 或 SCP 拷贝到远程受管节点的临时目录中，执行后（返回 JSON 数据）会被删除。Ansible 内置了大量的模块，使用它们可以完成软件包安装、重启服务、拷贝配置文件等诸多操作 支持自定义模块： 由于模块支持可插拔，所以你也可以开发自己的模块来扩展它的功能，可以使用任何能够返回 JSON 数据的语言（比如 Python、Ruby、Shell 等）来编写专用模块 部署简单： 基于 Python 和 SSH，无需代理客户端（agentless），很多 Linux 发行版默认已安装了 Python 和 OpenSSH 安全性： 基于 OpenSSH 支持任务编排： 通过 playbook 来描述任务（使用非常简单的 YAML 语言） 幂等性（idempotent）： 一个任务执行 1 遍和执行 n 遍的结果是一样的，不会因为重复执行带来意外情况  Ansible 社区  Ansible releases 210+ Ansible modules 210+ Github starts 3000+ 全球会议 230+ 社区贡献者 3500+  Ansible Galaxy是用于一个查找，共享，使用ansible role的在线社区：https://galaxy.</description>
-    </item>
-    
-    <item>
-      <title>前端知识-Html基础</title>
-      <link>http://gitzh2017.github.io/posts/html-001/</link>
-      <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/html-001/</guid>
-      <description>HTML介绍 什么是HTML 超文本标记语言（Hypertext Markup Language, HTML）是一种用于创建网页的标记语言。本质上是浏览器可识别的规则，我们按照规则写网页，浏览器根据规则渲染我们的网页。对于不同的浏览器，对同一个标签可能会有不同的解释。（兼容性问题）网页文件的扩展名：.html或.htm
-HTML的文档结构 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;zh-CN&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;css样式优先级&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;   &amp;lt;!DOCTYPE html&amp;gt;：声明必须是 HTML 文档的第一行，位于  标签之前，声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。此处声明为HTML5文档。 &amp;lt;html&amp;gt;、&amp;lt;/html&amp;gt;：是文档的开始标记和结束的标记。是HTML页面的根元素，在它们之间是文档的头部（head）和主体（body）。 &amp;lt;head&amp;gt;、&amp;lt;/head&amp;gt;：定义了HTML文档的开头部分。它们之间的内容不会在浏览器的文档窗口显示。包含了文档的元（meta）数据。 &amp;lt;title&amp;gt;、&amp;lt;/title&amp;gt;：定义了网页标题，在浏览器标题栏显示。 &amp;lt;body&amp;gt;、&amp;lt;/body&amp;gt;：之间的文本是可见的网页主体内容。  HTML标签格式 标签格式 HTML标签是由尖括号包围的关键字，如, 等。HTML标签通常是成对出现的，比如：和，第一个标签是开始，第二个标签是结束，结束标签会有斜线，也有一部分标签是单独呈现的，比如：、、等。标签里面可以有若干属性，也可以不带属性。
-标签语法 &amp;lt;标签名 属性1=“属性值1” 属性2=“属性值2”……&amp;gt;内容部分&amp;lt;/标签名&amp;gt; &amp;lt;标签名 属性1=“属性值1” 属性2=“属性值2”…… /&amp;gt;  重要属性  id：定义标签的唯一ID，HTML文档树中唯一 class：为html元素定义一个或多个类名（classname）(CSS样式类名) style：规定元素的行内样式（CSS样式）  HTML常用标签 head内常用标签    标签 意义      定义网页标题    定义内部样式表    定义JS代码或引入外部JS文件    引入外部样式表文件    定义网页原信息    body内常用展示标签 基本标签 块级标签 &amp;lt;!</description>
     </item>
     
   </channel>

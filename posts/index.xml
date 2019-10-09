@@ -6,146 +6,33 @@
     <description>Recent content in Posts on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 15 Jul 2019 16:46:25 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Sep 2019 17:57:38 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[Golang系列]-包依赖管理工具Govendor</title>
-      <link>http://gitzh2017.github.io/posts/000-golang/</link>
-      <pubDate>Mon, 15 Jul 2019 16:46:25 +0800</pubDate>
+      <title>Ansible系列-Ansible快速入门</title>
+      <link>http://gitzh2017.github.io/posts/ansible-001/</link>
+      <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
       
-      <guid>http://gitzh2017.github.io/posts/000-golang/</guid>
-      <description>&lt;p&gt;&lt;code&gt;govendor&lt;/code&gt; 是一个基于&lt;code&gt;vendor&lt;/code&gt;机制实现的 Go 包依赖管理命令行工具。与原生 vendor 无侵入性融合，也支持从其他依赖管理工具迁移，可以很方便的实现同一个包在不同项目中不同版本、以及无相互侵入的开发和管理。&lt;/p&gt;</description>
+      <guid>http://gitzh2017.github.io/posts/ansible-001/</guid>
+      <description>Ansible介绍 Ansible 简介 Ansible是2013年推出的自动化工具，Ansible是一个IT自动化工具。它可以配置系统、部署软件、以及编排更高级的IT任务，例如持续部署或零宕机滚动升级。Ansible在2015年被Redhat公司收购，Ansible 是使用了 Python 作为开发语言，简单易用、功能强大的自动化运维管理工具，可以出色地完成配置管理、应用部署、任务编排等多方面工作。与 Puppet、Saltstack 等其它自动化产品相比较，Ansible 无需在远程服务器上安装 agent 客户端代理，它只依赖 SSH 连接，而且它的学习曲线非常低。
+&amp;lt;&amp;ndash; !more &amp;ndash;&amp;gt;
+使用范围 - 自动化部署应用 - 自动化管理配置 - 自动化持续交付 - 自动化云服务管理 - 自动化网络设备管理
+Ansible 架构 各组件的详细说明请参考： https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html
+ Host Inventory： 定义了 Ansible 能够管理的远程主机资源清单，默认为 /etc/ansible/hosts 文件。也可以编写一个 inventory plugin 来连接到任何返回 JSON 的数据源（比如你的 CMDB） Modules： Ansible 执行命令的功能模块，包括内置核心模块或用户自定义模块 Plugins： 功能模块的补充，比如上面的 inventory plugin，或者提供转换数据、记录输出、日志记录等附加功能。插件只能使用 Python 编写 API： 提供给第三方应用调用的接口  Ansible 特性  模块化： Ansible 依靠 模块（Modules） 来实现批量部署，模块就是实现了指定功能的 Python 脚本程序，通过 SFTP 或 SCP 拷贝到远程受管节点的临时目录中，执行后（返回 JSON 数据）会被删除。Ansible 内置了大量的模块，使用它们可以完成软件包安装、重启服务、拷贝配置文件等诸多操作 支持自定义模块： 由于模块支持可插拔，所以你也可以开发自己的模块来扩展它的功能，可以使用任何能够返回 JSON 数据的语言（比如 Python、Ruby、Shell 等）来编写专用模块 部署简单： 基于 Python 和 SSH，无需代理客户端（agentless），很多 Linux 发行版默认已安装了 Python 和 OpenSSH 安全性： 基于 OpenSSH 支持任务编排： 通过 playbook 来描述任务（使用非常简单的 YAML 语言） 幂等性（idempotent）： 一个任务执行 1 遍和执行 n 遍的结果是一样的，不会因为重复执行带来意外情况  Ansible 社区  Ansible releases 210+ Ansible modules 210+ Github starts 3000+ 全球会议 230+ 社区贡献者 3500+  Ansible Galaxy是用于一个查找，共享，使用ansible role的在线社区：https://galaxy.</description>
     </item>
     
     <item>
-      <title>[Golang系列]-Go基础语法之错误处理</title>
-      <link>http://gitzh2017.github.io/posts/12-golang/</link>
-      <pubDate>Wed, 10 Jul 2019 22:31:16 +0800</pubDate>
+      <title>前端知识-Html基础</title>
+      <link>http://gitzh2017.github.io/posts/html-001/</link>
+      <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
       
-      <guid>http://gitzh2017.github.io/posts/12-golang/</guid>
-      <description>&lt;p&gt;对于Go语言（golang）的错误设计，相信很多人已经体验过了，它是通过返回值的方式，来强迫调用者对错误进行处理，要么你忽略，要么你处理（处理也可以是继续返回给调用者），对于golang这种设计方式，我们会在代码中写大量的if判断，以便做出决定。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Django系列]-Django初识</title>
-      <link>http://gitzh2017.github.io/posts/00-django/</link>
-      <pubDate>Wed, 10 Jul 2019 21:35:09 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/00-django/</guid>
-      <description>&lt;p&gt;我们都知道，Django是一种基于Python的Web开发框架。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之指针</title>
-      <link>http://gitzh2017.github.io/posts/11-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:17:32 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/11-golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之map</title>
-      <link>http://gitzh2017.github.io/posts/10-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:14:25 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/10-golang/</guid>
-      <description>&lt;p&gt;Go语言中提供的映射关系容器为map，其内部使用散列表（hash）实现。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之切片</title>
-      <link>http://gitzh2017.github.io/posts/09-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:14:21 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/09-golang/</guid>
-      <description>&lt;p&gt;本文主要介绍Go语言中切片（slice）及它的基本使用。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之数组</title>
-      <link>http://gitzh2017.github.io/posts/08-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:14:18 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/08-golang/</guid>
-      <description>&lt;p&gt;本文主要介绍Go语言中数组（array）及它的基本使用。&lt;code&gt;数组&lt;/code&gt;，是用来存储集合数据的，这种场景非常多，我们编码的过程中，都少不了要读取或者存储数据。当然除了数组之外，我们还有切片、Map映射等数据结构可以帮我们存储数据，但是数组是它们的基础。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之函数</title>
-      <link>http://gitzh2017.github.io/posts/07-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:14:14 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/07-golang/</guid>
-      <description>&lt;p&gt;函数是组织好的、可重复使用的、用于执行指定任务的代码块。本文介绍了Go语言中函数的相关内容。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之流程控制</title>
-      <link>http://gitzh2017.github.io/posts/06-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:14:10 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/06-golang/</guid>
-      <description>&lt;p&gt;流程控制是每种编程语言控制逻辑走向和执行次序的重要部分，流程控制可以说是一门语言的“经脉”。&lt;/p&gt;
-
-&lt;p&gt;Go语言中最常用的流程控制有&lt;code&gt;if&lt;/code&gt;和&lt;code&gt;for&lt;/code&gt;，而&lt;code&gt;switch&lt;/code&gt;和&lt;code&gt;goto&lt;/code&gt;主要是为了简化代码、降低重复代码而生的结构，属于扩展类的流程控制。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之运算符</title>
-      <link>http://gitzh2017.github.io/posts/05-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:12:01 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/05-golang/</guid>
-      <description>&lt;p&gt;运算符用于在程序运行时执行数学或逻辑运算。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之基础数据类型</title>
-      <link>http://gitzh2017.github.io/posts/04-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:11:58 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/04-golang/</guid>
-      <description>&lt;p&gt;Go语言中有丰富的数据类型，除了基本的整型、浮点型、布尔型、字符串外，还有数组、切片、结构体、函数、map、通道（channel）等。Go 语言的基本类型和其他语言大同小异。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go基础语法之变量与常量</title>
-      <link>http://gitzh2017.github.io/posts/03-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:11:53 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/03-golang/</guid>
-      <description>&lt;p&gt;程序运行过程中的数据都是保存在内存中，我们想要在代码中操作某个数据时就需要去内存上找到这个变量，但是如果我们直接在代码中通过内存地址去操作变量的话，代码的可读性会非常差而且还容易出错，所以我们就利用变量将这个数据的内存地址保存起来，以后直接通过这个变量就能找到内存上对应的数据了。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go开发环境 VS Code</title>
-      <link>http://gitzh2017.github.io/posts/02-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:09:26 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/02-golang/</guid>
-      <description>&lt;p&gt;VS Code是微软开源的一款编辑器，插件系统十分的丰富。本文就介绍了如何使用VS Code搭建Go语言开发环境。说在前面的话，Go语言是采用UTF8编码的，理论上使用任何文本编辑器都能做Go语言开发。大家可以根据自己的喜好自行选择。编辑器/IDE没有最好只有最适合。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go环境安装</title>
-      <link>http://gitzh2017.github.io/posts/01-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:09:17 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/01-golang/</guid>
-      <description>&lt;p&gt;要搭建Go语言开发环境，我们第一步要下载go的开发工具包，目前最新稳定版本是v1.9。Go为我们所熟知的所有平台架构提供了开发工具包，比如我们熟知的Linux、Mac和Windows，其他的还有FreeBSD等。我们可以根据自己的机器操作系统选择相应的开发工具包，比如你的是Windows 64位的，就选择windows-amd64的工具包；是Linux 32位的就选择linux-386的工具包。可以自己查看下自己的操作系统，然后选择，Mac的现在都是64位的，直接选择就可以了。根据自己的操作系统选择后，就可以下载开发工具包了，Go语言的官方下载地址是 &lt;a href=&#34;https://golang.org/dl/&#34;&gt;https://golang.org/dl/&lt;/a&gt; 可以打开选择版本下载，如果该页面打不开，或者打开了下载不了，可以使用镜像网站 &lt;a href=&#34;http://mirrors.flysnow.org/&#34;&gt;http://mirrors.flysnow.org/&lt;/a&gt; ,打开后搜索或者找到Golang，选择相应的版本下载，这个镜像网站会同步更新官方版本，基本上都是最新版，可以放心使用。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>[Golang系列]-Go语言介绍</title>
-      <link>http://gitzh2017.github.io/posts/00-golang/</link>
-      <pubDate>Fri, 28 Jun 2019 01:09:06 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/00-golang/</guid>
-      <description>&lt;p&gt;&lt;code&gt;Go&lt;/code&gt; 语言是由谷歌公司在&lt;code&gt;2007&lt;/code&gt;年开始开发的一门语言，目的是能在多核心时代高效编写网络应用程序。Go 语言的创始人 &lt;code&gt;Robert Griesemer、Rob Pike&lt;/code&gt; 和 &lt;code&gt;Ken Thompson&lt;/code&gt; 都是在计算机发展过程中作出过重要贡献的人。自从2009年11月正式公开发布后，Go 语言迅速席卷了整个互联网后端开发领域，其社区里不断涌现出类似 &lt;code&gt;vitess&lt;/code&gt;、&lt;code&gt;Docker&lt;/code&gt;、&lt;code&gt;etcd&lt;/code&gt;、&lt;code&gt;Consul&lt;/code&gt;、&lt;code&gt;kubernetes&lt;/code&gt; 等重量级的开源项目。&lt;/p&gt;</description>
+      <guid>http://gitzh2017.github.io/posts/html-001/</guid>
+      <description>HTML介绍 什么是HTML 超文本标记语言（Hypertext Markup Language, HTML）是一种用于创建网页的标记语言。本质上是浏览器可识别的规则，我们按照规则写网页，浏览器根据规则渲染我们的网页。对于不同的浏览器，对同一个标签可能会有不同的解释。（兼容性问题）网页文件的扩展名：.html或.htm
+HTML的文档结构 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;zh-CN&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;css样式优先级&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;   &amp;lt;!DOCTYPE html&amp;gt;：声明必须是 HTML 文档的第一行，位于  标签之前，声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。此处声明为HTML5文档。 &amp;lt;html&amp;gt;、&amp;lt;/html&amp;gt;：是文档的开始标记和结束的标记。是HTML页面的根元素，在它们之间是文档的头部（head）和主体（body）。 &amp;lt;head&amp;gt;、&amp;lt;/head&amp;gt;：定义了HTML文档的开头部分。它们之间的内容不会在浏览器的文档窗口显示。包含了文档的元（meta）数据。 &amp;lt;title&amp;gt;、&amp;lt;/title&amp;gt;：定义了网页标题，在浏览器标题栏显示。 &amp;lt;body&amp;gt;、&amp;lt;/body&amp;gt;：之间的文本是可见的网页主体内容。  HTML标签格式 标签格式 HTML标签是由尖括号包围的关键字，如, 等。HTML标签通常是成对出现的，比如：和，第一个标签是开始，第二个标签是结束，结束标签会有斜线，也有一部分标签是单独呈现的，比如：、、等。标签里面可以有若干属性，也可以不带属性。
+标签语法 &amp;lt;标签名 属性1=“属性值1” 属性2=“属性值2”……&amp;gt;内容部分&amp;lt;/标签名&amp;gt; &amp;lt;标签名 属性1=“属性值1” 属性2=“属性值2”…… /&amp;gt;  重要属性  id：定义标签的唯一ID，HTML文档树中唯一 class：为html元素定义一个或多个类名（classname）(CSS样式类名) style：规定元素的行内样式（CSS样式）  HTML常用标签 head内常用标签    标签 意义      定义网页标题    定义内部样式表    定义JS代码或引入外部JS文件    引入外部样式表文件    定义网页原信息    body内常用展示标签 基本标签 块级标签 &amp;lt;!</description>
     </item>
     
   </channel>

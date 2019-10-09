@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>前端知识-Html基础 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="前端知识-Html基础 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-09-13T17:57:38&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-09-13T17:57:38&#43;08:00">
+        
+    <meta name="Keywords" content="[Html]">
+    <meta name="description" content="Html基础">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/html-001/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">前端知识-Html基础</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年9月13日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/pages">pages</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="html介绍">HTML介绍</h1>
+
+<h2 id="什么是html">什么是HTML</h2>
+
+<p>超文本标记语言<code>（Hypertext Markup Language, HTML）</code>是一种用于创建网页的标记语言。本质上是浏览器可识别的规则，我们按照规则写网页，浏览器根据规则渲染我们的网页。对于不同的浏览器，对同一个标签可能会有不同的解释。（兼容性问题）<code>网页文件的扩展名：.html或.htm</code></p>
+
+<h2 id="html的文档结构">HTML的文档结构</h2>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;css样式优先级&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code>：声明必须是 HTML 文档的第一行，位于 <html> 标签之前，声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。此处声明为HTML5文档。</li>
+<li><code>&lt;html&gt;、&lt;/html&gt;</code>：是文档的开始标记和结束的标记。是HTML页面的根元素，在它们之间是文档的头部（head）和主体（body）。</li>
+<li><code>&lt;head&gt;、&lt;/head&gt;</code>：定义了HTML文档的开头部分。它们之间的内容不会在浏览器的文档窗口显示。包含了文档的元（meta）数据。</li>
+<li><code>&lt;title&gt;、&lt;/title&gt;</code>：定义了网页标题，在浏览器标题栏显示。</li>
+<li><code>&lt;body&gt;、&lt;/body&gt;</code>：之间的文本是可见的网页主体内容。</li>
+</ul>
+
+<h2 id="html标签格式">HTML标签格式</h2>
+
+<h3 id="标签格式">标签格式</h3>
+
+<p>HTML标签是由尖括号包围的关键字，如<html>, <div>等。HTML标签通常是成对出现的，比如：<div>和</div>，第一个标签是开始，第二个标签是结束，结束标签会有斜线，也有一部分标签是单独呈现的，比如：<br/>、<hr/>、<img src="1.jpg" alt="HTML基础" />等。标签里面可以有若干属性，也可以不带属性。</p>
+
+<h3 id="标签语法">标签语法</h3>
+
+<pre><code class="language-html">&lt;标签名 属性1=“属性值1” 属性2=“属性值2”……&gt;内容部分&lt;/标签名&gt;
+&lt;标签名 属性1=“属性值1” 属性2=“属性值2”…… /&gt;
+</code></pre>
+
+<h3 id="重要属性">重要属性</h3>
+
+<ul>
+<li><code>id</code>：定义标签的唯一ID，HTML文档树中唯一</li>
+<li><code>class</code>：为html元素定义一个或多个类名（classname）(CSS样式类名)</li>
+<li><code>style</code>：规定元素的行内样式（CSS样式）</li>
+</ul>
+
+<h1 id="html常用标签">HTML常用标签</h1>
+
+<h2 id="head内常用标签">head内常用标签</h2>
+
+<table>
+<thead>
+<tr>
+<th><strong>标签</strong></th>
+<th><strong>意义</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><title></title></td>
+<td>定义网页标题</td>
+</tr>
+
+<tr>
+<td><style></style></td>
+<td>定义内部样式表</td>
+</tr>
+
+<tr>
+<td><script></script></td>
+<td>定义JS代码或引入外部JS文件</td>
+</tr>
+
+<tr>
+<td><link/></td>
+<td>引入外部样式表文件</td>
+</tr>
+
+<tr>
+<td><meta/></td>
+<td>定义网页原信息</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="body内常用展示标签">body内常用展示标签</h2>
+
+<h3 id="基本标签">基本标签</h3>
+
+<h4 id="块级标签">块级标签</h4>
+
+<pre><code class="language-html">&lt;!—段落标签--&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;!—标题标签--&gt;
+&lt;h1&gt;&lt;/h1&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;/h6&gt;
+
+&lt;!--水平线--&gt;
+&lt;hr&gt;
+
+&lt;!—列表标签--&gt;
+&lt;ul&gt;&lt;/ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;ol&gt;&lt;/ol&gt;
+</code></pre>
+
+<p><strong>块级标签特点：</strong></p>
+
+<pre><code>默认占浏览器宽度
+可以手动设置长和宽
+</code></pre>
+
+<h4 id="内联标签">内联标签</h4>
+
+<pre><code class="language-html">&lt;!--字体样式--&gt;
+&lt;b&gt;加粗&lt;/b&gt;
+&lt;i&gt;斜体&lt;/i&gt;
+&lt;u&gt;下划线&lt;/u&gt;
+&lt;s&gt;删除&lt;/s&gt;
+
+&lt;!--换行--&gt;
+&lt;br&gt;
+
+&lt;!—段落标签--&gt;
+&lt;span&gt;&lt;/span&gt;
+
+&lt;!—图片标签--&gt;
+&lt;img&gt;&lt;/img&gt;
+
+&lt;!—超链接标签--&gt;
+&lt;a&gt;&lt;/a&gt;
+</code></pre>
+
+<p><strong>内联标签（行内标签）特点：</strong></p>
+
+<pre><code>根据内容决定长度
+不能手动设置长和宽
+</code></pre>
+
+<h3 id="特殊字符">特殊字符</h3>
+
+<table>
+<thead>
+<tr>
+<th><strong>内容</strong></th>
+<th><strong>对应代码</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>空格</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>&gt;</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>&lt;</td>
+</tr>
+
+<tr>
+<td>&amp;</td>
+<td>&amp;</td>
+</tr>
+
+<tr>
+<td>￥</td>
+<td>&yen;</td>
+</tr>
+
+<tr>
+<td>版权</td>
+<td>&copy;</td>
+</tr>
+
+<tr>
+<td>注册</td>
+<td>&reg;</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="div标签和span标签">div标签和span标签</h3>
+
+<ul>
+<li><code>div</code>标签用来定义一个块级元素，并无实际的意义。主要通过CSS样式为其赋予不同的表现。</li>
+<li><code>span</code>标签用来定义内联(行内)元素，并无实际的意义。主要通过CSS样式为其赋予不同的表现。</li>
+</ul>
+
+<p><strong>块级元素与行内元素的区别：</strong>
+块元素是以另起一行开始渲染的元素，行内元素则不需另起一行。如果单独在网页中插入这两个元素，不会对页面产生任何的影响。这两个元素是专门为定义CSS样式而生的。</p>
+
+<h3 id="img标签">img标签</h3>
+
+<pre><code class="language-html">&lt;img src=&quot;图片的路径&quot; alt=&quot;图片未加载成功时的提示&quot; title=&quot;鼠标悬浮时提示信息&quot; width=&quot;宽&quot; height=&quot;高(宽高两个属性只用一个会自动等比缩放)&quot;&gt;
+</code></pre>
+
+<h3 id="a标签">a标签</h3>
+
+<p>超链接标签是指从一个网页指向一个目标的连接关系，这个目标可以是另一个网页，也可以是相同网页上的不同位置，还可以是一个图片，一个电子邮件地址，一个文件，甚至是一个应用程序。</p>
+
+<pre><code class="language-html">&lt;a href=&quot;https://www.baidu.com&quot; target=&quot;_blank&quot; &gt;博客&lt;/a&gt;
+</code></pre>
+
+<p><strong>【href属性】：</strong>
+href属性指定目标网页地址。该地址可以有几种类型：
+- 绝对URL - 指向另一个站点（比如 href=&ldquo;<a href="https://www.baidu.com&quot;）">https://www.baidu.com&quot;）</a>
+- 相对URL - 指当前站点中确切的路径（href=&ldquo;index.htm&rdquo;）
+- 锚URL - 指向页面中的锚（href=&ldquo;#top&rdquo;）
+<strong>【target属性】：</strong>
+- _blank表示在新标签页中打开目标网页
+- _self表示在当前标签页中打开目标网页</p>
+
+<h3 id="列表标签">列表标签</h3>
+
+<h4 id="无序列表">无序列表</h4>
+
+<pre><code class="language-html">&lt;ul type=&quot;disc&quot;&gt;
+  &lt;li&gt;第一项&lt;/li&gt;
+  &lt;li&gt;第二项&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p><strong>【type属性】：</strong>
+- disc（实心圆点，默认值）
+- circle（空心圆圈）
+- square（实心方块）
+- none（无样式）</p>
+
+<h4 id="有序列表">有序列表</h4>
+
+<pre><code class="language-html">&lt;ol type=&quot;1&quot; start=&quot;2&quot;&gt;
+  &lt;li&gt;第一项&lt;/li&gt;
+  &lt;li&gt;第二项&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<p><strong>【type属性】：</strong>
+- 1 数字列表，默认值
+- A 大写字母
+- a 小写字母
+- Ⅰ大写罗马
+- ⅰ小写罗马</p>
+
+<h3 id="标题列表">标题列表</h3>
+
+<pre><code class="language-html">&lt;dl&gt;
+  &lt;dt&gt;标题1&lt;/dt&gt;
+  &lt;dd&gt;内容1&lt;/dd&gt;
+  &lt;dt&gt;标题2&lt;/dt&gt;
+  &lt;dd&gt;内容1&lt;/dd&gt;
+  &lt;dd&gt;内容2&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+
+<h3 id="表格标签">表格标签</h3>
+
+<pre><code class="language-html">&lt;table&gt;
+  &lt;!--表格表头开始--&gt;
+  &lt;thead&gt;
+  &lt;tr&gt; &lt;!—行--&gt;
+    &lt;th&gt;序号&lt;/th&gt;  &lt;!—列--&gt;
+    &lt;th&gt;姓名&lt;/th&gt;
+    &lt;th&gt;性别&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+&lt;!--表格表头结束--&gt;
+&lt;!--表格开始--&gt;
+  &lt;tbody&gt;
+  &lt;tr&gt; &lt;!—行--&gt;
+    &lt;td&gt;1&lt;/td&gt;  &lt;!—列--&gt;
+    &lt;td&gt;leon&lt;/td&gt;
+    &lt;td&gt;男&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt; &lt;!—行--&gt;
+    &lt;td&gt;2&lt;/td&gt;  &lt;!—列--&gt;
+    &lt;td&gt;shadow&lt;/td&gt;
+    &lt;td&gt;女&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;!--表格结束--&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p><strong>【表格属性】:</strong>
+- border: 表格边框.
+- cellpadding: 内边距
+- cellspacing: 外边距.
+- width: 像素 百分比.（最好通过css来设置长宽）
+- rowspan: 单元格竖跨多少行
+- colspan: 单元格横跨多少列（即合并单元格）</p>
+
+<h2 id="body内常用交互标签">body内常用交互标签</h2>
+
+<h3 id="from标签">from标签</h3>
+
+<p>HTML表单是HTML元素中较为复杂的部分，表单往往和脚本、动态页面、数据处理等功能相结合，因此它是制作动态网站很重要的内容。表单一般用来收集用户的输入信息。</p>
+
+<h4 id="表单功能">表单功能</h4>
+
+<p>表单用于向服务器传输数据，从而实现用户与Web服务器的交互。表单能够包含input系列标签，比如文本字段、复选框、单选框、提交按钮等等，还可以包含textarea、select、fieldset和 label标签。</p>
+
+<h4 id="表单工作原理">表单工作原理</h4>
+
+<ul>
+<li>访问者在浏览有表单的网页时，可填写必需的信息，然后按某个按钮提交。这些信息通过Internet传送到服务器上。</li>
+
+<li><p>服务器上专门的程序对这些数据进行处理，如果有错误会返回错误信息，并要求纠正错误。当数据完整无误后，服务器反馈一个输入完成的信息。</p>
+
+<h4 id="表单属性">表单属性</h4></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th><strong>属性</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>accept-charset</td>
+<td>规定在被提交表单中使用的字符集（默认：页面字符集）。</td>
+</tr>
+
+<tr>
+<td>action</td>
+<td>规定向何处提交表单的地址（URL）（提交页面）。</td>
+</tr>
+
+<tr>
+<td>autocomplete</td>
+<td>规定浏览器应该自动完成表单（默认：开启）。</td>
+</tr>
+
+<tr>
+<td>enctype</td>
+<td>规定被提交数据的编码（默认：url-encoded）。</td>
+</tr>
+
+<tr>
+<td>method</td>
+<td>规定在提交表单时所用的 HTTP 方法（默认：GET）。</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>规定识别表单的名称（对于 DOM 使用：document.forms.name）。</td>
+</tr>
+
+<tr>
+<td>novalidate</td>
+<td>规定浏览器不验证表单，如邮箱格式等。</td>
+</tr>
+
+<tr>
+<td>target</td>
+<td>规定 action 属性中地址的目标（默认：_self）。</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>注意事项</strong>
+- 所有获取用户输入的标签都必须放在form表单里面
+- action控制着往哪儿提交
+- input\select\textarea 都需要有name属性，方便后期程序调用
+- 提交按钮 <input type="submit">，type必须为submit，否则无法正常提交</p>
+
+<h3 id="input标签">input标签</h3>
+
+<p><code>&lt;input&gt;</code>元素会根据不同的 type 属性，变化为多种形态：</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>type</strong><strong>属性值</strong></th>
+<th><strong>表现形式</strong></th>
+<th><strong>对应代码</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>text</td>
+<td>单行输入文本</td>
+<td><input type=text"/></td>
+</tr>
+
+<tr>
+<td>password</td>
+<td>密码输入框</td>
+<td><input type="password"/></td>
+</tr>
+
+<tr>
+<td>date</td>
+<td>日期输入框</td>
+<td><input type="date"/></td>
+</tr>
+
+<tr>
+<td>datetime</td>
+<td>时间输入框</td>
+<td><input type="datetime"/></td>
+</tr>
+
+<tr>
+<td>checkbox</td>
+<td>复选框</td>
+<td><input type="checkbox" checked="checked"/></td>
+</tr>
+
+<tr>
+<td>radio</td>
+<td>单选框</td>
+<td><input type="radio"/></td>
+</tr>
+
+<tr>
+<td>submit</td>
+<td>提交按钮</td>
+<td><input type="submit" value="提交"/></td>
+</tr>
+
+<tr>
+<td>reset</td>
+<td>重置按钮</td>
+<td><input type="reset" value="重置"/></td>
+</tr>
+
+<tr>
+<td>button</td>
+<td>普通按钮</td>
+<td><input type="button" value="普通按钮"/></td>
+</tr>
+
+<tr>
+<td>hidden</td>
+<td>隐藏输入框</td>
+<td><input type="hidden"/></td>
+</tr>
+
+<tr>
+<td>file</td>
+<td>文本选择框</td>
+<td><input type="file"/></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>【属性说明】:</strong>
+- name：表单提交时的“键”，注意和id的区别
+- value：表单提交时对应项的值
+- type=&ldquo;button&rdquo;, &ldquo;reset&rdquo;, &ldquo;submit&rdquo;时，为按钮上显示的文本年内容
+- type=&ldquo;text&rdquo;,&ldquo;password&rdquo;,&ldquo;hidden&rdquo;时，为输入框的初始值
+- type=&ldquo;checkbox&rdquo;, &ldquo;radio&rdquo;, &ldquo;file&rdquo;，为输入相关联的值
+- checked：radio和checkbox默认被选中的项
+- readonly：text和password设置只读
+- disabled：所有input均适用
+- placeholder：提供可描述输入字段预期值的提示信息（hint），该提示会在输入字段为空时显示，并会在字段获得焦点时消失。placeholder 属性适用于以下的 <input> 类型：text, search, url, telephone, email 以及 password。</p>
+
+<h3 id="select标签">select标签</h3>
+
+<pre><code class="language-html">&lt;select name=&quot;from&quot; id=&quot;s1&quot;&gt;
+    &lt;optgroup label=&quot;北京&quot;&gt;
+        &lt;option value=&quot;cp&quot;&gt;昌平&lt;/option&gt;
+        &lt;option value=&quot;cy&quot;&gt;朝阳&lt;/option&gt;
+        &lt;option value=&quot;hd&quot;&gt;海淀&lt;/option&gt;
+        &lt;option value=&quot;ft&quot;&gt;丰台&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label=&quot;上海&quot;&gt;
+        &lt;option value=&quot;pdxq&quot;&gt;浦东新区&lt;/option&gt;
+        &lt;option value=&quot;mhq&quot;&gt;闵行区&lt;/option&gt;
+        &lt;option value=&quot;hpq&quot;&gt;黄浦区&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label=&quot;四川&quot;&gt;
+        &lt;option value=&quot;pzh&quot;&gt;攀枝花&lt;/option&gt;
+        &lt;option value=&quot;zg&quot;&gt;自贡&lt;/option&gt;
+        &lt;option value=&quot;my&quot;&gt;绵阳&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p><strong>【属性说明】：</strong>
+- multiple：布尔属性，设置后为多选，否则默认单选
+- disabled：禁用
+- selected：默认选中该项
+- value：定义提交时的选项值
+- optgroup：分组显示下拉菜单
+- option：下来菜单选项</p>
+
+<h3 id="label标签">label标签</h3>
+
+<p><code>&lt;label&gt;</code> 标签为 input 元素定义标注（标记）。label 元素不会向用户呈现任何特殊效果，<label> 标签的 for 属性值应当与相关元素的 id 属性值相同。</p>
+
+<pre><code class="language-html">&lt;form action=&quot;&quot;&gt;
+  &lt;label for=&quot;username&quot;&gt;用户名&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h3 id="textarea多行文本">textarea多行文本</h3>
+
+<pre><code class="language-html">&lt;textarea name=&quot;memo&quot; id=&quot;memo&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;
+  默认内容
+&lt;/textarea&gt;
+</code></pre>
+
+<p><strong>【属性说明】：</strong>
+- name：名称
+- rows：行数
+- cols：列数
+- disabled：禁用</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/html">Html</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/pages">pages</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/html-001/" title="前端知识-Html基础">前端知识-Html基础</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/pages/">pages(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/html/">html</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pages/">pages</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
