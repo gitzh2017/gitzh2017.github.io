@@ -19,8 +19,13 @@
       <guid>http://gitzh2017.github.io/posts/ansible-001/</guid>
       <description>Ansible介绍 Ansible 简介 Ansible是2013年推出的自动化工具，Ansible是一个IT自动化工具。它可以配置系统、部署软件、以及编排更高级的IT任务，例如持续部署或零宕机滚动升级。Ansible在2015年被Redhat公司收购，Ansible 是使用了 Python 作为开发语言，简单易用、功能强大的自动化运维管理工具，可以出色地完成配置管理、应用部署、任务编排等多方面工作。与 Puppet、Saltstack 等其它自动化产品相比较，Ansible 无需在远程服务器上安装 agent 客户端代理，它只依赖 SSH 连接，而且它的学习曲线非常低。
 &amp;lt;&amp;ndash; !more &amp;ndash;&amp;gt;
-使用范围 - 自动化部署应用 - 自动化管理配置 - 自动化持续交付 - 自动化云服务管理 - 自动化网络设备管理
-Ansible 架构 {{ % img src=&amp;ldquo;/images/ansible-architecture.png&amp;rdquo; alt=&amp;ldquo;ansible-架构图&amp;rdquo; %}}
+使用范围
+ 自动化部署应用
+ 自动化管理配置
+ 自动化持续交付
+ 自动化云服务管理
+ 自动化网络设备管理
+  Ansible 架构 {{ % img src=&amp;ldquo;/images/ansible-architecture.png&amp;rdquo; alt=&amp;ldquo;ansible-架构图&amp;rdquo; %}}
 各组件的详细说明请参考： https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html
  Host Inventory： 定义了 Ansible 能够管理的远程主机资源清单，默认为 /etc/ansible/hosts 文件。也可以编写一个 inventory plugin 来连接到任何返回 JSON 的数据源（比如你的 CMDB） Modules： Ansible 执行命令的功能模块，包括内置核心模块或用户自定义模块 Plugins： 功能模块的补充，比如上面的 inventory plugin，或者提供转换数据、记录输出、日志记录等附加功能。插件只能使用 Python 编写 API： 提供给第三方应用调用的接口  Ansible 特性  模块化： Ansible 依靠 模块（Modules） 来实现批量部署，模块就是实现了指定功能的 Python 脚本程序，通过 SFTP 或 SCP 拷贝到远程受管节点的临时目录中，执行后（返回 JSON 数据）会被删除。Ansible 内置了大量的模块，使用它们可以完成软件包安装、重启服务、拷贝配置文件等诸多操作 支持自定义模块： 由于模块支持可插拔，所以你也可以开发自己的模块来扩展它的功能，可以使用任何能够返回 JSON 数据的语言（比如 Python、Ruby、Shell 等）来编写专用模块 部署简单： 基于 Python 和 SSH，无需代理客户端（agentless），很多 Linux 发行版默认已安装了 Python 和 OpenSSH 安全性： 基于 OpenSSH 支持任务编排： 通过 playbook 来描述任务（使用非常简单的 YAML 语言） 幂等性（idempotent）： 一个任务执行 1 遍和执行 n 遍的结果是一样的，不会因为重复执行带来意外情况  Ansible 社区  Ansible releases 210+ Ansible modules 210+ Github starts 3000+ 全球会议 230+ 社区贡献者 3500+  Ansible Galaxy是用于一个查找，共享，使用ansible role的在线社区：https://galaxy.</description>
     </item>
