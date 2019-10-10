@@ -94,6 +94,31 @@ YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用�
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role" >Ansible系列-Ansible-Role</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月9日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/ansible">Ansible</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可
+创建 role 可以通过 ansible-galaxy init 命令使用 role 模板来初始化一个新的 role，默认会帮你创建出 tasks/、handlers/、vars/ 等目录
+[root@CentOS ~]# ansible-galaxy init --offline /etc/ansible/roles/nginx - /etc/ansible/roles/nginx was created successfully [root@CentOS ~]# tree /etc/ansible/roles/nginx /etc/ansible/roles/nginx ├── defaults │ └── main.yml ├── files ├── handlers │ └── main.yml ├── meta │ └── main.yml ├── README.……
+                            </div>
+                            <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-004/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块" >Ansible系列-Ansible常用模块</a>
                                 </h1>
                             </header>
@@ -200,6 +225,10 @@ HTML的文档结构 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;zh-CN&quot;&gt; &l
     </li>
     
     <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role">Ansible系列-Ansible-Role</a>
+    </li>
+    
+    <li>
         <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
     </li>
     
@@ -221,7 +250,7 @@ HTML的文档结构 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;zh-CN&quot;&gt; &l
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(3)</a>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(4)</a>
     </li>
     
     <li>
