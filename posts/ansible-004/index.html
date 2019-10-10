@@ -88,9 +88,7 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可</p>
+                            <p>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可</p>
 
 <h1 id="创建-role">创建 role</h1>
 
@@ -601,7 +599,6 @@ galaxy_info:
 <p>然后上传到你的 Github 仓库中，比如 <a href="https://github.com/wangy8961/ansible-role-nginx">https://github.com/wangy8961/ansible-role-nginx</a></p>
 
 <p>通过 Github OAuth2 登录 <a href="https://galaxy.ansible.com/">https://galaxy.ansible.com</a> ，然后依次点击 <code>My Content</code> - <code>Add Content</code> - <code>Import Role from Github</code>，选中刚上传到 Github 的角色仓库</p>
-
                         </div>
 
                         

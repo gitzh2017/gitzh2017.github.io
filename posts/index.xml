@@ -17,9 +17,7 @@
       <pubDate>Wed, 09 Oct 2019 20:21:08 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/ansible-004/</guid>
-      <description>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可
-创建 role 可以通过 ansible-galaxy init 命令使用 role 模板来初始化一个新的 role，默认会帮你创建出 tasks/、handlers/、vars/ 等目录
-[root@CentOS ~]# ansible-galaxy init --offline /etc/ansible/roles/nginx - /etc/ansible/roles/nginx was created successfully [root@CentOS ~]# tree /etc/ansible/roles/nginx /etc/ansible/roles/nginx ├── defaults │ └── main.yml ├── files ├── handlers │ └── main.yml ├── meta │ └── main.yml ├── README.</description>
+      <description>&lt;p&gt;Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,10 +26,7 @@
       <pubDate>Wed, 09 Oct 2019 18:21:08 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/ansible-003/</guid>
-      <description>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。
-YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用于 YAML 的库，Docker Compose 和 Kubernetes 的配置文件也都使用 YAML，对于 Ansible 而言，每个 YAML 格式的 Playbook 文件都以列表开头（以短划线和空格开头，-），列表中的每个元素都是键/值对（大小写敏感，且冒号后面必须跟一个空格，key: value），通常称为 &amp;ldquo;哈希&amp;rdquo; 或 &amp;ldquo;字典&amp;rdquo;，因此我们需要知道如何在 YAML 中编写列表和字典。YAML 依赖缩进来序列化数据结构，所以缩进必须统一，比如都使用 2 个空格！
- 另外，所有 YAML 文件都以 --- 开头（可以选择以 ... 结尾），注释以 # 开头
---- # Employee records - martin: name: Martin D&#39;vloper job: Developer skills: - python - perl - pascal - tabitha: name: Tabitha Bitumen job: Developer skills: - lisp - fortran - erlang .</description>
+      <description>&lt;p&gt;playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -40,8 +35,7 @@ YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用�
       <pubDate>Wed, 09 Oct 2019 17:21:08 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/ansible-002/</guid>
-      <description>command command 模块用于在受管节点上执行命令，它是默认的模块，所以可以不使用指定 -m command。注意： 由于它不是由 shell 程序处理，所以无法解析像 $HOME 等变量名，&amp;lt;、&amp;gt;、|、;、&amp;amp; 等 shell 操作符，这种情况ansible还有一个shell模块
-1. 指定 -m 选项 [root@CentOS ~]# ansible all -m command -a &#39;ls /root&#39; 192.168.40.122 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 192.168.40.123 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 192.168.40.121 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 2. 不指定 -m 选项也行 [root@CentOS ~]# ansible all -a &#39;ls /root&#39; 3. 当要执行的命令中包含 $HOME 等变量名或 &amp;lt; &amp;gt; | ; &amp;amp; 等 shell 操作符时，会失败 [root@CentOS ~]# ansible 192.</description>
+      <description>&lt;p&gt;本文主要介绍ansible的一些常用模块，以及实战操作一下&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -50,16 +44,7 @@ YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用�
       <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/ansible-001/</guid>
-      <description>作为一个Linux运维人员，需要了解大量的运维工具，并熟知这些工具的差异，能够熟练运用这些工具去解决一些手动重复的劳动，一方面是避免人工操作失误，另一方面也可以提高工作效率。同时还能将自己从这些重复的工作中解放出来，以便研究更新和更深的技术。
-Ansible介绍 Ansible 简介 Ansible是2013年推出的自动化工具，Ansible是一个IT自动化工具。它可以配置系统、部署软件、以及编排更高级的IT任务，例如持续部署或零宕机滚动升级。Ansible在2015年被Redhat公司收购，Ansible 是使用了 Python 作为开发语言，简单易用、功能强大的自动化运维管理工具，可以出色地完成配置管理、应用部署、任务编排等多方面工作。与 Puppet、Saltstack 等其它自动化产品相比较，Ansible 无需在远程服务器上安装 agent 客户端代理，它只依赖 SSH 连接，而且它的学习曲线非常低。
-使用范围
- 自动化部署应用
- 自动化管理配置
- 自动化持续交付
- 自动化云服务管理
- 自动化网络设备管理
-  Ansible 架构 各组件的详细说明请参考： https://docs.ansible.com/ansible/latest/dev_guide/overview_architecture.html
- Host Inventory： 定义了 Ansible 能够管理的远程主机资源清单，默认为 /etc/ansible/hosts 文件。也可以编写一个 inventory plugin 来连接到任何返回 JSON 的数据源（比如你的 CMDB） Modules： Ansible 执行命令的功能模块，包括内置核心模块或用户自定义模块 Plugins： 功能模块的补充，比如上面的 inventory plugin，或者提供转换数据、记录输出、日志记录等附加功能。插件只能使用 Python 编写 API： 提供给第三方应用调用的接口  Ansible 特性  模块化： Ansible 依靠 模块（Modules） 来实现批量部署，模块就是实现了指定功能的 Python 脚本程序，通过 SFTP 或 SCP 拷贝到远程受管节点的临时目录中，执行后（返回 JSON 数据）会被删除。Ansible 内置了大量的模块，使用它们可以完成软件包安装、重启服务、拷贝配置文件等诸多操作 支持自定义模块： 由于模块支持可插拔，所以你也可以开发自己的模块来扩展它的功能，可以使用任何能够返回 JSON 数据的语言（比如 Python、Ruby、Shell 等）来编写专用模块 部署简单： 基于 Python 和 SSH，无需代理客户端（agentless），很多 Linux 发行版默认已安装了 Python 和 OpenSSH 安全性： 基于 OpenSSH 支持任务编排： 通过 playbook 来描述任务（使用非常简单的 YAML 语言） 幂等性（idempotent）： 一个任务执行 1 遍和执行 n 遍的结果是一样的，不会因为重复执行带来意外情况  Ansible 社区  Ansible releases 210+ Ansible modules 210+ Github starts 3000+ 全球会议 230+ 社区贡献者 3500+  Ansible Galaxy是用于一个查找，共享，使用ansible role的在线社区：https://galaxy.</description>
+      <description>&lt;p&gt;作为一个Linux运维人员，需要了解大量的运维工具，并熟知这些工具的差异，能够熟练运用这些工具去解决一些手动重复的劳动，一方面是避免人工操作失误，另一方面也可以提高工作效率。同时还能将自己从这些重复的工作中解放出来，以便研究更新和更深的技术。&lt;/p&gt;</description>
     </item>
     
     <item>

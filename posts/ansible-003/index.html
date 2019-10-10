@@ -88,9 +88,7 @@
                         
                         
                         <div class="post-content">
-                            
-
-<p>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。</p>
+                            <p>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。</p>
 
 <h1 id="yaml">YAML</h1>
 
@@ -628,7 +626,6 @@ server {
 <p><code>handlers</code> 中定义的任务 <code>tasks</code> 中的任务没有本质上的不同，<strong>tasks 中某任务中指定的 notify 的值必须跟 handlers 中某任务名一致</strong>，比如都必须为 <code>restart nginx</code></p>
 
 <p>此时，你再将配置文件 nginx.conf 中的监听端口改为 9090 后，再次执行 playbook 后，会自动重启 Nginx 服务</p>
-
                         </div>
 
                         
