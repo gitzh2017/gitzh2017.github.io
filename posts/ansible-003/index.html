@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ansible系列-Ansible-Palybook | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Ansible系列-Ansible-Palybook - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-10-09T18:21:08&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-10-09T18:21:08&#43;08:00">
+        
+    <meta name="Keywords" content="[Ansible]">
+    <meta name="description" content="Ansible">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/ansible-003/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Ansible系列-Ansible-Palybook</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年10月9日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/ansible">Ansible</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。</p>
+
+<h1 id="yaml">YAML</h1>
+
+<p><a href="https://yaml.org/">YAML</a> 格式的配置文件易于阅读，大多数编程语言都有可用于 YAML 的库，Docker Compose 和 Kubernetes 的配置文件也都使用 YAML，对于 Ansible 而言，每个 YAML 格式的 <code>Playbook</code> 文件都以列表开头（以短划线和空格开头，<code>-</code>），列表中的每个元素都是键/值对（大小写敏感，<strong>且冒号后面必须跟一个空格</strong>，<code>key: value</code>），通常称为 &ldquo;哈希&rdquo; 或 &ldquo;字典&rdquo;，因此我们需要知道如何在 YAML 中编写列表和字典。<strong>YAML 依赖缩进来序列化数据结构，所以缩进必须统一，比如都使用 2 个空格！</strong></p>
+
+<blockquote>
+<p>另外，所有 YAML 文件都以 <code>---</code> 开头（可以选择以 <code>...</code> 结尾），注释以 <code>#</code> 开头</p>
+
+<pre><code class="language-yaml">---
+# Employee records
+- martin:
+    name: Martin D'vloper
+    job: Developer
+    skills:
+      - python
+      - perl
+      - pascal
+- tabitha:
+    name: Tabitha Bitumen
+    job: Developer
+    skills:
+      - lisp
+      - fortran
+      - erlang
+...
+</code></pre>
+
+<p>其中，martin 和 tabitha 组成一个列表，而它们的值都是一个字典。列表和字典可以互相嵌套，另外，它们也可以各自缩写为一行：</p>
+</blockquote>
+
+<pre><code class="language-yaml">---
+martin: {name: Martin D'vloper, job: Developer, skill: ['python', 'perl', 'pascal']}
+</code></pre>
+
+<h1 id="playbook-的核心元素">Playbook 的核心元素</h1>
+
+<ul>
+<li><code>hosts</code>： 要执行操作的远程受管节点列表（主机清单）</li>
+<li><code>vars</code>： Ansible 内置的有关远程受管节点的系统信息的全局变量（由 <code>setup</code> 模块获取的 <code>facts</code>）或用户自定义的变量</li>
+<li><code>tasks</code>： 任务集合，各任务按次序逐个在远程主机上执行</li>
+<li><code>handlers</code>： 配置 <code>notify</code> 一起使用，当 <code>tasks</code> 中的某任务满足某一条件时，触发执行 notify 中指定的 handler</li>
+</ul>
+
+<p>通常还需要指明在远程主机上以什么用户身份来执行任务，比如 <code>remote_user: root</code>。如果是普通用户，像安装软件包这些操作需要 sudo 权限，所以需要指定 <code>become: true</code></p>
+
+<p>每个任务都可以定义为如下两种形式：</p>
+
+<pre><code class="language-yaml">- name: Install Package
+  yum: name=httpd state=latest
+</code></pre>
+
+<p>或者：</p>
+
+<pre><code class="language-yaml">- name: Install Package
+  yum:
+    name: httpd
+    state: latest
+</code></pre>
+
+<p><strong>ansible-playbook 命令的常用选项：</strong></p>
+
+<ul>
+<li><code>--syntax-check</code>： 进行语法检查</li>
+<li><code>-C</code>： 不会真的在远程目标主机上执行任务，可用来检查 playbook 文件是否到达我们的预期</li>
+<li><code>--list-hosts</code>： 输出此 Playbook 中指定将要执行任务的目标主机列表</li>
+<li><code>--list-tasks</code>： 任务列表</li>
+<li><code>--list-tags</code>： 标签列表（任务可以指定标签）</li>
+<li><code>-v</code> 或 <code>-vv</code> 或 <code>-vvv</code>： 显示详细的任务执行过程（<code>-vvvv</code> 还可用于调试连接）</li>
+</ul>
+
+<h1 id="变量">变量</h1>
+
+<p>变量名仅能由字母、数字和下划线组成，且只能以字母开头。变量来源优先级（从高到低）如下：</p>
+
+<ul>
+<li>通过命令行 <code>-e</code> 选项指定的变量</li>
+<li>在 playbook 中 <code>vars</code> 处定义的变量</li>
+<li>内置的全局变量</li>
+<li>在主机清单中定义的变量</li>
+</ul>
+
+<h2 id="内置的全局变量"><strong>内置的全局变量</strong></h2>
+
+<p>Ansible 内置了有关远程受管节点的系统信息的全局变量（由 <code>setup</code> 模块获取的 <code>facts</code>），比如 <code>ansible_distribution</code>、<code>ansible_fqdn</code> 等</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Create symbolic link
+      file: src=/etc/passwd dest=/tmp/{{ ansible_fqdn }} state=link
+</code></pre>
+
+<p>执行此 playbook 后，会在远程主机的 /tmp 目录下创建以各远程主机的主机名命名的软链接文件</p>
+
+<h2 id="在-playbook-中-vars-处定义的变量"><strong>在 playbook 中 <code>vars</code> 处定义的变量</strong></h2>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  vars:
+    ansible_fqdn: madman
+  tasks:
+    - name: Create symbolic link
+      file: src=/etc/passwd dest=/tmp/{{ ansible_fqdn }} state=link
+</code></pre>
+
+<p>将会覆盖 Ansible 的全局变量 <code>ansible_fqdn</code> 的值，在各远程主机的 tmp 目录下都创建 madman 软链接文件</p>
+
+<p>多个变量定义成列表的格式：</p>
+
+<pre><code class="language-yaml">vars:
+  - var1: value1
+  - var2: value2
+</code></pre>
+
+<h2 id="通过命令行指定的变量"><strong>通过命令行指定的变量</strong></h2>
+
+<p>通过给 <code>ansible-playbook</code> 命令的 <code>-e</code> 选项指定变量，<strong>它的优先级是最高的</strong>，比如：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible-playbook -e &quot;ansible_fqdn=alice&quot; devops.yml
+</code></pre>
+
+<p>将会覆盖 playbook 中 <code>vars</code> 处定义的变量，以及 Ansible 的全局变量 <code>ansible_fqdn</code> 的值，在各远程主机的 tmp 目录下都创建 alice 软链接文件</p>
+
+<h2 id="在主机清单中定义的变量"><strong>在主机清单中定义的变量</strong></h2>
+
+<p>可以在主机清单文件（比如 <code>/etc/ansible/hosts</code>）中定义变量，<strong>它的优先级是最低的</strong>。另外，为单个主机指定的 <code>主机变量</code> 优先级要高于为整个主机组指定的 <code>组变量</code></p>
+
+<p><strong>(1) 主机变量</strong></p>
+
+<pre><code>[webservers]
+192.168.40.121 username=madman
+192.168.40.122
+</code></pre>
+
+<p><strong>(2) 组变量</strong></p>
+
+<pre><code>[webservers:vars]
+username=Alice
+</code></pre>
+
+<p>假设 playbook 要创建一个用户：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Create new user
+      user: name={{ username }} state=present
+</code></pre>
+
+<p>执行此 playbook 后，会在 <code>192.168.40.121</code> 创建 madman 用户，在 <code>192.168.40.122</code> 创建 Alice 用户</p>
+
+<h1 id="任务">任务</h1>
+
+<p>可以给 playbook 中各任务分别指定不同的 tags（不同的任务可以属于同一 tag）</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Install Nginx
+      yum: name=nginx state=latest
+      tags: install
+    - name: Copy configure file
+      copy: src=nginx.conf dest=/etc/nginx/conf.d/default.conf
+    - name: Start Nginx service
+      service: name=nginx state=started enabled=yes
+      tags: service
+</code></pre>
+
+<p>查看标签列表：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible-playbook --list-tags devops.yml 
+
+playbook: devops.yml
+
+  play #1 (webservers): webservers  TAGS: []
+      TASK TAGS: [install, service]
+</code></pre>
+
+<p>只运行 playbook 中指定 tag 下的任务：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible-playbook -t install devops.yml
+</code></pre>
+
+<p>运行 playbook 中除指定 tag 以外的所有任务：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible-playbook --skip-tags=install devops.yml
+</code></pre>
+
+<h1 id="循环">循环</h1>
+
+<p>在任务中使用 <code>with_items</code> 指定要循环的元素集，然后通过循环变量 <code>{{ item }}</code> 来获取每个元素的值。比如，下面示例将循环安装 3 个不同的软件包：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Install Packages
+      yum: name={{ item }} state=latest
+      with_items:
+        - vim
+        - git
+        - curl
+</code></pre>
+
+<p>或者通过变量给 <code>with_items</code> 赋值，可以更灵活</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  vars:
+    packages: [ 'vim', 'git', 'curl' ]
+  tasks:
+    - name: Install Packages
+      yum: name={{ item }} state=latest
+      with_items: &quot;{{ packages }}&quot;
+</code></pre>
+
+<p>另外，要循环的每个元素除了是 <code>字符串</code> 格式以外，还可以是 <code>字典</code>，比如：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  vars:
+    users:
+      - { username: &quot;alice&quot;, group: &quot;alice&quot; }
+      - { username: &quot;mary&quot;, group: &quot;mary&quot; }
+      - { username: &quot;david&quot;, group: &quot;david&quot; }
+  tasks:
+    - name: Create many groups
+      group: name={{ item.group }} state=present
+      with_items: &quot;{{ users }}&quot;
+    - name: Create many users
+      user: name={{ item.username }} group={{ item.group }} state=present
+      with_items: &quot;{{ users }}&quot;
+</code></pre>
+
+<h1 id="条件判断">条件判断</h1>
+
+<p>可以基于某个变量的值或某命令的输出结果，来动态地决定是否应该执行指定的任务：</p>
+
+<pre><code class="language-yaml">- name: Shutdown Debian Based Systems
+  command: /sbin/shutdown -h now
+  when: ansible_os_family == &quot;Debian&quot;
+</code></pre>
+
+<p>上面的示例表示，如果远程主机的操作系统是 <code>Debian</code> 系列的话才执行关机操作</p>
+
+<p>CentOS 6 或 7 版本中可能需要为指定的软件提供不同的配置文件，比如：</p>
+
+<pre><code class="language-yaml">- name: Copy configure file for CentOS 6
+  copy: src=nginx-centos6.conf dest=/etc/nginx/conf.d/default.conf
+  when: ansible_distribution_major_version == &quot;6&quot;
+- name: Copy configure file for CentOS 7
+  copy: src=nginx-centos7.conf dest=/etc/nginx/conf.d/default.conf
+  when: ansible_distribution_major_version == &quot;7&quot;
+</code></pre>
+
+<h1 id="模板">模板</h1>
+
+<p>Ansible 使用 <a href="http://jinja.pocoo.org/docs/2.10/">Jinja2</a> 模板引擎来实现模板功能，通常用于根据变量、for 语句、if 语句等来动态设置配置文件</p>
+
+<p>模板文件必须放在与 playbook 平级的 <code>templates/</code> 目录下，建议以 <code>.j2</code> 或 <code>.tpl</code> 结尾</p>
+
+<h2 id="简单数学运算">简单数学运算</h2>
+
+<p>安装 Nginx 后，默认的 worker 进程数跟 CPU 核心数一致，假设现在需要通过 Ansible 给各远程主机安装 Nginx，并修改主配置文件 <code>/etc/nginx/nginx.conf</code> 中的 worker 进程数为 CPU 核心数加一（在模板文件中使用 Ansible 的全局变量 <code>ansible_processor_vcpus</code>，并且对此变量进行加法运算即可： <code>{{ ansible_processor_vcpus + 1 }}</code>）</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Install Nginx
+      yum: name=nginx state=latest
+    - name: Copy main configure file (change workers number)
+      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    - name: Start Nginx service
+      service: name=nginx state=started enabled=yes
+</code></pre>
+
+<p>在 playbook 平级目录中创建 <code>templates/</code> 目录，并创建模板文件 <code>nginx.conf.j2</code>：</p>
+
+<pre><code class="language-jinja2">[root@CentOS templates]# cat nginx.conf.j2
+
+user  nginx;
+worker_processes  {{ ansible_processor_vcpus + 1 }};
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}
+</code></pre>
+
+<h2 id="过滤器-filters">过滤器 filters</h2>
+
+<blockquote>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html">https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html</a></p>
+</blockquote>
+
+<p>在 Jinja2 模板中可以对传过来的变量进行过滤变换操作，比如求数字列表的最大值 <code>{{ list1 | max }}</code>、将字典转换为适合循环的项目列表 <code>{{ dict1 | dict2items }}</code> 等</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  vars:
+    users:
+      - name: alice
+        authorized:
+          - /tmp/alice/onekey.pub
+          - /tmp/alice/twokey.pub
+        groups:
+          - wheel
+          - docker
+      - name: bob
+        authorized:
+          - /tmp/bob/id_rsa.pub
+        groups:
+          - docker
+  tasks:
+    - name: Generate JSON file
+      template: src=test.j2 dest=/tmp/test.json
+</code></pre>
+
+<p>与 playbook 平级的 <code>templates/</code> 目录下，建议模板文件 <code>test.j2</code>，它会将 <code>users</code> 变量输出为方便阅读的 JSON 格式：</p>
+
+<pre><code>{{ users | to_nice_json(indent=2) }}
+</code></pre>
+
+<p>执行此 playbook 后，在远程主机 /tmp 目录下会生成 test.json 文件，它的内容如下：</p>
+
+<pre><code class="language-json">[
+  {
+    &quot;authorized&quot;: [
+      &quot;/tmp/alice/onekey.pub&quot;,
+      &quot;/tmp/alice/twokey.pub&quot;
+    ],
+    &quot;groups&quot;: [
+      &quot;wheel&quot;,
+      &quot;docker&quot;
+    ],
+    &quot;name&quot;: &quot;alice&quot;
+  },
+  {
+    &quot;authorized&quot;: [
+      &quot;/tmp/bob/id_rsa.pub&quot;
+    ],
+    &quot;groups&quot;: [
+      &quot;docker&quot;
+    ],
+    &quot;name&quot;: &quot;bob&quot;
+  }
+]
+</code></pre>
+
+<blockquote>
+<p>playbook 中也可以对变量使用过滤器：</p>
+</blockquote>
+
+<pre><code class="language-yaml">---
+- hosts: all
+  vars:
+    number: -5.5
+  tasks:
+    - name: Ansible abs math filter example - output 38.5
+      debug:
+        var: (number * 7) | abs
+    - name: Ansible round filter example - output 30.0
+      debug:
+        msg: &quot;{{ 29.7 | round }}&quot;
+</code></pre>
+
+<h2 id="for-语句与-if-语句">for 语句与 if 语句</h2>
+
+<p>playbook 中定义了可循环的变量 <code>nginx_hosts</code>：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  vars:
+    nginx_hosts:
+      - web1:
+        port: 8081
+        server_name: web1.madmalls.com
+        doc_root: /usr/share/nginx/html/web1
+      - web2:
+        port: 8082
+        doc_root: /usr/share/nginx/html/web2
+      - web3:
+        port: 8083
+        server_name: web3.madmalls.com
+        doc_root: /usr/share/nginx/html/web3
+  tasks:
+    - name: Install Nginx
+      yum: name=nginx state=latest
+    - name: Copy configure file
+      template: src=default.conf.j2 dest=/etc/nginx/conf.d/default.conf
+    - name: Start Nginx service
+      service: name=nginx state=started enabled=yes
+</code></pre>
+
+<p>在 Jinja2 模板中可以使用 <code>for</code> 语句进行循环，使用 <code>if</code> 语句进行逻辑判断：</p>
+
+<pre><code class="language-jinja2">{% for host in nginx_hosts %}
+server {
+    listen       {{ host.port }};
+    {% if host.server_name is defined %}
+    server_name  {{ host.server_name }};
+    {% else %}
+    server_name  localhost;
+    {% endif %}
+
+    location / {
+        root   {{ host.doc_root }};
+        index  index.html index.htm;
+    }
+}
+{% endfor %}
+</code></pre>
+
+<p>执行此 playbook 后，远程主机生成的 Nginx Server 配置段如下：</p>
+
+<pre><code class="language-bash">[root@node1 ~]# cat /etc/nginx/conf.d/default.conf 
+server {
+    listen       8081;
+    server_name  web1.madmalls.com;
+
+    location / {
+        root   /usr/share/nginx/html/web1;
+        index  index.html index.htm;
+    }
+}
+server {
+    listen       8082;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html/web2;
+        index  index.html index.htm;
+    }
+}
+server {
+    listen       8083;
+    server_name  web3.madmalls.com;
+
+    location / {
+        root   /usr/share/nginx/html/web3;
+        index  index.html index.htm;
+    }
+}
+</code></pre>
+
+<h1 id="触发">触发</h1>
+
+<p>如果你的 playbook 如下：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Install Nginx
+      yum: name=nginx state=latest
+    - name: Copy vhost configure file
+      copy: src=default.conf dest=/etc/nginx/conf.d/default.conf
+    - name: Start Nginx service
+      service: name=nginx state=started enabled=yes
+</code></pre>
+
+<p>本地配置文件 <code>nginx.conf</code> 内容为：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# cat default.conf 
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+}
+</code></pre>
+
+<p>第一次执行此 playbook 时，会在远程主机上安装 Nginx，并将本地的配置文件复制到远程主机上，最后启动服务</p>
+
+<p>如果后续你修改了本地的配置文件（比如将监听端口改为 8080），并再次执行此 playbook 时，只会执行第 2 个任务，因为软件包已安装、服务也已启动。而你希望上传修改的配置文件后，Nginx 会自动重启服务来应用新的配置文件，这就需要借助于 <code>notify</code> 和 <code>handler</code> 了</p>
+
+<p>新的 playbook 如下：</p>
+
+<pre><code class="language-yaml">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Install Nginx
+      yum: name=nginx state=latest
+    - name: Copy vhost configure file
+      copy: src=default.conf dest=/etc/nginx/conf.d/default.conf
+      notify:
+        - restart nginx
+        - check nginx process
+    - name: Start Nginx service
+      service: name=nginx state=started enabled=yes
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+    - name: check nginx process
+      shell: killall -0 nginx &gt; /tmp/nginx.log
+</code></pre>
+
+<p><code>handlers</code> 中定义的任务 <code>tasks</code> 中的任务没有本质上的不同，<strong>tasks 中某任务中指定的 notify 的值必须跟 handlers 中某任务名一致</strong>，比如都必须为 <code>restart nginx</code></p>
+
+<p>此时，你再将配置文件 nginx.conf 中的监听端口改为 9090 后，再次执行 playbook 后，会自动重启 Nginx 服务</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/ansible-002/">Ansible系列-Ansible常用模块</a></li>
+        
+        <li><a href="/posts/ansible-001/">Ansible系列-Ansible快速入门</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/ansible">Ansible</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/linux">Linux</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/html-001/" title="前端知识-Html基础">前端知识-Html基础</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/pages/">pages(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/html/">html</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pages/">pages</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

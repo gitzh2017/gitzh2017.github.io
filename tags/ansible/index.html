@@ -78,6 +78,32 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://gitzh2017.github.io/posts/ansible-003/">Ansible系列-Ansible-Palybook</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月9日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://gitzh2017.github.io/categories/ansible">Ansible</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。
+YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用于 YAML 的库，Docker Compose 和 Kubernetes 的配置文件也都使用 YAML，对于 Ansible 而言，每个 YAML 格式的 Playbook 文件都以列表开头（以短划线和空格开头，-），列表中的每个元素都是键/值对（大小写敏感，且冒号后面必须跟一个空格，key: value），通常称为 &ldquo;哈希&rdquo; 或 &ldquo;字典&rdquo;，因此我们需要知道如何在 YAML 中编写列表和字典。YAML 依赖缩进来序列化数据结构，所以缩进必须统一，比如都使用 2 个空格！
+ 另外，所有 YAML 文件都以 --- 开头（可以选择以 ... 结尾），注释以 # 开头
+--- # Employee records - martin: name: Martin D'vloper job: Developer skills: - python - perl - pascal - tabitha: name: Tabitha Bitumen job: Developer skills: - lisp - fortran - erlang .……
+                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-003/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://gitzh2017.github.io/posts/ansible-002/">Ansible系列-Ansible常用模块</a>
                                 </h1>
                             </header>
@@ -156,6 +182,10 @@ Ansible介绍 Ansible 简介 Ansible是2013年推出的自动化工具，Ansible
 <ul class="widget-list">
     
     <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
         <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
     </li>
     
@@ -177,7 +207,7 @@ Ansible介绍 Ansible 简介 Ansible是2013年推出的自动化工具，Ansible
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(2)</a>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(3)</a>
     </li>
     
     <li>

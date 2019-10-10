@@ -6,10 +6,22 @@
     <description>Recent content in Posts on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 09 Oct 2019 17:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 18:21:08 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ansible系列-Ansible-Palybook</title>
+      <link>http://gitzh2017.github.io/posts/ansible-003/</link>
+      <pubDate>Wed, 09 Oct 2019 18:21:08 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/ansible-003/</guid>
+      <description>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。
+YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用于 YAML 的库，Docker Compose 和 Kubernetes 的配置文件也都使用 YAML，对于 Ansible 而言，每个 YAML 格式的 Playbook 文件都以列表开头（以短划线和空格开头，-），列表中的每个元素都是键/值对（大小写敏感，且冒号后面必须跟一个空格，key: value），通常称为 &amp;ldquo;哈希&amp;rdquo; 或 &amp;ldquo;字典&amp;rdquo;，因此我们需要知道如何在 YAML 中编写列表和字典。YAML 依赖缩进来序列化数据结构，所以缩进必须统一，比如都使用 2 个空格！
+ 另外，所有 YAML 文件都以 --- 开头（可以选择以 ... 结尾），注释以 # 开头
+--- # Employee records - martin: name: Martin D&#39;vloper job: Developer skills: - python - perl - pascal - tabitha: name: Tabitha Bitumen job: Developer skills: - lisp - fortran - erlang .</description>
+    </item>
     
     <item>
       <title>Ansible系列-Ansible常用模块</title>
