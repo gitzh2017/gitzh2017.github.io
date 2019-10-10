@@ -6,10 +6,20 @@
     <description>Recent content in Ansible on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 13 Sep 2019 17:57:38 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 17:21:08 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ansible系列-Ansible常用模块</title>
+      <link>http://gitzh2017.github.io/posts/ansible-002/</link>
+      <pubDate>Wed, 09 Oct 2019 17:21:08 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/ansible-002/</guid>
+      <description>command command 模块用于在受管节点上执行命令，它是默认的模块，所以可以不使用指定 -m command。注意： 由于它不是由 shell 程序处理，所以无法解析像 $HOME 等变量名，&amp;lt;、&amp;gt;、|、;、&amp;amp; 等 shell 操作符，这种情况ansible还有一个shell模块
+1. 指定 -m 选项 [root@CentOS ~]# ansible all -m command -a &#39;ls /root&#39; 192.168.40.122 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 192.168.40.123 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 192.168.40.121 | CHANGED | rc=0 &amp;gt;&amp;gt; anaconda-ks.cfg original-ks.cfg 2. 不指定 -m 选项也行 [root@CentOS ~]# ansible all -a &#39;ls /root&#39; 3. 当要执行的命令中包含 $HOME 等变量名或 &amp;lt; &amp;gt; | ; &amp;amp; 等 shell 操作符时，会失败 [root@CentOS ~]# ansible 192.</description>
+    </item>
     
     <item>
       <title>Ansible系列-Ansible快速入门</title>

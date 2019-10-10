@@ -68,6 +68,30 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块" >Ansible系列-Ansible常用模块</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月9日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/ansible">Ansible</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                command command 模块用于在受管节点上执行命令，它是默认的模块，所以可以不使用指定 -m command。注意： 由于它不是由 shell 程序处理，所以无法解析像 $HOME 等变量名，&lt;、&gt;、|、;、&amp; 等 shell 操作符，这种情况ansible还有一个shell模块
+1. 指定 -m 选项 [root@CentOS ~]# ansible all -m command -a 'ls /root' 192.168.40.122 | CHANGED | rc=0 &gt;&gt; anaconda-ks.cfg original-ks.cfg 192.168.40.123 | CHANGED | rc=0 &gt;&gt; anaconda-ks.cfg original-ks.cfg 192.168.40.121 | CHANGED | rc=0 &gt;&gt; anaconda-ks.cfg original-ks.cfg 2. 不指定 -m 选项也行 [root@CentOS ~]# ansible all -a 'ls /root' 3. 当要执行的命令中包含 $HOME 等变量名或 &lt; &gt; | ; &amp; 等 shell 操作符时，会失败 [root@CentOS ~]# ansible 192.……
+                            </div>
+                            <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-002/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门" >Ansible系列-Ansible快速入门</a>
                                 </h1>
                             </header>
@@ -146,6 +170,10 @@ HTML的文档结构 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;zh-CN&quot;&gt; &l
 <ul class="widget-list">
     
     <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+    <li>
         <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
     </li>
     
@@ -163,7 +191,7 @@ HTML的文档结构 &lt;!DOCTYPE html&gt; &lt;html lang=&quot;zh-CN&quot;&gt; &l
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(1)</a>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(2)</a>
     </li>
     
     <li>

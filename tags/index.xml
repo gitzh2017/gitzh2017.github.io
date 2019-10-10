@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 13 Sep 2019 17:57:38 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 17:21:08 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Ansible</title>
       <link>http://gitzh2017.github.io/tags/ansible/</link>
-      <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
+      <pubDate>Wed, 09 Oct 2019 17:21:08 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://gitzh2017.github.io/tags/linux/</link>
+      <pubDate>Wed, 09 Oct 2019 17:21:08 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -26,15 +35,6 @@
       <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/tags/html/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://gitzh2017.github.io/tags/linux/</link>
-      <pubDate>Fri, 13 Sep 2019 17:57:38 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/tags/linux/</guid>
       <description></description>
     </item>
     

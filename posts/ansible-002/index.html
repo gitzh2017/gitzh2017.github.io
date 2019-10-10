@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ansible系列-Ansible常用模块 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Ansible系列-Ansible常用模块 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-10-09T17:21:08&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-10-09T17:21:08&#43;08:00">
+        
+    <meta name="Keywords" content="[Ansible]">
+    <meta name="description" content="Ansible快速入门">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/ansible-002/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Ansible系列-Ansible常用模块</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年10月9日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/ansible">Ansible</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="command">command</h2>
+
+<p><code>command</code> 模块用于在受管节点上执行命令，它是默认的模块，所以可以不使用指定 <code>-m command</code>。<strong>注意：</strong> 由于它不是由 shell 程序处理，所以无法解析像 <code>$HOME</code> 等变量名，<code>&lt;</code>、<code>&gt;</code>、<code>|</code>、<code>;</code>、<code>&amp;</code> 等 shell 操作符，这种情况ansible还有一个<code>shell</code>模块</p>
+
+<pre><code class="language-bash">1. 指定 -m 选项
+[root@CentOS ~]# ansible all -m command -a 'ls /root'
+192.168.40.122 | CHANGED | rc=0 &gt;&gt;
+anaconda-ks.cfg
+original-ks.cfg
+
+192.168.40.123 | CHANGED | rc=0 &gt;&gt;
+anaconda-ks.cfg
+original-ks.cfg
+
+192.168.40.121 | CHANGED | rc=0 &gt;&gt;
+anaconda-ks.cfg
+original-ks.cfg
+
+2. 不指定 -m 选项也行
+[root@CentOS ~]# ansible all -a 'ls /root'
+
+3. 当要执行的命令中包含 $HOME 等变量名或 &lt; &gt; | ; &amp; 等 shell 操作符时，会失败
+[root@CentOS ~]# ansible 192.168.40.121 -m command -a 'ls /root | wc -l'
+192.168.40.121 | FAILED | rc=2 &gt;&gt;
+/root:
+total 16
+-rw-------. 1 root root 5321 Mar 15 08:01 anaconda-ks.cfg
+-rw-------. 1 root root 5432 Mar 15 08:01 original-ks.cfgls: cannot access |: No such file or directory
+ls: cannot access wc: No such file or directorynon-zero return code
+
+如果换成 shell 模块的话，则可正常执行命令：
+[root@CentOS ~]# ansible 192.168.40.121 -m shell -a 'ls /root | wc -l'
+192.168.40.121 | CHANGED | rc=0 &gt;&gt;
+2
+</code></pre>
+
+<h2 id="shell">shell</h2>
+
+<p><code>shell</code> 模块在远程受管节点上通过 <code>/bin/sh</code> 来执行命令（如果受管节点是 Windows，请使用 <code>win_shell</code> 模块）</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible 192.168.40.121 -m shell -a 'ls $HOME'
+192.168.40.121 | CHANGED | rc=0 &gt;&gt;
+anaconda-ks.cfg
+original-ks.cfg
+</code></pre>
+
+<h2 id="script">script</h2>
+
+<p><code>script</code> 模块会将控制节点上的脚本拷贝到远程受管节点上，并通过 shell 环境来执行它</p>
+
+<pre><code class="language-bash">1. 控制节点上的脚本内容
+[root@CentOS ~]# cat test.sh 
+#!/bin/bash
+awk &quot;{ print $1 }&quot; /etc/passwd | head -n 3
+
+2. 使用 script 模块
+[root@CentOS ~]# ansible 192.168.40.121 -m script -a test.sh 
+</code></pre>
+
+<h2 id="copy">copy</h2>
+
+<p><code>copy</code> 模块将控制节点上的文件拷贝到远程受管节点中去（如果受管节点是 Windows，请使用 <code>win_copy</code> 模块）</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# echo &quot;I am Ansible control node&quot; &gt;&gt; test.txt
+
+[root@CentOS ~]# ansible all -m copy -a 'src=test.txt dest=/tmp'
+</code></pre>
+
+<p>还可以指定 <code>backup=yes</code> 先备份远程受管节点上同名的文件</p>
+
+<h2 id="fetch">fetch</h2>
+
+<p>与 <code>copy</code> 模块相反，是从远程受管节点上将文件复制到控制节点上</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible all -m fetch -a 'src=/tmp/test.txt dest=/root/fetch-test/'
+</code></pre>
+
+<p>注意： 将远程文件复制到控制节点本地时，会按受管节点的 IP 或主机名创建目录</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# tree /root/fetch-test/
+/root/fetch-test/
+├── 192.168.40.121
+│   └── tmp
+│       └── test.txt
+├── 192.168.40.122
+│   └── tmp
+│       └── test.txt
+└── 192.168.40.123
+    └── tmp
+        └── test.txt
+
+6 directories, 3 files
+</code></pre>
+
+<h2 id="file">file</h2>
+
+<p><code>file</code> 模块用来设置远程受管节点上的普通文件、链接文件、目录文件的属性，或者删除它们</p>
+
+<pre><code class="language-bash">1. 设置文件属性
+[root@CentOS ~]# ansible all -m file -a 'path=/tmp/test.txt mode=600'
+
+2. 创建软链接
+[root@CentOS ~]# ansible all -m file -a 'src=/etc/passwd dest=/tmp/passwd-link state=link'
+
+3. 创建硬链接
+[root@CentOS ~]# ansible all -m file -a 'src=/etc/passwd dest=/tmp/passwd-hard state=hard'
+
+4. 删除文件
+[root@CentOS ~]# ansible all -m file -a 'path=/tmp/passwd-link state=absent'
+</code></pre>
+
+<h2 id="yum">yum</h2>
+
+<p><code>yum</code> 模块会在远程受管节点上使用 YUM 包管理器来执行 RPM 包的安装、升级、卸载等操作，指定 <code>state=present</code> 或 <code>state=installed</code> 只保证软件包会被安装，指定 <code>state=latest</code> 会保证软件包会安装最新版本，指定 <code>state=absent</code> 或 <code>state=removed</code> 会卸载软件包</p>
+
+<pre><code class="language-bash">1. 安装
+[root@CentOS ~]# ansible webservers -m yum -a 'name=httpd state=latest'
+
+2. 卸载
+[root@CentOS ~]# ansible webservers -m yum -a 'name=httpd state=absent'
+</code></pre>
+
+<h2 id="service">service</h2>
+
+<p><code>service</code> 模块可以控制远程受管节点上的服务，支持 SysV、systemd 等 <code>init</code> 系统</p>
+
+<pre><code class="language-bash">1. 启动服务、停止服务、重启服务
+[root@CentOS ~]# ansible webservers -m service -a 'name=httpd state=started'
+[root@CentOS ~]# ansible webservers -m service -a 'name=httpd state=stopped'
+[root@CentOS ~]# ansible webservers -m service -a 'name=httpd state=restarted'
+
+2. 是否开机启动（yes/true 表示开机启动； no/false 表示开机不启动）
+[root@CentOS ~]# ansible webservers -m service -a 'name=httpd enabled=yes'
+</code></pre>
+
+<h2 id="cron">cron</h2>
+
+<p><code>cron</code> 模块可以管理远程受管节点上的 cron 定时任务</p>
+
+<pre><code class="language-bash">1. 添加名称为 &quot;a new cron job&quot; 的定时任务，每 2 分钟广播一次消息
+[root@CentOS ~]# ansible all -m cron -a 'name=&quot;a new cron job&quot; minute=*/2 job=&quot;/usr/bin/wall Hello Ansible&quot;'
+
+2. 取消名称为 &quot;a new cron job&quot; 的定时任务
+[root@CentOS ~]# ansible all -m cron -a 'name=&quot;a new cron job&quot; state=absent'
+</code></pre>
+
+<h2 id="hostname">hostname</h2>
+
+<p><code>hostname</code> 模块可以设置远程受管节点的主机名。注意： 它不会修改 <code>/etc/hosts</code> 文件，所以你需要手动修改此文件</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible 192.168.40.121 -m hostname -a 'name=node1'
+</code></pre>
+
+<h2 id="user">user</h2>
+
+<p><code>user</code> 模块可用于管理远程受管节点上的用户账户和属性</p>
+
+<pre><code class="language-bash">1. 创建用户
+[root@CentOS ~]# ansible all -m user -a 'name=madman comment=&quot;Admin Madman&quot; uid=666'
+
+2. 删除用户及他的家目录
+[root@CentOS ~]# ansible all -m user -a 'name=madman remove=yes state=absent'
+</code></pre>
+
+<h2 id="group">group</h2>
+
+<p><code>gropu</code> 模块可用于管理远程受管节点上的用户组和属性</p>
+
+<pre><code class="language-bash">1. 创建用户组
+[root@CentOS ~]# ansible all -m group -a 'name=testgroup'
+
+2. 修改用户组
+[root@CentOS ~]# ansible all -m group -a 'name=testgroup gid=1024'
+
+3. 删除用户组
+[root@CentOS ~]# ansible all -m group -a 'name=testgroup state=absent'
+</code></pre>
+
+<h2 id="setup">setup</h2>
+
+<p><code>setup</code> 模板会返回远程主机上由 Ansible 内置收集的相关系统信息 <code>facts</code>，可用于 playbook 中使用的全局变量</p>
+
+<pre><code class="language-bash">1. 默认返回全部变量
+[root@CentOS ~]# ansible all -m setup
+
+2. 过滤，只显示 ansible_fqdn 变量的值
+[root@CentOS ~]# ansible all -m setup -a 'filter=&quot;ansible_fqdn&quot;'
+</code></pre>
+
+<h2 id="debug">debug</h2>
+
+<p><code>debug</code> 模块主要用于调试，可以输出某个变量的值、表达式的值（可应用过滤器 filters），还可以结合 <code>when</code> 判断条件符合时才输出信息，或者输出上一个任务的返回结果</p>
+
+<pre><code class="language-bash">---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Debug inventory_hostname and ansible_product_uuid facts
+      debug:
+        msg: System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}
+
+    - name: Debug expressions
+      debug:
+        var: (-10 * 3) | abs
+
+    - name: Debug together with the 'when:' directive
+      debug:
+        msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
+      when: ansible_default_ipv4.gateway is defined
+
+    - name: Get system uptime
+      shell: /usr/bin/uptime
+      register: result
+
+    - name: Debug information from the previous task
+      debug:
+        var: result
+        #verbosity: 2
+</code></pre>
+
+<blockquote>
+<p><strong>说明：</strong></p>
+</blockquote>
+
+<ul>
+<li>第 1 个任务是 debug 输出全局变量 <code>{{ inventory_hostname }}</code> 和 <code>{{ ansible_product_uuid }}</code> 的值</li>
+<li>第 2 个任务是输出表达式 <code>(-10 * 3) | abs</code> 的值，应用了 <code>abs</code> 过滤器返回绝对值</li>
+<li>第 3 个任务是只有当远程主机设置了网关时，才输出信息</li>
+<li>第 5 个任务是输出第 4 个任务的返回信息。如果 <code>verbosity: 2</code>，则执行 playbook 时要指定 <code>-vv</code> 选项才能看到输出信息</li>
+</ul>
+
+<p>执行此 playbook 的效果：</p>
+
+<pre><code class="language-bash">[root@CentOS ~]# ansible-playbook devops.yml 
+
+PLAY [webservers] *****************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************
+ok: [192.168.40.121]
+ok: [192.168.40.122]
+
+TASK [Debug inventory_hostname and ansible_product_uuid facts] ********************************************************************************************************
+ok: [192.168.40.121] =&gt; {
+    &quot;msg&quot;: &quot;System 192.168.40.121 has uuid 564D7CE7-258C-7728-C0B6-0DB78382FB90&quot;
+}
+ok: [192.168.40.122] =&gt; {
+    &quot;msg&quot;: &quot;System 192.168.40.122 has uuid 564D2557-9EA9-95B6-61BF-B07B5F0E9681&quot;
+}
+
+TASK [Debug expressions] **********************************************************************************************************************************************
+ok: [192.168.40.121] =&gt; {
+    &quot;(-10 * 3) | abs&quot;: &quot;30&quot;
+}
+ok: [192.168.40.122] =&gt; {
+    &quot;(-10 * 3) | abs&quot;: &quot;30&quot;
+}
+
+TASK [Debug together with the 'when:' directive] **********************************************************************************************************************
+ok: [192.168.40.121] =&gt; {
+    &quot;msg&quot;: &quot;System 192.168.40.121 has gateway 192.168.40.25&quot;
+}
+ok: [192.168.40.122] =&gt; {
+    &quot;msg&quot;: &quot;System 192.168.40.122 has gateway 192.168.40.25&quot;
+}
+
+TASK [Get system uptime] **********************************************************************************************************************************************
+changed: [192.168.40.121]
+changed: [192.168.40.122]
+
+TASK [Debug information from the previous task] ***********************************************************************************************************************
+ok: [192.168.40.121] =&gt; {
+    &quot;result&quot;: {
+        &quot;changed&quot;: true, 
+        &quot;cmd&quot;: &quot;/usr/bin/uptime&quot;, 
+        &quot;delta&quot;: &quot;0:00:00.006009&quot;, 
+        &quot;end&quot;: &quot;2019-07-16 15:36:00.394352&quot;, 
+        &quot;failed&quot;: false, 
+        &quot;rc&quot;: 0, 
+        &quot;start&quot;: &quot;2019-07-16 15:36:00.388343&quot;, 
+        &quot;stderr&quot;: &quot;&quot;, 
+        &quot;stderr_lines&quot;: [], 
+        &quot;stdout&quot;: &quot; 15:36:00 up 8 days,  2:19,  2 users,  load average: 0.00, 0.01, 0.05&quot;, 
+        &quot;stdout_lines&quot;: [
+            &quot; 15:36:00 up 8 days,  2:19,  2 users,  load average: 0.00, 0.01, 0.05&quot;
+        ]
+    }
+}
+ok: [192.168.40.122] =&gt; {
+    &quot;result&quot;: {
+        &quot;changed&quot;: true, 
+        &quot;cmd&quot;: &quot;/usr/bin/uptime&quot;, 
+        &quot;delta&quot;: &quot;0:00:00.006170&quot;, 
+        &quot;end&quot;: &quot;2019-07-16 15:36:00.800756&quot;, 
+        &quot;failed&quot;: false, 
+        &quot;rc&quot;: 0, 
+        &quot;start&quot;: &quot;2019-07-16 15:36:00.794586&quot;, 
+        &quot;stderr&quot;: &quot;&quot;, 
+        &quot;stderr_lines&quot;: [], 
+        &quot;stdout&quot;: &quot; 15:36:00 up 12 days,  2:26,  1 user,  load average: 0.00, 0.01, 0.05&quot;, 
+        &quot;stdout_lines&quot;: [
+            &quot; 15:36:00 up 12 days,  2:26,  1 user,  load average: 0.00, 0.01, 0.05&quot;
+        ]
+    }
+}
+
+PLAY RECAP ************************************************************************************************************************************************************
+192.168.40.121             : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.40.122             : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued
+</code></pre>
+
+<h2 id="template">template</h2>
+
+<p><code>template</code> 模块主要用于 playbook 中使用 <code>Jinja2</code> 模块引擎生成模块后，复制到远程主机上去，后面会详细讲解</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/ansible-001/">Ansible系列-Ansible快速入门</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/ansible">Ansible</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/linux">Linux</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/html-001/" title="前端知识-Html基础">前端知识-Html基础</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(2)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/pages/">pages(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/html/">html</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pages/">pages</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
