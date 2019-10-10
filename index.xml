@@ -6,10 +6,21 @@
     <description>Recent content on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 09 Oct 2019 18:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 20:21:08 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ansible系列-Ansible-Role</title>
+      <link>http://gitzh2017.github.io/posts/ansible-004/</link>
+      <pubDate>Wed, 09 Oct 2019 20:21:08 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/ansible-004/</guid>
+      <description>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可
+创建 role 可以通过 ansible-galaxy init 命令使用 role 模板来初始化一个新的 role，默认会帮你创建出 tasks/、handlers/、vars/ 等目录
+[root@CentOS ~]# ansible-galaxy init --offline /etc/ansible/roles/nginx - /etc/ansible/roles/nginx was created successfully [root@CentOS ~]# tree /etc/ansible/roles/nginx /etc/ansible/roles/nginx ├── defaults │ └── main.yml ├── files ├── handlers │ └── main.yml ├── meta │ └── main.yml ├── README.</description>
+    </item>
     
     <item>
       <title>Ansible系列-Ansible-Palybook</title>
@@ -21,17 +32,6 @@
 YAML YAML 格式的配置文件易于阅读，大多数编程语言都有可用于 YAML 的库，Docker Compose 和 Kubernetes 的配置文件也都使用 YAML，对于 Ansible 而言，每个 YAML 格式的 Playbook 文件都以列表开头（以短划线和空格开头，-），列表中的每个元素都是键/值对（大小写敏感，且冒号后面必须跟一个空格，key: value），通常称为 &amp;ldquo;哈希&amp;rdquo; 或 &amp;ldquo;字典&amp;rdquo;，因此我们需要知道如何在 YAML 中编写列表和字典。YAML 依赖缩进来序列化数据结构，所以缩进必须统一，比如都使用 2 个空格！
  另外，所有 YAML 文件都以 --- 开头（可以选择以 ... 结尾），注释以 # 开头
 --- # Employee records - martin: name: Martin D&#39;vloper job: Developer skills: - python - perl - pascal - tabitha: name: Tabitha Bitumen job: Developer skills: - lisp - fortran - erlang .</description>
-    </item>
-    
-    <item>
-      <title>Ansible系列-Ansible-Role</title>
-      <link>http://gitzh2017.github.io/posts/ansible-004/</link>
-      <pubDate>Wed, 09 Oct 2019 18:21:08 +0800</pubDate>
-      
-      <guid>http://gitzh2017.github.io/posts/ansible-004/</guid>
-      <description>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可
-创建 role 可以通过 ansible-galaxy init 命令使用 role 模板来初始化一个新的 role，默认会帮你创建出 tasks/、handlers/、vars/ 等目录
-[root@CentOS ~]# ansible-galaxy init --offline /etc/ansible/roles/nginx - /etc/ansible/roles/nginx was created successfully [root@CentOS ~]# tree /etc/ansible/roles/nginx /etc/ansible/roles/nginx ├── defaults │ └── main.yml ├── files ├── handlers │ └── main.yml ├── meta │ └── main.yml ├── README.</description>
     </item>
     
     <item>
