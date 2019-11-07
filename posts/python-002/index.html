@@ -391,22 +391,24 @@ if inp == &quot;&quot;:
 </code></pre>
 
 <ul>
-<li>比如将字符串转换成数字类型：
-```python
-age = input(&ldquo;请输入你的年龄：  &ldquo;)</li>
+<li>比如将字符串转换成数字类型：</li>
 </ul>
 
-<p>age = int(age)   # 将字符串转化为整数</p>
+<pre><code class="language-python">age = input(&quot;请输入你的年龄：  &quot;)
 
-<p>if age &gt; 18:
-    print(&ldquo;你已经成年!&rdquo;)
+age = int(age)   # 将字符串转化为整数
+
+if age &gt; 18:
+    print(&quot;你已经成年!&quot;)
 else:
-    print(&ldquo;还没断奶？&rdquo;)</p>
+    print(&quot;还没断奶？&quot;)
+</code></pre>
 
-<pre><code>
-- 去除开头的空白lstrip,去除结尾的空白rstrip以及去除两端的空白strip
-```python
-inp = input(&quot;请输入你的姓名:  &quot;)
+<ul>
+<li>去除开头的空白lstrip,去除结尾的空白rstrip以及去除两端的空白strip</li>
+</ul>
+
+<pre><code class="language-python">inp = input(&quot;请输入你的姓名:  &quot;)
 
 inp = inp.strip()  # strip的用法在字符串数据类型有讲述
 
@@ -414,8 +416,9 @@ print(inp)
 </code></pre>
 
 <ul>
-<li><p>判断输入的字符类型
-前面我们在将字符串转化为整数用的是int()函数，这种方式有危险的，看下面的例子：</p>
+<li>判断输入的字符类型
+前面我们在将字符串转化为整数用的是int()函数，这种方式有危险的，看下面的例子：</li>
+</ul>
 
 <pre><code class="language-python">&gt;&gt;&gt; s = &quot;123&quot;
 &gt;&gt;&gt; a = int(s)
@@ -424,8 +427,8 @@ print(inp)
 &gt;&gt;&gt; s = &quot;something&quot;
 &gt;&gt;&gt; a = int(s)
 Traceback (most recent call last):
-File &quot;&lt;pyshell#12&gt;&quot;, line 1, in &lt;module&gt;
-a = int(s)
+  File &quot;&lt;pyshell#12&gt;&quot;, line 1, in &lt;module&gt;
+    a = int(s)
 ValueError: invalid literal for int() with base 10: 'something'
 </code></pre>
 
@@ -434,27 +437,30 @@ ValueError: invalid literal for int() with base 10: 'something'
 <pre><code class="language-python">age = input(&quot;请输入你的年龄：  &quot;)
 
 if age.isdigit():   # 使用isdigit函数判断输入是否全是数字格式
-age = int(age)   # 将字符串转化为整数
-print(&quot;你的年龄是： &quot;, age)
+    age = int(age)   # 将字符串转化为整数
+    print(&quot;你的年龄是： &quot;, age)
 else:
-print(&quot;输入不合法！&quot;)
-</code></pre></li>
+    print(&quot;输入不合法！&quot;)
+</code></pre>
 
-<li><p>input函数有时可以巧妙地用于阻塞或暂停程序
-```python
-print(&ldquo;程序前面部分执行完毕&hellip;&hellip;&rdquo;)</p></li>
+<ul>
+<li>input函数有时可以巧妙地用于阻塞或暂停程序</li>
 </ul>
 
-<p>input(&ldquo;请按回车继续&hellip;&hellip;&rdquo;)       # 在这里程序会暂停，等待你的回车动作</p>
+<pre><code class="language-python">print(&quot;程序前面部分执行完毕......&quot;)
 
-<p>print(&ldquo;继续执行程序的后面部分&hellip;&hellip;&rdquo;)</p>
+input(&quot;请按回车继续......&quot;)       # 在这里程序会暂停，等待你的回车动作
 
-<pre><code>此时的input函数不会将输入保存下来，只是用作暂停程序动作。
+print(&quot;继续执行程序的后面部分......&quot;)
+</code></pre>
 
-## print输入函数
-print函数我们其实已经不陌生了，前前后后也用了不少次，多少有点经验，明白点它的用法了。print函数用于将内容格式化显示在标准输出上，主要指的是屏幕显示器。print可以接受多个字符串，字符串类型的变量或者可print的对象。每个字符串用逗号“,”隔开，连成一串输出。print会依次打印每个字符串，同时，每遇到一个逗号“,”就输出一个空格。
-```python
-&gt;&gt;&gt; a = &quot;i am&quot;
+<p>此时的input函数不会将输入保存下来，只是用作暂停程序动作。</p>
+
+<h2 id="print输入函数">print输入函数</h2>
+
+<p>print函数我们其实已经不陌生了，前前后后也用了不少次，多少有点经验，明白点它的用法了。print函数用于将内容格式化显示在标准输出上，主要指的是屏幕显示器。print可以接受多个字符串，字符串类型的变量或者可print的对象。每个字符串用逗号“,”隔开，连成一串输出。print会依次打印每个字符串，同时，每遇到一个逗号“,”就输出一个空格。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = &quot;i am&quot;
 &gt;&gt;&gt; b = &quot;student&quot;
 &gt;&gt;&gt; print(a,&quot;a&quot; , b)
 i am a student      # 自动以空格分隔
@@ -494,8 +500,8 @@ i am*a*student
 <ul>
 <li>变量名只能是字母、数字或下划线的任意组合；</li>
 <li>变量名的第一个字符不能是数字；</li>
-
-<li><p>以下关键字不能声明为变量名：</p>
+<li>以下关键字不能声明为变量名：</li>
+</ul>
 
 <pre><code class="language-bash">['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise', 'return', 'try', 'while', 'with', 'yield']
 </code></pre>
@@ -513,19 +519,20 @@ NumberOfStudents = 80
 #下划线
 age_of_leon = 56
 number_of_students = 80
-</code></pre></li>
+</code></pre>
 
-<li><p><strong>变量</strong>：在程序运行过程中，值会发生变化的量</p></li>
-
-<li><p><strong>常量</strong>：在程序运行过程中，值不会发生变化的量
-无论是变量还是常量，在创建时都会在内存中开辟一块空间，用于保存它的值。</p></li>
+<ul>
+<li><strong>变量</strong>：在程序运行过程中，值会发生变化的量</li>
+<li><strong>常量</strong>：在程序运行过程中，值不会发生变化的量
+无论是变量还是常量，在创建时都会在内存中开辟一块空间，用于保存它的值。</li>
 </ul>
 
 <h2 id="变量">变量</h2>
 
 <ul>
-<li><p>Python 中的变量不需要声明类型。
-这是根据Python的动态语言特性而来。变量可以直接使用，而不需要提前声明类型。例如下面的a，b，c，d四个变量，在使用前没有进行任何的诸如int a, str b, list c ,int d的类型声明，而这在C和JAVA中是必须的。</p>
+<li>Python 中的变量不需要声明类型。
+这是根据Python的动态语言特性而来。变量可以直接使用，而不需要提前声明类型。例如下面的a，b，c，d四个变量，在使用前没有进行任何的诸如int a, str b, list c ,int d的类型声明，而这在C和JAVA中是必须的。</li>
+</ul>
 
 <pre><code class="language-python">&gt;&gt;&gt; a = 4
 &gt;&gt;&gt; b = &quot;haha&quot;
@@ -534,26 +541,29 @@ number_of_students = 80
 </code></pre>
 
 <ul>
-<li>用<code>“=”</code>号来给变量赋值
-<code>python
-a = 100
-</code>
-这里的等号要理解并读作“赋值”，而不是“等于”，“赋值”是对变量的操作，而“等于”是对两个变量进行比较。上面的a，b，c，d四个变量，就通过“=”号，赋予了不同的值。</li>
-</ul></li>
+<li>用<code>“=”</code>号来给变量赋值</li>
+</ul>
 
-<li><p>每个变量在使用前都必须赋值，变量赋值以后才会被创建。
-新的变量通过赋值的动作，创建并开辟内存空间，保存值。如果没有赋值而直接使用会抛出赋值前引用的异常或者未命名异常。例如：</p>
+<pre><code class="language-python">a = 100
+</code></pre>
+
+<p>这里的等号要理解并读作“赋值”，而不是“等于”，“赋值”是对变量的操作，而“等于”是对两个变量进行比较。上面的a，b，c，d四个变量，就通过“=”号，赋予了不同的值。</p>
+
+<ul>
+<li>每个变量在使用前都必须赋值，变量赋值以后才会被创建。
+新的变量通过赋值的动作，创建并开辟内存空间，保存值。如果没有赋值而直接使用会抛出赋值前引用的异常或者未命名异常。例如：</li>
+</ul>
 
 <pre><code class="language-python">&gt;&gt;&gt; a       # 孤单单一个a，什么也表示不了，只能报错
 Traceback (most recent call last):
-File &quot;&lt;pyshell#0&gt;&quot;, line 1, in &lt;module&gt;
-a
+  File &quot;&lt;pyshell#0&gt;&quot;, line 1, in &lt;module&gt;
+    a
 NameError: name 'a' is not defined
 &gt;&gt;&gt; a = 1   # 这样就没问题了，解释器知道a是个新变量了
 &gt;&gt;&gt; c.append(1)     # c是个什么鬼？
 Traceback (most recent call last):
-File &quot;&lt;pyshell#2&gt;&quot;, line 1, in &lt;module&gt;
-c.append(1)
+  File &quot;&lt;pyshell#2&gt;&quot;, line 1, in &lt;module&gt;
+    c.append(1)
 NameError: name 'c' is not defined
 </code></pre>
 
@@ -565,9 +575,11 @@ NameError: name 'c' is not defined
 &gt;&gt;&gt; a = { &quot;k1&quot;:&quot;v1&quot;}
 </code></pre>
 
-<p>例子中，变量a在创建的时候，赋予了值为1的整数类型，然后又被改成字符串“haha”，再又变成一个列表，最后是个字典。变量a在动态的改变，它的值分别是不同的数据类型，这是动态语言的特点。</p></li>
+<p>例子中，变量a在创建的时候，赋予了值为1的整数类型，然后又被改成字符串“haha”，再又变成一个列表，最后是个字典。变量a在动态的改变，它的值分别是不同的数据类型，这是动态语言的特点。</p>
 
-<li><p><code>“=”</code>号这个赋值运算符是从右往左的计算顺序。</p>
+<ul>
+<li><code>“=”</code>号这个赋值运算符是从右往左的计算顺序。</li>
+</ul>
 
 <pre><code class="language-python">&gt;&gt;&gt; a = 1
 &gt;&gt;&gt; b = 2
@@ -589,8 +601,7 @@ NameError: name 'c' is not defined
 <p>常量就是不变的变量，比如常用的数学常数圆周率就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
 
 <pre><code class="language-python">PI = 3.14159265359
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>但事实上，从Python语法角度看，PI仍然是一个变量，因为Python根本没有任何机制保证PI不会被改变。你完全可以给PI赋值为10，不会弹出任何错误。所以，用全部大写的变量名表示常量只是一个习惯上的用法。</p>
 
