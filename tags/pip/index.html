@@ -93,11 +93,7 @@
                             </div>
                             
                             <div class="post-content">
-                                代码头两行 很多时候，我们在一些py脚本文件的开头都能看到类似的以#开头的这样两行代码，它们不是注释，是一些设定。
-#!/usr/bin/env python # -*- coding:utf-8 -*-  第一行：用于指定运行该脚本的Python解释器，Linux专用，windows不需要。env方式下，系统会自动使用环境变量里指向的Python。还有一种方式，#!/usr/bin/python3.6，这会强制要求使用系统中的python3.6解释器执行文件，这种方式不好，一旦你本地的Python3.6版本删除了，会出现找不到解释器的错误。无论两种方式的哪一种，都指的是在linux下使用./test.py的方式执行脚本时的设置，在使用类似python test.py或者python3 test.py的执行方式时，这一行不起作用。
-例如，我写了个脚本如下：
-#!/usr/bin/python2 print &quot;hello&quot; # 注意这里没有圆括号，这是python2版本的打印方式  仔细看下面的执行过程, 你会发现无论你在代码第一行怎么设置，都会根据命令调用的时的python版本进行执行：
-$ cat test.py #!/usr/bin/python2 print &quot;hello&quot; $ python2 Python 2.7.12 (default, Nov 19 2016, 06:48:10) [GCC 5.4.0 20160609] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; exit() $ python3 Python 3.6.1 (default, Aug 15 2017, 11:19:20) [GCC 5.4.0 20160609] on linux Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.……
+                                <p>本章节我们主要学习一些Python的基础知识，书写Python代码的一些规范，包括介绍一下变量的知识，和一些报错的排错思路</p>……
                                 <p class="readmore"><a href="http://gitzh2017.github.io/posts/python-002/">阅读全文</a></p>
                             </div>
                         </article>
