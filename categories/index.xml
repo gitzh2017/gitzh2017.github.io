@@ -6,10 +6,28 @@
     <description>Recent content in Categories on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 09 Oct 2019 20:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 19:59:40 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python</title>
+      <link>http://gitzh2017.github.io/categories/python/</link>
+      <pubDate>Wed, 06 Nov 2019 19:59:40 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>beego</title>
+      <link>http://gitzh2017.github.io/categories/beego/</link>
+      <pubDate>Fri, 11 Oct 2019 20:40:07 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/categories/beego/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ansible</title>

@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Linux | 凡夫俗子的博客</title>
-    <meta property="og:title" content="Linux - 凡夫俗子的博客">
+    <title>python | 凡夫俗子的博客</title>
+    <meta property="og:title" content="python - 凡夫俗子的博客">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,kubernetes,项目管理,python">
-    <meta name="description" content="Linux">
+    <meta name="description" content="python">
         
     <meta name="author" content="凡夫俗子">
-    <meta property="og:url" content="http://gitzh2017.github.io/tags/linux/">
+    <meta property="og:url" content="http://gitzh2017.github.io/categories/python/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://gitzh2017.github.io/tags/linux/index.xml" title="凡夫俗子的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="http://gitzh2017.github.io/categories/python/index.xml" title="凡夫俗子的博客" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -68,9 +68,9 @@
                 <div class="res-cons">
                     
                     <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">Linux</span>
-                        的文章
+                        分类
+                        <span class="keyword">python</span>
+                        中的文章
                     </h3>
                     
 
@@ -78,92 +78,50 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://gitzh2017.github.io/posts/ansible-004/">Ansible系列-Ansible-Role</a>
+                                    <a href="http://gitzh2017.github.io/posts/python-002/">Python基础-Python 基础知识</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月9日
+                                2019年11月6日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://gitzh2017.github.io/categories/ansible">Ansible</a>
+                                    <a href="http://gitzh2017.github.io/categories/python">python</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                <p>Ansible 在 1.2 版本以后开始支持 role，它与我们日常使用的 playbook 没有什么区别，只不过对目录结构进行了一些规范。我们可以对一个很复杂的 playbook 进行拆分，比如将任务都放到 tasks/ 目录中、将触发处理程序都放到 handlers/ 目录中等。如果以后需要对 role 进行修改或者调整，只需修改相应的文件即可。如果还想把这个 role 分享给其它人，也只需要分享整个目录即可，从而实现重用的目的。role 只是关于一个功能的集合，我们使用它时，只需要编写一个 playbook 通过 roles 关键字去调用我们写好的 role 即可</p>……
-                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-004/">阅读全文</a></p>
+                                代码头两行 很多时候，我们在一些py脚本文件的开头都能看到类似的以#开头的这样两行代码，它们不是注释，是一些设定。
+#!/usr/bin/env python # -*- coding:utf-8 -*-  第一行：用于指定运行该脚本的Python解释器，Linux专用，windows不需要。env方式下，系统会自动使用环境变量里指向的Python。还有一种方式，#!/usr/bin/python3.6，这会强制要求使用系统中的python3.6解释器执行文件，这种方式不好，一旦你本地的Python3.6版本删除了，会出现找不到解释器的错误。无论两种方式的哪一种，都指的是在linux下使用./test.py的方式执行脚本时的设置，在使用类似python test.py或者python3 test.py的执行方式时，这一行不起作用。
+例如，我写了个脚本如下：
+#!/usr/bin/python2 print &quot;hello&quot; # 注意这里没有圆括号，这是python2版本的打印方式  仔细看下面的执行过程, 你会发现无论你在代码第一行怎么设置，都会根据命令调用的时的python版本进行执行：
+$ cat test.py #!/usr/bin/python2 print &quot;hello&quot; $ python2 Python 2.7.12 (default, Nov 19 2016, 06:48:10) [GCC 5.4.0 20160609] on linux2 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information. &gt;&gt;&gt; exit() $ python3 Python 3.6.1 (default, Aug 15 2017, 11:19:20) [GCC 5.4.0 20160609] on linux Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.……
+                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/python-002/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://gitzh2017.github.io/posts/ansible-003/">Ansible系列-Ansible-Palybook</a>
+                                    <a href="http://gitzh2017.github.io/posts/python-001/">Python基础-Python 简介入门</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月9日
+                                2019年11月6日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://gitzh2017.github.io/categories/ansible">Ansible</a>
+                                    <a href="http://gitzh2017.github.io/categories/python">python</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                <p>playbook 文件包含了多个 play，每个 play 可以应用于一个主机组或单个主机。而每个 play 又包含一系列编排后的 tasks（按顺序执行），每个 task 其实就是执行一次 Ad Hoc 临时命令，从根本上来讲，所谓的 task 无非就是调用了 Ansible 的一个模块。</p>……
-                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-003/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://gitzh2017.github.io/posts/ansible-002/">Ansible系列-Ansible常用模块</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年10月9日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://gitzh2017.github.io/categories/ansible">Ansible</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                <p>本文主要介绍ansible的一些常用模块，以及实战操作一下</p>……
-                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-002/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://gitzh2017.github.io/posts/ansible-001/">Ansible系列-Ansible快速入门</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年9月13日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://gitzh2017.github.io/categories/ansible">Ansible</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                <p>作为一个Linux运维人员，需要了解大量的运维工具，并熟知这些工具的差异，能够熟练运用这些工具去解决一些手动重复的劳动，一方面是避免人工操作失误，另一方面也可以提高工作效率。同时还能将自己从这些重复的工作中解放出来，以便研究更新和更深的技术。</p>……
-                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/ansible-001/">阅读全文</a></p>
+                                <p>本章节主要介绍Python的简介、安装、原理性的一些内容，通过这些知识点预热一下，属性Python是怎么一种语言，怎么一个工作方式，Python的虚拟环境安装，最后通过一个hello，world展示第一个程序</p>……
+                                <p class="readmore"><a href="http://gitzh2017.github.io/posts/python-001/">阅读全文</a></p>
                             </div>
                         </article>
                     

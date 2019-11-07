@@ -6,10 +6,52 @@
     <description>Recent content on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 09 Oct 2019 20:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 19:59:40 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python基础-Python 基础知识</title>
+      <link>http://gitzh2017.github.io/posts/python-002/</link>
+      <pubDate>Wed, 06 Nov 2019 19:59:40 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-002/</guid>
+      <description>代码头两行 很多时候，我们在一些py脚本文件的开头都能看到类似的以#开头的这样两行代码，它们不是注释，是一些设定。
+#!/usr/bin/env python # -*- coding:utf-8 -*-  第一行：用于指定运行该脚本的Python解释器，Linux专用，windows不需要。env方式下，系统会自动使用环境变量里指向的Python。还有一种方式，#!/usr/bin/python3.6，这会强制要求使用系统中的python3.6解释器执行文件，这种方式不好，一旦你本地的Python3.6版本删除了，会出现找不到解释器的错误。无论两种方式的哪一种，都指的是在linux下使用./test.py的方式执行脚本时的设置，在使用类似python test.py或者python3 test.py的执行方式时，这一行不起作用。
+例如，我写了个脚本如下：
+#!/usr/bin/python2 print &amp;quot;hello&amp;quot; # 注意这里没有圆括号，这是python2版本的打印方式  仔细看下面的执行过程, 你会发现无论你在代码第一行怎么设置，都会根据命令调用的时的python版本进行执行：
+$ cat test.py #!/usr/bin/python2 print &amp;quot;hello&amp;quot; $ python2 Python 2.7.12 (default, Nov 19 2016, 06:48:10) [GCC 5.4.0 20160609] on linux2 Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information. &amp;gt;&amp;gt;&amp;gt; exit() $ python3 Python 3.6.1 (default, Aug 15 2017, 11:19:20) [GCC 5.4.0 20160609] on linux Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</description>
+    </item>
+    
+    <item>
+      <title>Python基础-Python 简介入门</title>
+      <link>http://gitzh2017.github.io/posts/python-001/</link>
+      <pubDate>Wed, 06 Nov 2019 19:59:38 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-001/</guid>
+      <description>&lt;p&gt;本章节主要介绍Python的简介、安装、原理性的一些内容，通过这些知识点预热一下，属性Python是怎么一种语言，怎么一个工作方式，Python的虚拟环境安装，最后通过一个hello，world展示第一个程序&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Beego系列-Beego快速入门</title>
+      <link>http://gitzh2017.github.io/posts/beego-001/</link>
+      <pubDate>Fri, 11 Oct 2019 20:40:07 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/beego-001/</guid>
+      <description>Web框架 什么是web框架呢，随着web的发展趋势不断升级，web项目的开发维护已经越来越难，需要花费大量的时间去开发，所以我们应该去了解一下web框架就显着极为重要了，web框架是一种已经实现很多web服务器需要的功能，开发在其之上只需要重点开发业务逻辑代码就可以快速开发出web应用了，也可以说web框架是在一个底层基础代码之上扩展出来的，有很多简单的使用方法，帮你省去复杂的操作，大大提高开发的效率，降低学习的成本。
+ 一般的web框架架构图   MVC架构 上面简单说明了web框架，我们主要介绍全栈框架，几乎所有的全栈框架都强制或者引导开发者使用MVC设计模式，所谓的全栈框架，是指除了封装网络和线程操作，还提供HTTP，数据库读写管理，HTML模板渲染等一系列的web功能的框架
+ 最早由Trygve Teenskaug在1978年提出，上世纪80年代是程序语言Smalltalk的一种内部架构。后来MVC被其他领域借鉴，成为了软件工程中的一种软件架构模式。MVC把Web框架分为3个基础部分：
+  模型(Model)：用于封装与应用程序的业务逻辑相关的数据及对数据的处理方法，是Web应用程序中用于处理应用程序的数据逻辑的部分，Model只提供功能性的接口，通过这些接口可以获取Model的所有功能。白话说，这个模块就是Web框架和数据库的交互层。
+ 视图(View)：负责数据的显示和呈现，是对用户的直接输出。
+ 控制器(Controller)：负责从用户端收集用户的输入，可以看成提供View的反向功能。
+  这三个部分互相独立，但又相互联系，使得改进和升级界面及用户交互流程，在Web开发过程任务分配时，不需要重写业务逻辑及数据访问代码。
+Beego简介 Beego 框架的作者是 Asta 谢，Go 语言技术专家，目前就职于 Apple（就这一点，其实就值得我们去学习 Beego，我们技术人 Apple、Google 背景的同学真的很少），Gopher China 社区创始人，一直在致力于Go 语言在开源社区的推广，在自己常见的技术实战中编写了《Go Web 编程》这本书。是国内 Go 语言发展推动者之一，（七牛云许世伟也是）。既然花这么多精力来推广 Go 语言，官网的文档应该会写的非常不错！
+Beego 官网地址是 http://beego.me，你可以在浏览器里面打开。并可以找到「开发文档」这个选项，点击进去，就是完整的文档了，我们接下来的学习旅程都少不了这个根基，用好这份文档，将会让你注意到更多细节,Github 仓库也是必不可少的：https://github.com/astaxie/beego，我们可以去看看 star 数量和 fork 数量。是的，就是这个框架稳居 Golang Web 框架第一，使用者遍及世界各地，各大互联网公司使用众多，如华为、京东、美团等：
+Beego环境安装 在这里我当你的环境已经默认安装了golang，使用beego还需要安装beego源码和bee开发工具，我们可以先安装bee开发工具，来创建项目，然后在项目里面安装beego
+# go get -u -v github.com/beego/bee  bee开发工具就是用来管理创建beego项目的，自带很多bee命令，直接输入bee命令会有命令帮助提示,比如使用bee version查看你的版本,bee new创建web项目,bee run运行你的项目等，使用bee运行项目，还自带热更新功能。安装完成之后把bee可执行文件默认存放在你的$GOPATH/bin里面。
+工具命令 - bee new //生成一个新的beego项目 - bee api //生成一个新的api项目，专门用作api接口使用 - bee generate controller //生成控制器，不用自己创建controller文件 - bee generate model //生成model文件 - bee generate view //生成视图文件 - bee dockerize //生成Dockerfile文件，方便以docker的方式运行 - bee run //将项目运行起来，并且默认自动热编译，也就是修改golang的源码，会立马自动编译，并不需要手动每次自己go run</description>
+    </item>
     
     <item>
       <title>Ansible系列-Ansible-Role</title>

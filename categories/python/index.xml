@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on 凡夫俗子的博客</title>
+    <link>http://gitzh2017.github.io/categories/python/</link>
+    <description>Recent content in python on 凡夫俗子的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 06 Nov 2019 19:59:40 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitzh2017.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python基础-Python 基础知识</title>
+      <link>http://gitzh2017.github.io/posts/python-002/</link>
+      <pubDate>Wed, 06 Nov 2019 19:59:40 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-002/</guid>
+      <description>代码头两行 很多时候，我们在一些py脚本文件的开头都能看到类似的以#开头的这样两行代码，它们不是注释，是一些设定。
+#!/usr/bin/env python # -*- coding:utf-8 -*-  第一行：用于指定运行该脚本的Python解释器，Linux专用，windows不需要。env方式下，系统会自动使用环境变量里指向的Python。还有一种方式，#!/usr/bin/python3.6，这会强制要求使用系统中的python3.6解释器执行文件，这种方式不好，一旦你本地的Python3.6版本删除了，会出现找不到解释器的错误。无论两种方式的哪一种，都指的是在linux下使用./test.py的方式执行脚本时的设置，在使用类似python test.py或者python3 test.py的执行方式时，这一行不起作用。
+例如，我写了个脚本如下：
+#!/usr/bin/python2 print &amp;quot;hello&amp;quot; # 注意这里没有圆括号，这是python2版本的打印方式  仔细看下面的执行过程, 你会发现无论你在代码第一行怎么设置，都会根据命令调用的时的python版本进行执行：
+$ cat test.py #!/usr/bin/python2 print &amp;quot;hello&amp;quot; $ python2 Python 2.7.12 (default, Nov 19 2016, 06:48:10) [GCC 5.4.0 20160609] on linux2 Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information. &amp;gt;&amp;gt;&amp;gt; exit() $ python3 Python 3.6.1 (default, Aug 15 2017, 11:19:20) [GCC 5.4.0 20160609] on linux Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.</description>
+    </item>
+    
+    <item>
+      <title>Python基础-Python 简介入门</title>
+      <link>http://gitzh2017.github.io/posts/python-001/</link>
+      <pubDate>Wed, 06 Nov 2019 19:59:38 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-001/</guid>
+      <description>&lt;p&gt;本章节主要介绍Python的简介、安装、原理性的一些内容，通过这些知识点预热一下，属性Python是怎么一种语言，怎么一个工作方式，Python的虚拟环境安装，最后通过一个hello，world展示第一个程序&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

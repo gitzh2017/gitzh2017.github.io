@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Python基础-Python 简介入门 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Python基础-Python 简介入门 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-06T19:59:38&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-06T19:59:38&#43;08:00">
+        
+    <meta name="Keywords" content="[python]">
+    <meta name="description" content="Python基础-Python 简介入门">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/python-001/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Python基础-Python 简介入门</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月6日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/python">python</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p>本章节主要介绍Python的简介、安装、原理性的一些内容，通过这些知识点预热一下，属性Python是怎么一种语言，怎么一个工作方式，Python的虚拟环境安装，最后通过一个hello，world展示第一个程序</p>
+
+<h1 id="python-简介">Python 简介</h1>
+
+<p><code>Python</code>语言是由荷兰程序员<code>Guido van Rossum</code>，江湖人称<code>“龟叔”</code>，独立开发完成初版的。“龟叔”曾供职于google，现任职于dropbox 。1989年圣诞节期间，在阿姆斯特丹，为了打发圣诞节的无趣，决心开发一个新的脚本解释语言，作为ABC语言的一种继承，然后他就这么做了，并实现了（大神的能力）。之所以选中Python作为该编程语言的名字，是因为他是一个叫<code>Monty Python</code>喜剧团体的爱好者，其本意并不是想选条<code>蟒蛇</code>。Python第一个公开发行版发行于1991年，所以这年被当作Python的诞生年。Python 源代码遵循 GPL(GNU General Public License)协议，这是一个开源的协议，也就是说你可以免费使用和传播它，而不用担心版权的问题。目前Python是由一个核心开发团队在维护，龟叔属于太上皇职位，仍然占据着至关重要的作用，指导其进展。</p>
+
+<ul>
+<li>Python官网：<a href="http://www.python.org/">http://www.python.org/</a></li>
+<li>Python文档地址：<a href="http://www.python.org/doc/">http://www.python.org/doc/</a></li>
+<li>Python模块仓库 <a href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a></li>
+</ul>
+
+<h2 id="python主要应用领域">Python主要应用领域</h2>
+
+<ul>
+<li><code>云计算</code>：云计算最火的语言，典型应用OpenStack</li>
+<li><code>WEB开发</code>：众多优秀的WEB框架，众多大型网站均为Python开发，Youtube, Dropbox, 豆瓣。。。，典型WEB框架有Django</li>
+<li><code>科学运算</code>、人工智能：典型库NumPy, SciPy, Matplotlib, Enthought librarys,pandas</li>
+<li><code>系统运维</code>：运维人员必备语言</li>
+<li><code>金融</code>：量化交易，金融分析，在金融工程领域，Python不但在用，且用的最多，而且重要性逐年提高。原因：作为动态语言的Python，语言结构清晰简单，库丰富，成熟稳定，科学计算和统计分析都很牛逼，生产效率远远高于c/c++/java，尤其擅长策略回测</li>
+<li><code>图形GUI</code>：PyQT, WxPython,TkInter</li>
+</ul>
+
+<h1 id="python-安装">Python 安装</h1>
+
+<blockquote>
+<p>因为我的是Mac电脑，所以我这里演示从centos7.6上面安装Python3.7版本的</p>
+</blockquote>
+
+<p>1.首先安装依赖包</p>
+
+<pre><code class="language-bash">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+</code></pre>
+
+<p>2.下载python3安装包</p>
+
+<pre><code class="language-bash">[root@python tools]# wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+</code></pre>
+
+<p>3.解压编译安装</p>
+
+<pre><code class="language-bash">[root@python tools]# tar xvzf Python-3.7.4.tgz 
+[root@python tools]# mkdir -p /usr/local/python3
+[root@python tools]# cd Python-3.7.4
+[root@python Python-3.7.4]# ./configure --prefix=/usr/local/python3/
+[root@python Python-3.7.4]# make &amp;&amp; make install
+[root@python Python-3.7.4]# ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3
+[root@python Python-3.7.4]# ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3
+</code></pre>
+
+<p>4.验证和测试</p>
+
+<pre><code class="language-bash">[root@python Python-3.7.4]# python3
+Python 3.7.4 (default, Jul 26 2019, 04:16:54) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-36)] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</code></pre>
+
+<h1 id="pip">Pip</h1>
+
+<p>我们都知道python有海量的第三方库或者说模块，这些库针对不同的应用，发挥不同的作用。我们在实际的项目中，或多或少的都要使用到第三方库，那么如何将他人的库加入到自己的项目中内呢？Python官方的PyPi仓库为我们提供了一个统一的代码托管仓库，所有的第三方库，甚至你自己写的开源模块，都可以发布到这里，让全世界的人分享下载。当然，除了Python官方的仓库，也有一些其他公司提供的仓库，还有一些私有的或针对内部的仓库。有了统一的管理仓库，那么我们是不是就可以从上面下载源码进行安装了？原则上是的，只不过由于使用源码安装比较繁琐，容易出错，也不够简便，因此出现了wheel文件格式，类似zip或rar文件，并提供专用的安装工具，帮助我们更快更简便的安装。pip就是这个工具！它能帮助我们自动从仓库上下载并安装第三方库，同时将该库所依赖的而本地没有安装的库一并安装。我们上面源码安装的已经安装了<code>pip</code>工具，下面我们通过一些简单的演示，熟悉一下pip的简单操作。</p>
+
+<h2 id="1-普通安装">1. 普通安装</h2>
+
+<p>以安装pillow模块为例。输入<code>pip install pillow</code>，安装过程如下图：</p>
+
+<pre><code class="language-bash">$ pip install pillow
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Collecting pillow
+  Downloading http://mirrors.aliyun.com/pypi/packages/85/28/2c72ba965b52884a0bd71e419761fc162763dc2e5d9bec2f3b1949f7272a/Pillow-6.2.1-cp37-cp37m-macosx_10_6_intel.whl (3.9MB)
+    99% |███████████████████████████████▊| 3.9MB 938kB/s eta 0:00:01
+</code></pre>
+
+<h2 id="2-指定版本安装">2.指定版本安装</h2>
+
+<p>安装特定版本的package，通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。 <code>pip install 'Markdown&lt;2.0' pip install 'Markdown&gt;2.0,&lt;2.0.3</code></p>
+
+<h2 id="3-卸载已安装的库">3. 卸载已安装的库</h2>
+
+<pre><code class="language-bash">pip uninstall pillow
+</code></pre>
+
+<h2 id="4-列出已经安装的库">4. 列出已经安装的库</h2>
+
+<pre><code class="language-bash">pip list
+</code></pre>
+
+<h2 id="5-将已经安装的库列表保存到文本文件中">5. 将已经安装的库列表保存到文本文件中</h2>
+
+<pre><code class="language-bash">pip freeze &gt; requirements.txt
+</code></pre>
+
+<p>这个功能非常常用、好用！经常被用作项目环境依赖文件。</p>
+
+<h2 id="6-根据依赖文件批量安装库">6. 根据依赖文件批量安装库</h2>
+
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+
+<p>使用上面的txt文件，批量安装第三方库。</p>
+
+<h2 id="7-使用wheel文件安装">7. 使用wheel文件安装</h2>
+
+<p>除了使用上面的方式联网进行安装外，还可以将安装包也就是wheel格式的文件，下载到本地，然后使用pip进行安装。比如我在PYPI上提前下载的pillow库的wheel文件，后缀名为whl。可以使用<code>pip install pillow-4.2xxxxxxx.whl</code>的方式离线进行安装</p>
+
+<h2 id="pip源的选择">pip源的选择</h2>
+
+<p>很多时候，比如网络不给力，连接超时、防火墙阻挡等等各种原因，我们可能无法从Python官方的PyPi仓库进行pip安装，这时候可以选择国内的第三方源，推荐使用豆瓣源，速度不错。</p>
+
+<pre><code class="language-bash">pip install -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com pillow
+</code></pre>
+
+<h1 id="virtualenv">Virtualenv</h1>
+
+<p>有的时候因为各种原因，在操作系统下，我们会安装很多版本的Python解释器。同样，我们也有可能因为各种原因，需要不同版本的模块，比如Django1.8，Django1.11。再加上pip工具管理器的版本混乱问题。这就使得很多人在Python的环境管理上产生极大的混乱。通常每个项目，甚至项目不同阶段的版本，需要不同的Python解释器和依赖库。为了清晰明了，安全可靠的管理这些环境，需要为每个项目或每个应用各自建立一套“独立、隔离”的Python运行环境。</p>
+
+<p>pyenv是Python版本管理工具，可以改变全局的Python版本，安装多个版本的Pytho，设置目录级别的Python版本，还能创建和管理虚拟环境。所有的设置都是用户级别的操作，不需要sudo命令。 pyenv通过系统修改环境变量来实现Python不同版本的切换。而virtualenv 通过将Python包安装到一个目录来作为Python 包虚拟环境，通过切换目录来实现不同包环境间的切换。</p>
+
+<h2 id="pyenv安装">pyenv安装</h2>
+
+<p>如果你使用的MAC系统，推荐使用<code>homebrew</code>来安装：</p>
+
+<pre><code class="language-bash">$ brew update
+$ brew install pyenv
+</code></pre>
+
+<p>如果你使用的是其他系统，也不担心，pyenv官方提供了一键安装的方式：</p>
+
+<pre><code class="language-bash">$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+</code></pre>
+
+<p>安装完成以后，可以添加几条命令到.zshrc(同样的也可能是.bashrc，根据自己使用的终端进行配置)中开启自动补全功能：</p>
+
+<pre><code class="language-bash">export PATH=$HOME/.pyenv/bin:$PATH
+eval &quot;$(pyenv init -)&quot;
+eval &quot;$(pyenv virtualenv-init -)&quot;
+</code></pre>
+
+<p>然后同样激活上面的配置：</p>
+
+<pre><code class="language-bash">$ source ~/.zshrc
+</code></pre>
+
+<h2 id="pyenv使用">pyenv使用</h2>
+
+<p>现在我们就可以使用pyenv了：</p>
+
+<p>1.查看本机安装Python版本：</p>
+
+<pre><code class="language-bash">$ pyenv versions
+∗ system (set by /Users/ych/.pyenv/version)
+3.6.4
+3.6.4/envs/ops3.6.4
+3.6.4/envs/talk3.6.4
+ops3.6.4
+talk3.6.4
+</code></pre>
+
+<p><code>星号</code>表示当前正在使用的Python版本。</p>
+
+<p>2.查看所有可安装的Python版本：</p>
+
+<pre><code class="language-bash">shell $ pyenv install -l
+</code></pre>
+
+<p>3.安装与卸载：</p>
+
+<pre><code class="language-bash">$ pyenv install 2.7.3   # 安装python
+$ pyenv uninstall 2.7.3 # 卸载python
+</code></pre>
+
+<p>4.版本切换：</p>
+
+<pre><code class="language-bash">shell $ pyenv global 2.7.3 $ pyenv local 2.7.3
+</code></pre>
+
+<p>global用于设置全局的Python版本，通过将版本号写入~/.pyenv/version文件的方式。local用于设置本地版本，通过将版本号写入当前目录下的.python-version文件的方式。通过这种方式设置的Python版本优先级比global高。</p>
+
+<p>python优先级：<code>shell &gt; local &gt; global</code> pyenv会从当前目录开始向上逐级查找.python-version文件，直到根目录为止。若找不到，就用global版本。</p>
+
+<pre><code class="language-bash">$ pyenv shell 2.7.3 # 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION 环境变量的方式。这个版本的优先级比 local 和 global 都要高。
+$ pyenv shell --unset  # –unset 参数用于取消当前 shell 设定的版本。
+</code></pre>
+
+<h2 id="pyenv-virtualenv">pyenv-virtualenv</h2>
+
+<p>自动安装pyenv后，它会自动安装部分插件，通过pyenv-virtualenv插件可以很好的和virtualenv进行结合：</p>
+
+<pre><code class="language-bash">$ ls -la ~/.pyenv/plugins
+total 8
+drwxr-xr-x   9 ych  staff  288 12 26 16:27 .
+drwxr-xr-x  23 ych  staff  736 12 26 17:44 ..
+-rw-r--r--   1 ych  staff   52 12 26 16:26 .gitignore
+drwxr-xr-x  11 ych  staff  352 12 26 16:27 pyenv-doctor
+drwxr-xr-x  12 ych  staff  384 12 26 16:27 pyenv-installer
+drwxr-xr-x   7 ych  staff  224 12 26 16:27 pyenv-update
+drwxr-xr-x  13 ych  staff  416 12 26 16:27 pyenv-virtualenv
+drwxr-xr-x   8 ych  staff  256 12 26 16:27 pyenv-which-ext
+drwxr-xr-x   8 ych  staff  256 12 26 16:26 python-build
+</code></pre>
+
+<p>基本使用命令：</p>
+
+<pre><code class="language-bash">列出当前虚拟环境：pyenv virtualenvs
+激活虚拟环境：pyenv activate 环境名称
+退出虚拟环境：pyenv deactivate
+删除虚拟环境：pyenv uninstall 环境名称或者rm -rf ~/.pyenv/versions/环境名称
+创建虚拟环境：pyenv virtualenv 3.6.4 env3.6.4
+</code></pre>
+
+<p>若不指定python 版本，会默认使用当前环境python 版本。如果指定Python 版本，则一定要是已经安装过的版本，否则会出错。环境的真实目录位于~/.pyenv/versions下。</p>
+
+<blockquote>
+<p>总结：利用pyenv和pyenv-virtualenv插件就能够简单方便的将python版本和依赖包进行环境隔离了，在实际开发过程中比较推荐这种方式。</p>
+</blockquote>
+
+<h1 id="编辑器">编辑器</h1>
+
+<p>Python解释器、pip工具箱和virtuanlenv虚拟环境都安装好了后，基本的Python环境就搭建好了，可以开始我们的“搬砖”之旅了。但是，等等，“工欲善其事，必先利其器”，我们还差一个很多小伙伴都非常喜欢的环节，那就是代码编辑器的选择和安装。关于哪个好，哪个不好，喜欢哪个，不喜欢哪个的问题，可以讨论七天七夜，我们不准备浪费时间在这里，我这里准备只介绍<code>Pycharm</code>。</p>
+
+<p>PyCharm是由JetBrains公司打造的一款 Python IDE，支持Windows、Linux、macOS系统。JetBrains是一个专业设计编程语言IDE的公司，研发了很多针对不同语言的集成开发环境。</p>
+
+<p>PyCharm的功能 : 调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制……针对Django等开发框架有专门的优化设计，非常方便好用。更多的关于Pycharm的使用技巧和注意事项，本节不展开描述，会以博客的形式，分享给大家。</p>
+
+<p>PyCharm 下载地址 : <a href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a></p>
+
+<h1 id="编译器和解释器">编译器和解释器</h1>
+
+<p>Python的环境我们已经搭建好了，可以开始学习基础知识了。但是，在此之前，还要先说说编译器与解释器相关的内容。</p>
+
+<h2 id="数据的表示方式">数据的表示方式</h2>
+
+<p>我们都知道，现实生活中，数字的表示方式有很多种，常见的有二进制、八进制、十进制和十六进制。十进制我们都很熟悉，加法口诀表我们都背过，主要是使用0~9，这10个阿拉伯数字来构建整个十进制的体系，其中最核心的法则是“逢十进一”，借位则是“借一当十”。那么为什么全世界不管什么国家，什么历史，什么文化水平基本都是用十进制作为基本进制呢？是因为我们人有10个手指头，掰起来最方便！我们对十进制有着天然的友好度。</p>
+
+<p>那么对于计算机呢？计算机不是人，没有10个手指头可以掰，所以它用不了十进制。那么它用几进制？二进制！二进制是用0和1两个数码来表示的数，也就是形如010101010的样子。它的基数为2，进位规则是“逢二进一”，借位规则是“借一当二”。</p>
+
+<p>为什么计算机要使用二进制作为自己的机器语言也就是数据的表示方式呢？因为计算机最小的计算单元是根据开关状态高低电平来确定的，它只有开和关，高和低的概念，换成数学就是0和1的两种。同样的，在物理存储方面，硬盘的磁道只能区分打孔和未打孔的状态，也是0和1两种。同时二进制便于进行加、减运算和计数编码。二进制与十进制数易于互相转换。二进制便于逻辑判断（是或非），逻辑判断通常也是两种状态，这和二进制很搭配。二进制表示数据还具有抗干扰能力强，可靠性高的特点，因为当受到一定程度的电磁干扰时，只要可以分辨出它是高电平还是低电平，至于高多少或低多少并不重要，就能区分0和1，这在网络信号中，就是天生自带抗干扰能力。</p>
+
+<p>但是，在人机交流上，二进位制有致命的弱点，数字的书写特别冗长，并且没有人类可读性！例如，十进位制的100000写成二进制就是11000011010100000，长了好几倍，而且你能从一个这么长的二进制数里读出它的十进制数是多少吗？</p>
+
+<p>计算机不能独立存在，目前也无法自我创造，不管是输入还是输出，它的一切都必须和人交流。那么问题来了，人类只能读10进制和英语、汉语等，可计算机只会010101，至于英语、汉语对它而言更是天书。那么我们是怎么和计算机交流的呢？怎么将我们的英语或者汉语编码成计算机能够识别的1010101呢？</p>
+
+<h2 id="编程语言发展历程">编程语言发展历程</h2>
+
+<h3 id="打孔纸条">打孔纸条</h3>
+
+<p>我们已经知道了计算机只懂机器语言，也就是二进制的数据表示方式，任何对它的操作和编码，最终都要统一到这上面来，然而这是一个悲伤的故事。</p>
+
+<p>起初，为了让计算机按我们的想法工作，程序员不得不编写计算机可以读懂看明白直接执行的机器码，也就是01010101的样子，打孔字条就是这么干的。用打没打孔来代表0和1。OK，计算机没问题，它能无障碍阅读，可程序员就难受了。拍脑袋也能想得到这里面的问题。容易出错，效率低，编写困难，维护困难。可能就是个简单的打印“hello world”，也许就需要好几米长的字条。这简直就是原始社会，生产效率低下的令人发指。发生个火灾什么的，直接Over。唯一的好处就是无需转换，可直接执行，但相对缺点来讲，这点好处完全可以被忽略。</p>
+
+<h3 id="汇编语言">汇编语言</h3>
+
+<p>汇编语言是一种可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符代替机器指令的操作码，用地址符号或标号代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。也就是说不同平台之间不可直接移植，它是平台相关的，你在这个硬件平台写的汇编程序，换到另外一套硬件上去是运行不了的。 因此，汇编语言通常被应用在底层，硬件操作和高要求的程序优化的场合。驱动程序、嵌入式操作系统和实时运行程序较多使用汇编语言。相比于机器码，它更偏向人类的语言习惯，更易于编写和阅读，也就是有一点抽象符号概念化了，这大大提高了编程效率。但是，这依然是一种低级语言，还有改善和提高的空间。</p>
+
+<p>上面一段看得晕没关系，简单地说就是汇编语言相比打孔纸条，对人类更友好一点了，至少能用几个类似ADD\CALL\MOV的英文缩写了。但是，它牺牲了一定的性能，并且依然不够友好。</p>
+
+<h3 id="c语言">C语言</h3>
+
+<p>在C语言之前其实还有很多低级语言，我们不关心它们。为了让编程更简单，更高效，聪明的计算机程序员，一步步发明了FORTRAN、BASIC、B等许多语言，然后在1972年诞生了无人不知，应用最广，影响最深，至今仍然地位不可动摇的C语言。</p>
+
+<p>C语言为什么这么厉害？归根结底是一句话：直接操作硬件！同样的算法，用C语言，其执行效率超过JAVA等语言很多。那可能有人会问，C和汇编和机器码比呢？肯定是C慢，但是写个汇编程序和写个C程序的效率差别那就更大了。C语言在人类友好性和底层相关性上达到了一个高度的平衡。这两者是互相矛盾的，不可同时兼得。</p>
+
+<p>C干了些什么？其实它就是在人类友好性方面相比以前跨出了更大一步。人类是方便了，可机器就迷糊了！你给我这么多字符都是啥意思？机器它只懂二进制啊！那么C的代码是如何被执行的呢？这就得请出编译器了！</p>
+
+<p>编译器将编程语言写的代码翻译成机器能够执行或者说“看懂”的二进制机器码。</p>
+
+<p>其实我们安装JAVA也好，C也好，Python也罢，主要就是安装的这个编程语言的“编译器”。</p>
+
+<h3 id="python语言">Python语言</h3>
+
+<p>在几十年前，C语言是当之无愧的高级语言代表，现在也依然是语言排行榜第二的霸主。然而，在很多领域，它已经不太适用了，现今更主流的语言是那些上手快、简单易懂，说白了就是门槛低的语言，让更多的人能进入程序员行业，让编程能更容易、更快是未来的发展趋势。也就是说，需要让编程语言更贴近人类语言，更远离机器语言。</p>
+
+<p>Python就是这么一种语言。它的语法简单明了，更贴近人类的使用习惯。作为一种动态解释性语言，让人们在写代码的时候可以更多的关注业务逻辑细节，而不需要花太多精力去关注数据类型定义、程序运行效率等！</p>
+
+<p>既然都说的是机器不懂的“人话”，那必然也需要一个Python“编译器”。对于Python语言，广义上的“编译器”，叫做解释器。</p>
+
+<h2 id="编译器与解释器">编译器与解释器</h2>
+
+<p>编译器/解释器：高级语言与机器之间的翻译官。都是将代码翻译成机器可以执行的二进制机器码，只不过在运行原理和翻译过程有不同而已。那么两者有什么区别呢？用一个通俗的例子进行比喻：我们去饭馆吃饭，点了八菜一汤。编译器的方式就是厨师把所有的菜给你全做好了，一起给你端上来，至于你在哪吃，怎么吃，随便。解释器的方式就是厨师做好一个菜给你上一个菜，你就吃这个菜，而且必须在饭店里吃。</p>
+
+<h2 id="python解释器种类">Python解释器种类</h2>
+
+<p>Python有好几种版本的解释器：</p>
+
+<ul>
+<li>CPython：官方版本的解释器。这个解释器是用C语言开发的，所以叫CPython。CPython是使用最广的Python解释器。我们通常说的、下载的、讨论的、使用的都是这个解释器。</li>
+<li>Ipython：基于CPython之上的一个交互式解释器，在交互方式上有所增强，执行Python代码的功能和CPython是完全一样的。CPython用&gt;&gt;&gt;作为提示符，而IPython用In [序号]:作为提示符。</li>
+<li>PyPy：一个追求执行速度的Python解释器。采用JIT技术，对Python代码进行动态编译（注意，不是解释），可以显著提高Python代码的执行速度。绝大部分CPython代码都可以在PyPy下运行，但还是有一些不同的，这就导致相同的Python代码在两种解释器下执行可能会有不同的结果。</li>
+<li>Jython：运行在Java平台上的Python解释器，可以直接把Python代码编译成Java字节码执行。</li>
+<li>IronPython：和Jython类似，只不过IronPython是运行在微软.Net平台上的Python解释器，可以直接把Python代码编译成.Net的字节码。</li>
+</ul>
+
+<h1 id="python的运行机制">Python的运行机制</h1>
+
+<p>当执行Python执行代码的时候，会启用一个Python解释器，将源码(.py)文件读取到内存当中，然后编译成字节码(.pyc)文件，最后交给Python的虚拟机(PVM)逐行解释并执行其内容，然后释放内存，退出程序。当第二次在执行当前程序的时候，会先在当前目录下寻找有没有同名的pyc文件，如果找到了，则直接进行运行，否则重复上面的工作。pyc文件的目的其实就是为了实现代码的重用，为什么这么说呢？因为Python认为只要是import导入过来的文件，就是可以被重用的，那么他就会将这个文件编译成pyc文件。python会在每次载入模块之前都会先检查一下py文件和pyc文件的最后修改日期，如果不一致则重新生成一份pyc文件，否则就直接读取运行。</p>
+
+<h1 id="hello-world">Hello world</h1>
+
+<p>一般情况下程序猿的第一个小程序都是简单的输出Hello Word!，当然Python也不例外，下面就让我们来用Python输出一句Hello Word!吧！</p>
+
+<p>创建一个以py结尾的文件</p>
+
+<pre><code class="language-bash"># touch hello.py
+</code></pre>
+
+<p>其内容为</p>
+
+<pre><code class="language-python">#!/usr/vin/env python
+
+print &quot;Hello Word!&quot;
+</code></pre>
+
+<p>用Python执行</p>
+
+<pre><code class="language-bash">[root@ansheng python_code]# python hello.py
+Hello Word!
+</code></pre>
+
+<p>输出的内容为Hello Word!，OK，你的第一次一句木有了^_^</p>
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/python">python</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/pip">pip</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-002/" title="Python基础-Python 基础知识">Python基础-Python 基础知识</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-001/" title="Python基础-Python 简介入门">Python基础-Python 简介入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/beego-001/" title="Beego系列-Beego快速入门">Beego系列-Beego快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role">Ansible系列-Ansible-Role</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/beego/">beego(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/python/">python(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/beego/">beego</a>
+    
+    <a href="http://gitzh2017.github.io/tags/golang/">golang</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pip/">pip</a>
+    
+    <a href="http://gitzh2017.github.io/tags/python/">python</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Python基础-Python 基础知识 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Python基础-Python 基础知识 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-06T19:59:40&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-06T19:59:40&#43;08:00">
+        
+    <meta name="Keywords" content="[python]">
+    <meta name="description" content="Python基础-Python 基础知识">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/python-002/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Python基础-Python 基础知识</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月6日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/python">python</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="代码头两行">代码头两行</h1>
+
+<p>很多时候，我们在一些py脚本文件的开头都能看到类似的以#开头的这样两行代码，它们不是注释，是一些设定。</p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+</code></pre>
+
+<p><strong>第一行</strong>：用于指定运行该脚本的Python解释器，Linux专用，windows不需要。env方式下，系统会自动使用环境变量里指向的Python。还有一种方式，#!/usr/bin/python3.6，这会强制要求使用系统中的python3.6解释器执行文件，这种方式不好，一旦你本地的Python3.6版本删除了，会出现找不到解释器的错误。无论两种方式的哪一种，都指的是在linux下使用./test.py的方式执行脚本时的设置，在使用类似python test.py或者python3 test.py的执行方式时，这一行不起作用。</p>
+
+<p>例如，我写了个脚本如下：</p>
+
+<pre><code class="language-python">#!/usr/bin/python2
+
+print &quot;hello&quot;       # 注意这里没有圆括号，这是python2版本的打印方式
+</code></pre>
+
+<p>仔细看下面的执行过程, 你会发现无论你在代码第一行怎么设置，都会根据命令调用的时的python版本进行执行：</p>
+
+<pre><code class="language-python">$ cat test.py 
+#!/usr/bin/python2
+
+print &quot;hello&quot;
+$ python2
+Python 2.7.12 (default, Nov 19 2016, 06:48:10) 
+[GCC 5.4.0 20160609] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; exit()
+$ python3
+Python 3.6.1 (default, Aug 15 2017, 11:19:20) 
+[GCC 5.4.0 20160609] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; exit()
+$ python2 test.py
+hello
+$ python3 test.py
+  File &quot;test.py&quot;, line 3
+    print &quot;hello&quot;
+                ^
+SyntaxError: Missing parentheses in call to 'print'
+</code></pre>
+
+<p>那这行有什么用呢？是这么用的。</p>
+
+<pre><code class="language-bash">$ chmod +x test.py 
+$ ll test.py 
+-rwxrwxr-x 1 root root 34 9月   5 22:57 test.py*
+$ ./test.py
+hello
+</code></pre>
+
+<p><strong>第二行</strong>：代码的编码方式。不是程序要处理的数据的编码方式，而是程序自己本身的字符编码。在Python3中，全面支持Unicode，默认以UTF-8编码，我们不用再纠结中文的问题，乱码的问题，所以本行其实可以不需要。但在Python2中，对字符的编码是个非常令人头疼的问题，通常都需要指定这么一行。如果要自定义别的编码类型的话，可以像这样：# &ndash; coding: cp-1252 &ndash;，但如果没有强制需求的话，不要自己作死，请坚持使用utf-8编码。</p>
+
+<p>这两行要在文件的顶行，顶左，不要空格和空行， utf8和utf-8都行。</p>
+
+<p>PS：这里的-*-是什么意思呢？没意思，装饰美观好看而已，囧。</p>
+
+<p>除了这两行，有时候我们还会附上作者、通讯地址、版权说明，版本说明等，全凭个人喜好了。</p>
+
+<h1 id="语句与缩进">语句与缩进</h1>
+
+<p>语句：在代码中，能够完整表达某个意思、操作或者逻辑的最短代码，被称为语句。语句通常不超过一行，超过一行的称为多行语句。</p>
+
+<p>像下面的都称为语句：</p>
+
+<pre><code class="language-python">a = apple
+
+from . import modles
+
+print(&quot;haha&quot;)
+
+lis.append(item)
+</code></pre>
+
+<p>Python的标准语句不需要使用分号或逗号来表示语句结束，简简单单的换个行就表示本语句已经结束，下一句开始。</p>
+
+<p>代码块：为完成某一特定功能而联系在一起的一组语句构成一个代码块。有判断、循环、函数、类等各种代码块。代码块的首行通常以关键字开始，以冒号( : )结束。比如：</p>
+
+<pre><code class="language-python"># 这是一个判断流程代码块
+if expression : 
+   pass
+elif expression : 
+   pass
+else : 
+   pass
+</code></pre>
+
+<p>又比如：</p>
+
+<pre><code class="language-python"># 这是一个类代码块
+class Foo:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def get_name(self):
+        return self.name
+
+# 这是一个函数代码块
+def func(a, b):
+    summer = a+b
+    return summer*2
+</code></pre>
+
+<p>Python最具特色的语法就是使用缩进来表示代码块，不需要使用大括号({})。
+缩进的空格数是可变的，但是同一个代码块的语句必须包含相同的缩进空格数。</p>
+
+<p>如果缩进数的空格数不一致，会抛出缩进异常（请记住IndentationError这个异常名！新手会经常和它做朋友）：</p>
+
+<pre><code class="language-python"> File &quot;test.py&quot;, line 6
+    print (&quot;False&quot;)    # 缩进不一致，会导致运行错误
+                                      ^
+IndentationError: unindent does not match any outer indentation level
+</code></pre>
+
+<p>PEP8（Python官方的代码规范）：建议使用四个空格作为缩进！在文本编辑器中，需要设置把Tab自动转换为4个空格，确保不混用Tab和空格。在Pycharm中：tab键被自动转换成4个空格的缩进。linux环境中，如vim编辑器，请一定使用空格，不要使用tab键！</p>
+
+<p>那么怎么才是正确的缩进方式呢？</p>
+
+<p>所有的普通语句，顶左开始编写，不需要缩进
+所有的语句块，首行不用缩进，从冒号结束后开始下一行，都要缩进
+直到该语句块结束，就退回缩进，表示当前块已结束
+语句块可以嵌套，所以缩进也可以嵌套
+比如，我们写一个if/else的判断控制语句块：</p>
+
+<p>首先是，第1句，不需要缩进：</p>
+
+<pre><code class="language-python">if i &gt; 10:
+</code></pre>
+
+<p>然后是第2句，这时已经进入if内部了，需要缩进：</p>
+
+<pre><code class="language-python">if i &gt; 10:
+    i = i + 10  # 左边有4个空格
+</code></pre>
+
+<p>接下来是第3句，因为还在if内部，所以保持和第二句一样的缩进</p>
+
+<pre><code class="language-python">if i &gt; 10:
+    i = i + 10  # 左边有4个空格
+    print(i)  # 左边有4个空格
+</code></pre>
+
+<p>第4句，我们if分支走完了，要走else分支，那么if语句块算结束了，缩进要回退。</p>
+
+<pre><code class="language-python">if i &gt; 10:
+    i = i + 10  # 左边有4个空格
+    print(i)  # 左边有4个空格
+else:
+</code></pre>
+
+<p>第5句，进入else语句块了，要缩进4个空格:</p>
+
+<pre><code class="language-python">if i &gt; 10:
+    i = i + 10   # 左边有4个空格
+    print(i)     # 左边有4个空格
+else:
+    i = i - 10    # 左边有4个空格
+</code></pre>
+
+<p>第6句，else分支也走完了，整个if/else流程完毕，下面是别的代码了，那么else分支的缩进也要退回。</p>
+
+<pre><code class="language-python">if i &gt; 10:
+    i = i + 10   # 左边有4个空格
+    print(i)     # 左边有4个空格
+else:
+    i = i - 10    # 左边有4个空格
+print(&quot;apple&quot;)   # 缩进回退了，这里已经和if、else没什么关系了。    
+</code></pre>
+
+<p>再看一个缩进嵌套的例子，以两个for循环嵌套为例：</p>
+
+<pre><code class="language-python">for i in range(10):
+    for k in range(10): # 同样也是for循环，由于嵌套在另一个for内部，需要缩进
+        if k != i:      # 双重循环内的if，需要2次缩进，也就是顶左开始8个空格
+            print(k)    # 又嵌套了一个if语句块，再次缩进4个空格，共计12个
+        else:           # if结束，回退4个，开始else分支
+            print(i+k)  # 又增加缩进
+    print(i)            # 这次不但else结束了，连内部的for也结束了，回退8个空格
+</code></pre>
+
+<p>刚开始，缩进的语法可能让你搞不清楚，何时缩进，何时回退，该缩进几个空格。但多写写，多看看，很快就能掌握，并不再犯错。Python的缩进语法设计有别与其它所有的语言，是独家特色，一直争论很大，喜欢的非常喜欢，觉得简洁明了，节省了不少功夫，而且强制代码整齐。不喜欢的，觉得缩来缩去，头都晕了，容易犯语法错误，并且不能使用规格化工具。</p>
+
+<p>同一行写多条语句：</p>
+
+<p>前面我们说了，Python一行通常就是一条语句，一条语句通常也不会超过一行。其实，从语法层面，Python并没有完全禁止在一行中使用多条语句，也可以使用分号实现多条语句在一行，比如：</p>
+
+<pre><code class="language-python">import sys; x = ‘多条语句'; sys.stdout.write(x + '\n')
+</code></pre>
+
+<p>上面这一行其实包含3条语句，用分号分隔了，但是强烈建议不要这么做，这样会导致代码阅读困难、维护耗时，容易出错，老老实实地用三行来表示，不但更优雅，还增加了代码行数，可以跟老板说今天多写了2行，^_^。</p>
+
+<p>多行语句： 前面是多条语句在一行，但如果一条语句实在太长，也是可以占用多行的，可以使用反斜杠()来实现多行语句：</p>
+
+<pre><code class="language-python">string = &quot;i love this country,&quot;\
+         +&quot;because it is very beautiful!&quot;\
+         + &quot;how do you think about it?&quot; \
+         + &quot;Do you like it too?&quot;
+</code></pre>
+
+<p>在 [], {}, 或 () 中的多行语句，可以不需要使用反斜杠()，直接回车，接着写。例如：</p>
+
+<pre><code class="language-python">result = subprocess.Popen(&quot;ipconfig /all&quot;, stdin=subprocess.PIPE,
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          shell=True, check=True)
+</code></pre>
+
+<p>PEP8建议：每一行的字符不超过79个。该换行时咱就换行！</p>
+
+<h1 id="pass语句">pass语句</h1>
+
+<p>pass语句是占位语句，它什么都不做，只是为了保证语法的正确性而写。以下场景中，可以使用pass语句：</p>
+
+<p>当你不知道后面的代码怎么写的时候
+当你不需要写代码细节的时候
+当语法必须，又没有实际内容可写的时候
+其它的一些你觉得需要的场景
+举个栗子：</p>
+
+<pre><code class="language-python"># 我只想说明这个func函数需要三个参数，具体执行什么并不重要
+# 但是函数体内如果什么都没有，会出现语法错误
+# 这个时候，pass就是最好的选择。
+def func(a,b,c):
+    pass
+</code></pre>
+
+<h1 id="代码注释">代码注释</h1>
+
+<h2 id="单行注释">单行注释</h2>
+
+<p>单行注释只需要在代码前面加上#号</p>
+
+<pre><code class="language-python"># 注释内容
+</code></pre>
+
+<h2 id="多行注释">多行注释</h2>
+
+<p>多行注释用三个单引号或者三个双引号躲起来</p>
+
+<pre><code class="language-python">&quot;&quot;&quot;
+注释内容
+&quot;&quot;&quot;
+</code></pre>
+
+<h1 id="输入输出">输入输出</h1>
+
+<p>无论是从我们一开始的“hello world”，还是前面章节的里各种例子，基本都是些“自说自话”，展示类的代码片段。只有能够接收用户输入，根据输入动态生成结果，并输出到屏幕上展示出来，才算一个较为完整，起码是有那么点乐趣或者说成就的简单程序。</p>
+
+<h2 id="input输入函数">input输入函数</h2>
+
+<p>input函数：获取用户输入，保存成一个字符串。重要的话，说两遍，input函数的返回值是一个字符串类型。哪怕你输入的是个数字1，返回给你的只会是字符串“1”，而不是 整数1。下面是一些简单的展示例子：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; inp  = input(&quot;please input your name: &quot;)
+please input your name: jack
+&gt;&gt;&gt; inp
+'jack'
+&gt;&gt;&gt; type(inp)
+&lt;class 'str'&gt;
+
+&gt;&gt;&gt; age  = input(&quot;please input your age: &quot;)
+please input your age: 18
+&gt;&gt;&gt; age
+'18'
+&gt;&gt;&gt; type(age)
+&lt;class 'str'&gt;
+
+&gt;&gt;&gt; a = input(&quot;请输入一个字符：&quot;)
+请输入一个字符：
+&gt;&gt;&gt; a
+''
+
+&gt;&gt;&gt; a = input(&quot;请输入一个字符：&quot;)
+请输入一个字符：   前后带有空白   
+&gt;&gt;&gt; a
+'   前后带有空白   '
+</code></pre>
+
+<ul>
+<li><p>第一个例子中，inp = input(&ldquo;please input your name: &ldquo;)，input函数里可以提供一个字符串，用来给用户进行输入提示。input函数的返回值赋值给inp这个变量后，inp里就保存了用户输入的值。type是Python内置的函数之一，非常有用，用于查看对象的数据类型。例子中的inp是一个str字符串类型，这验证了我们前面说的话。</p></li>
+
+<li><p>第二个例子，我们输入了年龄18，但age里保存的是一个“18”的字符串。</p></li>
+
+<li><p>第三个例子，什么都没输入，返回的是一个空字符串。</p></li>
+
+<li><p>第四个例子，有效输入的前后空白被保留在了返回的字符串中。</p></li>
+</ul>
+
+<p>从上面例子的展示中，我们不难发现，input函数将我们的输入原样不动的返回给了我们，并包装成一个字符串。这肯定是不行的，会带来很多问题，所以通常我们都需要对用户输入进行处理和判定。</p>
+
+<ol>
+<li>比如对空输入进行处理：
+```python
+inp = input(&ldquo;请输入你的姓名:  &ldquo;)</li>
+</ol>
+
+<p>if inp == &ldquo;&rdquo;:<br />
+    inp = input(&ldquo;姓名不能为空，请重新输入:  &ldquo;)</p>
+
+<pre><code>
+2. 比如将字符串转换成数字类型：
+```python
+age = input(&quot;请输入你的年龄：  &quot;)
+
+age = int(age)   # 将字符串转化为整数
+
+if age &gt; 18:
+    print(&quot;你已经成年!&quot;)
+else:
+    print(&quot;还没断奶？&quot;)
+</code></pre>
+
+<ol>
+<li>去除开头的空白lstrip,去除结尾的空白rstrip以及去除两端的空白strip
+```python
+inp = input(&ldquo;请输入你的姓名:  &ldquo;)</li>
+</ol>
+
+<p>inp = inp.strip()  # strip的用法在字符串数据类型有讲述</p>
+
+<p>print(inp)</p>
+
+<pre><code>
+4. 判断输入的字符类型
+前面我们在将字符串转化为整数用的是int()函数，这种方式有危险的，看下面的例子：
+```python
+&gt;&gt;&gt; s = &quot;123&quot;
+&gt;&gt;&gt; a = int(s)
+&gt;&gt;&gt; a
+123
+&gt;&gt;&gt; s = &quot;something&quot;
+&gt;&gt;&gt; a = int(s)
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#12&gt;&quot;, line 1, in &lt;module&gt;
+    a = int(s)
+ValueError: invalid literal for int() with base 10: 'something'
+</code></pre>
+
+<p>对于形如“123”， “283242”的字符串，转化没问题，但是对于包含字符、特殊字符的字符串就没办法转化了，会弹出异常错误。所以在使用int函数之前，要先对输入进行判断。我们修改一下上面的例子：</p>
+
+<pre><code class="language-python">age = input(&quot;请输入你的年龄：  &quot;)
+
+if age.isdigit():   # 使用isdigit函数判断输入是否全是数字格式
+    age = int(age)   # 将字符串转化为整数
+    print(&quot;你的年龄是： &quot;, age)
+else:
+    print(&quot;输入不合法！&quot;)
+</code></pre>
+
+<ol>
+<li>input函数有时可以巧妙地用于阻塞或暂停程序
+```python
+print(&ldquo;程序前面部分执行完毕&hellip;&hellip;&rdquo;)</li>
+</ol>
+
+<p>input(&ldquo;请按回车继续&hellip;&hellip;&rdquo;)       # 在这里程序会暂停，等待你的回车动作</p>
+
+<p>print(&ldquo;继续执行程序的后面部分&hellip;&hellip;&rdquo;)</p>
+
+<pre><code>此时的input函数不会将输入保存下来，只是用作暂停程序动作。
+
+## print输入函数
+print函数我们其实已经不陌生了，前前后后也用了不少次，多少有点经验，明白点它的用法了。print函数用于将内容格式化显示在标准输出上，主要指的是屏幕显示器。print可以接受多个字符串，字符串类型的变量或者可print的对象。每个字符串用逗号“,”隔开，连成一串输出。print会依次打印每个字符串，同时，每遇到一个逗号“,”就输出一个空格。
+```python
+&gt;&gt;&gt; a = &quot;i am&quot;
+&gt;&gt;&gt; b = &quot;student&quot;
+&gt;&gt;&gt; print(a,&quot;a&quot; , b)
+i am a student      # 自动以空格分隔
+&gt;&gt;&gt; print(a+&quot;a&quot;+b)
+i amastudent        # 无分隔
+</code></pre>
+
+<p>对于形如print(a+&ldquo;a&rdquo;+b)的语句，其实是先计算a+&ldquo;a&rdquo;+b的值，然后再通过print打印它。print()会自动执行内部的语句，输出想要的结果。再看一个例子：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = 10
+&gt;&gt;&gt; b = 2
+&gt;&gt;&gt; print(sum((a, a*b)))        # 先求a*b，再求和，再打印
+30
+</code></pre>
+
+<p>我们看一下print函数的原型：print(self, *args, sep=&rsquo; &lsquo;, end=&rsquo;\n&rsquo;, file=None)</p>
+
+<ul>
+<li><code>sep参数</code>: 分隔的符号，默认是一个空格；</li>
+<li><code>end参数</code>: 打印后的结束方式，默认为换行符\n。如果，设置end=&ldquo;，则可以不换行，让print在一行内连续打印。活用print的参数，可以实现灵活的打印控制。</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = &quot;i am&quot;
+&gt;&gt;&gt; b = &quot;student&quot;
+&gt;&gt;&gt; print(a,&quot;a&quot; , b, sep=&quot;*&quot;)
+i am*a*student
+</code></pre>
+
+<h1 id="变量与常量">变量与常量</h1>
+
+<h2 id="变量是什么">变量是什么？</h2>
+
+<p>变量是把程序运行的中间结果临时的存在内存里，以便后续的代码调用。</p>
+
+<h2 id="变量定义的规则">变量定义的规则</h2>
+
+<ul>
+<li>变量名只能是字母、数字或下划线的任意组合；</li>
+<li>变量名的第一个字符不能是数字；</li>
+
+<li><p>以下关键字不能声明为变量名：</p>
+
+<pre><code class="language-bash">['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise', 'return', 'try', 'while', 'with', 'yield']
+</code></pre>
+
+<ul>
+<li>变量的定义要具有可描述性。</li>
+</ul>
+
+<h2 id="推荐定义方式">推荐定义方式</h2>
+
+<pre><code class="language-python"># 驼峰体
+AgeOfLeon = 56
+NumberOfStudents = 80
+
+#下划线
+age_of_leon = 56
+number_of_students = 80
+</code></pre></li>
+
+<li><p><strong>变量</strong>：在程序运行过程中，值会发生变化的量</p></li>
+
+<li><p><strong>常量</strong>：在程序运行过程中，值不会发生变化的量
+无论是变量还是常量，在创建时都会在内存中开辟一块空间，用于保存它的值。</p></li>
+</ul>
+
+<h2 id="变量">变量</h2>
+
+<ul>
+<li><p>Python 中的变量不需要声明类型。
+这是根据Python的动态语言特性而来。变量可以直接使用，而不需要提前声明类型。例如下面的a，b，c，d四个变量，在使用前没有进行任何的诸如int a, str b, list c ,int d的类型声明，而这在C和JAVA中是必须的。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = 4
+&gt;&gt;&gt; b = &quot;haha&quot;
+&gt;&gt;&gt; c = []
+&gt;&gt;&gt; d = 9-5
+</code></pre>
+
+<ul>
+<li>用<code>“=”</code>号来给变量赋值
+<code>python
+a = 100
+</code>
+这里的等号要理解并读作“赋值”，而不是“等于”，“赋值”是对变量的操作，而“等于”是对两个变量进行比较。上面的a，b，c，d四个变量，就通过“=”号，赋予了不同的值。</li>
+</ul></li>
+
+<li><p>每个变量在使用前都必须赋值，变量赋值以后才会被创建。
+新的变量通过赋值的动作，创建并开辟内存空间，保存值。如果没有赋值而直接使用会抛出赋值前引用的异常或者未命名异常。例如：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a       # 孤单单一个a，什么也表示不了，只能报错
+Traceback (most recent call last):
+File &quot;&lt;pyshell#0&gt;&quot;, line 1, in &lt;module&gt;
+a
+NameError: name 'a' is not defined
+&gt;&gt;&gt; a = 1   # 这样就没问题了，解释器知道a是个新变量了
+&gt;&gt;&gt; c.append(1)     # c是个什么鬼？
+Traceback (most recent call last):
+File &quot;&lt;pyshell#2&gt;&quot;, line 1, in &lt;module&gt;
+c.append(1)
+NameError: name 'c' is not defined
+</code></pre>
+
+<p>在Python中，变量本身没有数据类型的概念，通常所说的“变量类型”是变量所引用的对象的类型，或者说是变量的值的类型。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = 1
+&gt;&gt;&gt; a = &quot;haha&quot;
+&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; a = { &quot;k1&quot;:&quot;v1&quot;}
+</code></pre>
+
+<p>例子中，变量a在创建的时候，赋予了值为1的整数类型，然后又被改成字符串“haha”，再又变成一个列表，最后是个字典。变量a在动态的改变，它的值分别是不同的数据类型，这是动态语言的特点。</p></li>
+
+<li><p><code>“=”</code>号这个赋值运算符是从右往左的计算顺序。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = 1
+&gt;&gt;&gt; b = 2
+&gt;&gt;&gt; c = a + b       # 先计算a+b的值，再赋给c
+&gt;&gt;&gt; c
+</code></pre>
+
+<ul>
+<li>Python允许同时为多个变量赋值。
+例如：a = b = c = 1，最终大家都是1。</li>
+<li>也可以同时为多个变量赋值，用逗号分隔，逐一对应。
+例如：a, b, c = 1, 2, 3，最后a是1，b是2，c是3.</li>
+</ul>
+
+<h2 id="常量">常量</h2>
+
+<p>最后我们还要说下常量!</p>
+
+<p>常量就是不变的变量，比如常用的数学常数圆周率就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
+
+<pre><code class="language-python">PI = 3.14159265359
+</code></pre></li>
+</ul>
+
+<p>但事实上，从Python语法角度看，PI仍然是一个变量，因为Python根本没有任何机制保证PI不会被改变。你完全可以给PI赋值为10，不会弹出任何错误。所以，用全部大写的变量名表示常量只是一个习惯上的用法。</p>
+
+<p>常量通常放置在代码的最上部，并作为全局使用。</p>
+
+<h1 id="如何阅读错误调用栈的信息">如何阅读错误调用栈的信息？</h1>
+
+<p>现在，我们已经开始写一些简单的Python代码和语句了，犯错是免不了的，Python给我们提供了很全面细致的错误调用栈信息，帮助我们查找错误。以下面的代码为例(我额外给包括空行在内的每一行添加了行号信息)：</p>
+
+<pre><code class="language-python">def foo(s):             #1
+    return 10 / int(s)  #2
+                        #3
+def bar(s):             #4
+    return foo(s) * 2   #5
+                        #6
+def main():             #7
+    bar('0')            #8
+                        #9
+main()                  #10
+</code></pre>
+
+<p>运行代码后，会弹出如下的错误：</p>
+
+<pre><code class="language-python">Traceback (most recent call last):
+  File &quot;F:/Python/pycharm/201705/1.py&quot;, line 10, in &lt;module&gt;
+    main()
+  File &quot;F:/Python/pycharm/201705/1.py&quot;, line 8, in main
+    bar('0')
+  File &quot;F:/Python/pycharm/201705/1.py&quot;, line 5, in bar
+    return foo(s) * 2
+  File &quot;F:/Python/pycharm/201705/1.py&quot;, line 2, in foo
+    return 10 / int(s)
+ZeroDivisionError: division by zero
+</code></pre>
+
+<p>这些信息就是错误提示。我们需要从上往下读，英文看起来很复杂，其实很易懂。Traceback&hellip;表示追踪错误开始，说在某个位置的1.py文件的第10行中的main这个函数出了问题。那么问题出在哪呢？是1.py文件中的第8行的bar函数调用出了问题，那么出什么问题呢？还没找到根子，又说在第5行，第2行调用出了问题，然后最终发现是return 10 / int(s)这行语句的问题。问题是什么，发生了除零错误！ZeroDivisionError是一个除零异常。到这里，我们恍然大悟，我让10除0了，所以出现错误了，那么就知道怎么改了。</p>
+
+<p>其实查找错误，排除错误就是这么简单，只是需要你耐心的一行行地查看错误调用栈，再根据最后的错误类型，就可以判断错误的发生原因并修改错误，没有想象中的那么复杂。更不要直接将错误甩给别人或者老师！那种张嘴就是“我这里出错了，是什么原因？”的提问方式，是最没有水平的。</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/python-001/">Python基础-Python 简介入门</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/python">python</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/pip">pip</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-002/" title="Python基础-Python 基础知识">Python基础-Python 基础知识</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-001/" title="Python基础-Python 简介入门">Python基础-Python 简介入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/beego-001/" title="Beego系列-Beego快速入门">Beego系列-Beego快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role">Ansible系列-Ansible-Role</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-001/" title="Ansible系列-Ansible快速入门">Ansible系列-Ansible快速入门</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/beego/">beego(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/python/">python(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/beego/">beego</a>
+    
+    <a href="http://gitzh2017.github.io/tags/golang/">golang</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pip/">pip</a>
+    
+    <a href="http://gitzh2017.github.io/tags/python/">python</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
