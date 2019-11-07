@@ -369,7 +369,7 @@ please input your age: 18
 </code></pre>
 
 <ul>
-<li><p>第一个例子中，inp = input(&ldquo;please input your name: &ldquo;)，input函数里可以提供一个字符串，用来给用户进行输入提示。input函数的返回值赋值给inp这个变量后，inp里就保存了用户输入的值。type是Python内置的函数之一，非常有用，用于查看对象的数据类型。例子中的inp是一个str字符串类型，这验证了我们前面说的话。</p></li>
+<li><p>第一个例子中，<code>inp = input(&quot;please input your name: &quot;)</code>，input函数里可以提供一个字符串，用来给用户进行输入提示。input函数的返回值赋值给inp这个变量后，inp里就保存了用户输入的值。type是Python内置的函数之一，非常有用，用于查看对象的数据类型。例子中的inp是一个str字符串类型，这验证了我们前面说的话。</p></li>
 
 <li><p>第二个例子，我们输入了年龄18，但age里保存的是一个“18”的字符串。</p></li>
 
@@ -380,51 +380,52 @@ please input your age: 18
 
 <p>从上面例子的展示中，我们不难发现，input函数将我们的输入原样不动的返回给了我们，并包装成一个字符串。这肯定是不行的，会带来很多问题，所以通常我们都需要对用户输入进行处理和判定。</p>
 
-<ol>
-<li>比如对空输入进行处理：
-```python
-inp = input(&ldquo;请输入你的姓名:  &ldquo;)</li>
-</ol>
+<ul>
+<li>比如对空输入进行处理：</li>
+</ul>
 
-<p>if inp == &ldquo;&rdquo;:<br />
-    inp = input(&ldquo;姓名不能为空，请重新输入:  &ldquo;)</p>
+<pre><code class="language-python">inp = input(&quot;请输入你的姓名:  &quot;)
 
-<pre><code>
-2. 比如将字符串转换成数字类型：
-```python
-age = input(&quot;请输入你的年龄：  &quot;)
-
-age = int(age)   # 将字符串转化为整数
-
-if age &gt; 18:
-    print(&quot;你已经成年!&quot;)
-else:
-    print(&quot;还没断奶？&quot;)
+if inp == &quot;&quot;:    
+    inp = input(&quot;姓名不能为空，请重新输入:  &quot;)
 </code></pre>
 
-<ol>
-<li>去除开头的空白lstrip,去除结尾的空白rstrip以及去除两端的空白strip
+<ul>
+<li>比如将字符串转换成数字类型：
 ```python
-inp = input(&ldquo;请输入你的姓名:  &ldquo;)</li>
-</ol>
+age = input(&ldquo;请输入你的年龄：  &ldquo;)</li>
+</ul>
 
-<p>inp = inp.strip()  # strip的用法在字符串数据类型有讲述</p>
+<p>age = int(age)   # 将字符串转化为整数</p>
 
-<p>print(inp)</p>
+<p>if age &gt; 18:
+    print(&ldquo;你已经成年!&rdquo;)
+else:
+    print(&ldquo;还没断奶？&rdquo;)</p>
 
 <pre><code>
-4. 判断输入的字符类型
-前面我们在将字符串转化为整数用的是int()函数，这种方式有危险的，看下面的例子：
+- 去除开头的空白lstrip,去除结尾的空白rstrip以及去除两端的空白strip
 ```python
-&gt;&gt;&gt; s = &quot;123&quot;
+inp = input(&quot;请输入你的姓名:  &quot;)
+
+inp = inp.strip()  # strip的用法在字符串数据类型有讲述
+
+print(inp)
+</code></pre>
+
+<ul>
+<li><p>判断输入的字符类型
+前面我们在将字符串转化为整数用的是int()函数，这种方式有危险的，看下面的例子：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; s = &quot;123&quot;
 &gt;&gt;&gt; a = int(s)
 &gt;&gt;&gt; a
 123
 &gt;&gt;&gt; s = &quot;something&quot;
 &gt;&gt;&gt; a = int(s)
 Traceback (most recent call last):
-  File &quot;&lt;pyshell#12&gt;&quot;, line 1, in &lt;module&gt;
-    a = int(s)
+File &quot;&lt;pyshell#12&gt;&quot;, line 1, in &lt;module&gt;
+a = int(s)
 ValueError: invalid literal for int() with base 10: 'something'
 </code></pre>
 
@@ -433,17 +434,16 @@ ValueError: invalid literal for int() with base 10: 'something'
 <pre><code class="language-python">age = input(&quot;请输入你的年龄：  &quot;)
 
 if age.isdigit():   # 使用isdigit函数判断输入是否全是数字格式
-    age = int(age)   # 将字符串转化为整数
-    print(&quot;你的年龄是： &quot;, age)
+age = int(age)   # 将字符串转化为整数
+print(&quot;你的年龄是： &quot;, age)
 else:
-    print(&quot;输入不合法！&quot;)
-</code></pre>
+print(&quot;输入不合法！&quot;)
+</code></pre></li>
 
-<ol>
-<li>input函数有时可以巧妙地用于阻塞或暂停程序
+<li><p>input函数有时可以巧妙地用于阻塞或暂停程序
 ```python
-print(&ldquo;程序前面部分执行完毕&hellip;&hellip;&rdquo;)</li>
-</ol>
+print(&ldquo;程序前面部分执行完毕&hellip;&hellip;&rdquo;)</p></li>
+</ul>
 
 <p>input(&ldquo;请按回车继续&hellip;&hellip;&rdquo;)       # 在这里程序会暂停，等待你的回车动作</p>
 
