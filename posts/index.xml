@@ -6,10 +6,71 @@
     <description>Recent content in Posts on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 06 Nov 2019 19:59:40 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Mar 2020 11:46:50 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 003</title>
+      <link>http://gitzh2017.github.io/posts/java-003/</link>
+      <pubDate>Tue, 17 Mar 2020 11:46:50 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/java-003/</guid>
+      <description>&lt;h1 id=&#34;java-变量&#34;&gt;Java 变量&lt;/h1&gt;
+
+&lt;p&gt;变量是赋予内存位置的名称。它是程序中存储的基本单位。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;存储在变量中的值可以在程序执行期间更改。&lt;/li&gt;
+&lt;li&gt;一个变量只是一个给内存位置的名字，所有对变量进行的操作都会影响内存的位置。&lt;/li&gt;
+&lt;li&gt;在Java中，所有变量必须先声明才能使用。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 002</title>
+      <link>http://gitzh2017.github.io/posts/java-002/</link>
+      <pubDate>Tue, 17 Mar 2020 11:46:44 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/java-002/</guid>
+      <description>&lt;h1 id=&#34;java-基础语法&#34;&gt;Java 基础语法&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-基础语法-1&#34;&gt;Java 基础语法&lt;/h2&gt;
+
+&lt;p&gt;一个Java程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。下面简要介绍下类、对象、方法和实例变量的概念。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;对象&lt;/strong&gt;：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;类&lt;/strong&gt;：类是一个模板，它描述一类对象的行为和状态。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实例变量&lt;/strong&gt;：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 001</title>
+      <link>http://gitzh2017.github.io/posts/java-001/</link>
+      <pubDate>Tue, 17 Mar 2020 11:46:42 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/java-001/</guid>
+      <description>&lt;h1 id=&#34;java-简介&#34;&gt;Java 简介&lt;/h1&gt;
+
+&lt;h2 id=&#34;什么是java&#34;&gt;什么是Java?&lt;/h2&gt;
+
+&lt;p&gt;​   Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程。&lt;/p&gt;
+
+&lt;p&gt;​   Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python基础-Python 函数</title>
+      <link>http://gitzh2017.github.io/posts/python-004/</link>
+      <pubDate>Fri, 08 Nov 2019 21:39:04 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-004/</guid>
+      <description>&lt;p&gt;本章节介绍Python中的函数语法及常用方法。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Python基础-Python 基础知识</title>

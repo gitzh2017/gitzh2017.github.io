@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Java 001 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="Java 001 - 凡夫俗子的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-03-17T11:46:42&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-03-17T11:46:42&#43;08:00">
+        
+    <meta name="Keywords" content="[Java]">
+    <meta name="description" content="【Java系列】:Java 简介">
+        <meta name="author" content="Henry">
+        
+    <meta property="og:url" content="http://gitzh2017.github.io/posts/java-001/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://gitzh2017.github.io/">
+                        凡夫俗子的博客
+                    </a>
+                
+                <p class="description">专注于Kubernetes、Python、Go语言(golang)、Linux、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://gitzh2017.github.io/">首页</a>
+                    
+                    <a  href="http://gitzh2017.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://gitzh2017.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Java 001</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年3月17日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://gitzh2017.github.io/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <h1 id="java-简介">Java 简介</h1>
+
+<h2 id="什么是java">什么是Java?</h2>
+
+<p>​   Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。Java语言作为静态面向对象编程语言的代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程。</p>
+
+<p>​   Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等。</p>
+
+<h2 id="java能做什么"><strong>Java能做什么</strong></h2>
+
+<ol>
+<li>视频游戏开发</li>
+<li>Android应用开发</li>
+<li>桌面GUI</li>
+<li>软件开发</li>
+<li>网站开发</li>
+</ol>
+
+<h2 id="java有什么优点"><strong>Java有什么优点</strong></h2>
+
+<ol>
+<li>java是纯面向对象的语言。《java 编程思想》中提到“Everthing is object”，它能能够直接反应显示世界中的对象。</li>
+<li>平台无关性。java语言可以一次编译，到处运行。无论是什么平台对java程序编译后都可以在其他的平台上运行，这是因为，java是解释型语言，编译器将其编译成字节码，然后在jvm中解释执行。所以只要在平台上安装了对应的jvm，那么就可以在该平台上运行。</li>
+<li>java提供了很多内置的类库，通过这个些内置类库，简化了开发人员的程序设计工作，同时也缩短了项目的开发时间。例如java提供了对多线程的支持，提供了网络通信的支持，最重要的是提供了垃圾回收器，开发人员不用关心内存的管理。</li>
+<li>提供了对web应用开发的支持。例如，Applet、servlet和jsp可以用来开发web应用程序；socket、rmi可以用来开发分布式应用程序的类库。</li>
+<li>具有较好的安全性和健壮性。java语言经常被用在网络环境中，为了增强程序的安全性，java语言提供了一个可以防止恶意代码攻击的安全机制（数据边界检测和bytecode校验等）。java的加强型机制。垃圾回收器，异常处理和安全检查机制使得java语言编写的程序有很好的健壮性。</li>
+<li>去除c,c++语言中难以理解、容易混淆的特性，例如头指针，文件、结构、单元、运算符重载。虚拟基础类、多重继承等，使得程序更加严谨、简洁。</li>
+</ol>
+
+<h2 id="java有什么缺点"><strong>Java有什么缺点</strong></h2>
+
+<ol>
+<li>大量使用内存:Java相比C++,需要使更多的内存</li>
+<li>学习曲线:Java其实不是学起来最简单的语言,但幸好也不是最难的</li>
+<li>缓慢的启动时间:每一个试着用java写安卓应用的人都知道,同样的代码在模拟器中,启动有多么缓慢</li>
+<li>需要运行环境、不适合开发桌面应用程序</li>
+</ol>
+
+<h2 id="java有哪些知名的应用"><strong>Java有哪些知名的应用</strong></h2>
+
+<ol>
+<li>《我的世界》:这是一款知名度挺高的沙盘游戏,《我的世界》就是用Java写的,怎么样,你也想自己用Java创造一个世界?</li>
+<li>淘宝网:淘宝网的服务端就是用Java写的,成功的支撑起了双十一双十二的&rdquo;大数据&rdquo;</li>
+<li>编程IDE方面，Eclipse、netbean、IDEA都是java做的。</li>
+<li>Java在大数据存储方面，也有Hadoop、Elasticsearch等著名软件，同是还有很多由基于Jvm的语言。</li>
+<li>Android操作系统:大名鼎鼎的安卓操作系统,开发语言就是Java</li>
+</ol>
+
+<h2 id="第一个java程序">第一个JAVA程序</h2>
+
+<p>我们来编写第一个Java程序。新建一个<code>helloWorld.java</code>的文件，输入下面代码</p>
+
+<pre><code class="language-java">public class helloWorld {
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello, world!&quot;);
+    }
+}
+</code></pre>
+
+<p>在一个Java程序中，你总能找到一个类似：</p>
+
+<pre><code class="language-java">public class HelloWorld {
+    ...
+}
+</code></pre>
+
+<p>的定义，这个定义被称为class（类），这里的类名是<code>HelloWorld</code>，大小写敏感，<code>class</code>用来定义一个类，<code>public</code>表示这个类是公开的，<code>public</code>、<code>class</code>都是Java的关键字，必须小写，<code>HelloWorld</code>是类的名字，按照习惯，首字母<code>H</code>要大写。而花括号<code>{}</code>中间则是类的定义。</p>
+
+<p>注意到类的定义中，我们定义了一个名为<code>main</code>的方法：</p>
+
+<pre><code class="language-java">    public static void main(String[] args) {
+        ...
+    }
+</code></pre>
+
+<p>方法是可执行的代码块，一个方法除了方法名<code>main</code>，还有用<code>()</code>括起来的方法参数，这里的<code>main</code>方法有一个参数，参数类型是<code>String[]</code>，参数名是<code>args</code>，<code>public</code>、<code>static</code>用来修饰方法，这里表示它是一个公开的静态方法，<code>void</code>是方法的返回类型，而花括号<code>{}</code>中间的就是方法的代码。</p>
+
+<p>方法的代码每一行用<code>;</code>结束，这里只有一行代码，就是：</p>
+
+<pre><code class="language-java">        System.out.println(&quot;Hello, world!&quot;);
+</code></pre>
+
+<p>它用来打印一个字符串到屏幕上。</p>
+
+<p>Java规定，某个类定义的<code>public static void main(String[] args)</code>是Java程序的固定入口方法，因此，Java程序总是从<code>main</code>方法开始执行。</p>
+
+<p>注意到Java源码的缩进不是必须的，但是用缩进后，格式好看，很容易看出代码块的开始和结束，缩进一般是4个空格或者一个tab。</p>
+
+<p>最后，当我们把代码保存为文件时，文件名必须是<code>HelloWorld.java</code>，而且文件名也要注意大小写，因为要和我们定义的类名<code>Hello</code>完全保持一致。</p>
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/java">java</a></li>
+                                
+                                <li><a href="http://gitzh2017.github.io/tags/%E7%BC%96%E7%A8%8B">编程</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://gitzh2017.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/java-003/" title="Java 003">Java 003</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/java-002/" title="Java 002">Java 002</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/java-001/" title="Java 001">Java 001</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-004/" title="Python基础-Python 函数">Python基础-Python 函数</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-002/" title="Python基础-Python 基础知识">Python基础-Python 基础知识</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-001/" title="Python基础-Python 简介入门">Python基础-Python 简介入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/beego-001/" title="Beego系列-Beego快速入门">Beego系列-Beego快速入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role">Ansible系列-Ansible-Role</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/ansible/">ansible(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/beego/">beego(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/java/">java(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/categories/python/">python(3)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
+    
+    <a href="http://gitzh2017.github.io/tags/beego/">beego</a>
+    
+    <a href="http://gitzh2017.github.io/tags/golang/">golang</a>
+    
+    <a href="http://gitzh2017.github.io/tags/java/">java</a>
+    
+    <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
+    
+    <a href="http://gitzh2017.github.io/tags/pip/">pip</a>
+    
+    <a href="http://gitzh2017.github.io/tags/python/">python</a>
+    
+    <a href="http://gitzh2017.github.io/tags/%E5%87%BD%E6%95%B0/">函数</a>
+    
+    <a href="http://gitzh2017.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://gitzh2017.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://gitzh2017.github.io/">凡夫俗子的博客 By 凡夫俗子</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
