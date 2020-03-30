@@ -6,10 +6,46 @@
     <description>Recent content on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 17 Mar 2020 11:46:50 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 16:42:07 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Django系列] 三:URL</title>
+      <link>http://gitzh2017.github.io/posts/django-003/</link>
+      <pubDate>Mon, 30 Mar 2020 16:42:07 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/django-003/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>[Django系列] 二:基本配置信息</title>
+      <link>http://gitzh2017.github.io/posts/django-002/</link>
+      <pubDate>Mon, 30 Mar 2020 16:42:05 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/django-002/</guid>
+      <description> 基本配置 静态资源 模板配置 数据库配置 中间件配置 </description>
+    </item>
+    
+    <item>
+      <title>[Django系列] 一:环境配置</title>
+      <link>http://gitzh2017.github.io/posts/django-001/</link>
+      <pubDate>Mon, 30 Mar 2020 16:42:03 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/django-001/</guid>
+      <description>&lt;p&gt;本章节我们主要来了解一下Django是什么，Django的架构模式，Django的特性，还有我们会演示一下Django的简单操作，如何安装一个Django，如果用Django 创建一个web项目，Django的命令的基本操作，启动Django服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java SpringBoot 001</title>
+      <link>http://gitzh2017.github.io/posts/java-springboot-001/</link>
+      <pubDate>Mon, 23 Mar 2020 09:59:00 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/java-springboot-001/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Java 003</title>
@@ -26,6 +62,15 @@
 &lt;li&gt;一个变量只是一个给内存位置的名字，所有对变量进行的操作都会影响内存的位置。&lt;/li&gt;
 &lt;li&gt;在Java中，所有变量必须先声明才能使用。&lt;/li&gt;
 &lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>【Java系列】:Java 流程控制</title>
+      <link>http://gitzh2017.github.io/posts/java-004/</link>
+      <pubDate>Tue, 17 Mar 2020 11:46:47 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/java-004/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -70,6 +115,15 @@
       
       <guid>http://gitzh2017.github.io/posts/python-004/</guid>
       <description>&lt;p&gt;本章节介绍Python中的函数语法及常用方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 003</title>
+      <link>http://gitzh2017.github.io/posts/python-003/</link>
+      <pubDate>Fri, 08 Nov 2019 21:39:00 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/python-003/</guid>
+      <description>-</description>
     </item>
     
     <item>
