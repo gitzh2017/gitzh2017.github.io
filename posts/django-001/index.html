@@ -190,68 +190,68 @@ $ pip install django==2.1  # 安装指定2.1版本Django
 <li>创建一个Django项目</li>
 </ol>
 
-<pre><code class="language-python">   django-admin startproject projectname
+<pre><code class="language-python">django-admin startproject projectname
 </code></pre>
 
 <ol>
 <li>新建一个app</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py startapp appname
-   django-admin startapp appname
+<pre><code class="language-python">python manage.py startapp appname
+django-admin startapp appname
 </code></pre>
 
 <ol>
 <li>创建数据库或更新数据库</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py makemigrations  # 创建更改文件
-   python manage.py migrate  # 将生成的py文件同步至数据库
+<pre><code class="language-python">python manage.py makemigrations  # 创建更改文件
+python manage.py migrate  # 将生成的py文件同步至数据库
 </code></pre>
 
 <ol>
 <li>清空数据库</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py flush
+<pre><code class="language-python">python manage.py flush
 </code></pre>
 
 <ol>
 <li>启使用开发服务器</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py runserver  # 默认情况下，可以通过127.0.0.1:8000或localhost:8000访问
-   python manage.py runserver 8080  # 使用指定的8080端口访问
-   python manage.py runserver 0.0.0.0:8080  # 使用当前ip加端口号访问
+<pre><code class="language-python">python manage.py runserver  # 默认情况下，可以通过127.0.0.1:8000或localhost:8000访问
+python manage.py runserver 8080  # 使用指定的8080端口访问
+python manage.py runserver 0.0.0.0:8080  # 使用当前ip加端口号访问
 </code></pre>
 
 <ol>
 <li>创建超级用户</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py createsuperuser
+<pre><code class="language-python">python manage.py createsuperuser
 </code></pre>
 
 <ol>
 <li>数据的导入、导出</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py dumpdata appname &gt; appname.json
-   python manage.py loaddata appname.json
+<pre><code class="language-python">python manage.py dumpdata appname &gt; appname.json
+python manage.py loaddata appname.json
 </code></pre>
 
 <ol>
 <li>Django项目环境中断</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py shell
+<pre><code class="language-python">python manage.py shell
 </code></pre>
 
 <ol>
 <li>数据库命令行</li>
 </ol>
 
-<pre><code class="language-python">   python manage.py dbshell
+<pre><code class="language-python">python manage.py dbshell
 </code></pre>
 
 <h1 id="django-项目启动">Django 项目启动</h1>
