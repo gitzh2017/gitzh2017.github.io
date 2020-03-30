@@ -186,70 +186,52 @@ $ pip install django==2.1  # 安装指定2.1版本Django
 
 <h1 id="django-基本命令">Django 基本命令</h1>
 
-<ol>
-<li>创建一个Django项目</li>
-</ol>
+<p>1.创建一个Django项目</p>
 
 <pre><code class="language-python">django-admin startproject projectname
 </code></pre>
 
-<ol>
-<li>新建一个app</li>
-</ol>
+<p>2.新建一个app</p>
 
 <pre><code class="language-python">python manage.py startapp appname
 django-admin startapp appname
 </code></pre>
 
-<ol>
-<li>创建数据库或更新数据库</li>
-</ol>
+<p>3.创建数据库或更新数据库</p>
 
 <pre><code class="language-python">python manage.py makemigrations  # 创建更改文件
 python manage.py migrate  # 将生成的py文件同步至数据库
 </code></pre>
 
-<ol>
-<li>清空数据库</li>
-</ol>
+<p>4.清空数据库</p>
 
 <pre><code class="language-python">python manage.py flush
 </code></pre>
 
-<ol>
-<li>启使用开发服务器</li>
-</ol>
+<p>5.启使用开发服务器</p>
 
 <pre><code class="language-python">python manage.py runserver  # 默认情况下，可以通过127.0.0.1:8000或localhost:8000访问
 python manage.py runserver 8080  # 使用指定的8080端口访问
 python manage.py runserver 0.0.0.0:8080  # 使用当前ip加端口号访问
 </code></pre>
 
-<ol>
-<li>创建超级用户</li>
-</ol>
+<p>6.创建超级用户</p>
 
 <pre><code class="language-python">python manage.py createsuperuser
 </code></pre>
 
-<ol>
-<li>数据的导入、导出</li>
-</ol>
+<p>7.数据的导入、导出</p>
 
 <pre><code class="language-python">python manage.py dumpdata appname &gt; appname.json
 python manage.py loaddata appname.json
 </code></pre>
 
-<ol>
-<li>Django项目环境中断</li>
-</ol>
+<p>8.Django项目环境中断</p>
 
 <pre><code class="language-python">python manage.py shell
 </code></pre>
 
-<ol>
-<li>数据库命令行</li>
-</ol>
+<p>9.数据库命令行</p>
 
 <pre><code class="language-python">python manage.py dbshell
 </code></pre>
@@ -285,8 +267,6 @@ Quit the server with CONTROL-C.
 <div class="post-archive">
     <h2>See Also</h2>
     <ul class="listing">
-        
-        <li><a href="/posts/beego-001/">Beego系列-Beego快速入门</a></li>
         
         <li><a href="/posts/python-004/">Python基础-Python 函数</a></li>
         
@@ -346,31 +326,31 @@ Quit the server with CONTROL-C.
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/java-springboot-001/" title="Java SpringBoot 001">Java SpringBoot 001</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/posts/java-003/" title="Java 003">Java 003</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/posts/java-004/" title="【Java系列】:Java 流程控制">【Java系列】:Java 流程控制</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/posts/java-002/" title="Java 002">Java 002</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/posts/java-001/" title="Java 001">Java 001</a>
-    </li>
-    
-    <li>
         <a href="http://gitzh2017.github.io/posts/python-004/" title="Python基础-Python 函数">Python基础-Python 函数</a>
     </li>
     
     <li>
         <a href="http://gitzh2017.github.io/posts/python-003/" title="Python 003">Python 003</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-002/" title="Python基础-Python 基础知识">Python基础-Python 基础知识</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/python-001/" title="Python基础-Python 简介入门">Python基础-Python 简介入门</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-004/" title="Ansible系列-Ansible-Role">Ansible系列-Ansible-Role</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-003/" title="Ansible系列-Ansible-Palybook">Ansible系列-Ansible-Palybook</a>
+    </li>
+    
+    <li>
+        <a href="http://gitzh2017.github.io/posts/ansible-002/" title="Ansible系列-Ansible常用模块">Ansible系列-Ansible常用模块</a>
     </li>
     
 </ul>
@@ -387,15 +367,7 @@ Quit the server with CONTROL-C.
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/categories/beego/">beego(1)</a>
-    </li>
-    
-    <li>
         <a href="http://gitzh2017.github.io/categories/django/">django(3)</a>
-    </li>
-    
-    <li>
-        <a href="http://gitzh2017.github.io/categories/java/">java(5)</a>
     </li>
     
     <li>
@@ -411,13 +383,7 @@ Quit the server with CONTROL-C.
     
     <a href="http://gitzh2017.github.io/tags/ansible/">ansible</a>
     
-    <a href="http://gitzh2017.github.io/tags/beego/">beego</a>
-    
     <a href="http://gitzh2017.github.io/tags/django/">django</a>
-    
-    <a href="http://gitzh2017.github.io/tags/golang/">golang</a>
-    
-    <a href="http://gitzh2017.github.io/tags/java/">java</a>
     
     <a href="http://gitzh2017.github.io/tags/linux/">linux</a>
     
@@ -425,11 +391,7 @@ Quit the server with CONTROL-C.
     
     <a href="http://gitzh2017.github.io/tags/python/">python</a>
     
-    <a href="http://gitzh2017.github.io/tags/spring-boot/">spring-boot</a>
-    
     <a href="http://gitzh2017.github.io/tags/%E5%87%BD%E6%95%B0/">函数</a>
-    
-    <a href="http://gitzh2017.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
     
     <a href="http://gitzh2017.github.io/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/">运算符</a>
     

@@ -18,31 +18,6 @@
   </url>
   
   <url>
-    <loc>http://gitzh2017.github.io/posts/java-springboot-001/</loc>
-    <lastmod>2020-03-23T09:59:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/java-003/</loc>
-    <lastmod>2020-03-17T11:46:50+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/java-004/</loc>
-    <lastmod>2020-03-17T11:46:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/java-002/</loc>
-    <lastmod>2020-03-17T11:46:44+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/java-001/</loc>
-    <lastmod>2020-03-17T11:46:42+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://gitzh2017.github.io/posts/python-004/</loc>
     <lastmod>2019-11-08T21:39:04+08:00</lastmod>
   </url>
@@ -60,11 +35,6 @@
   <url>
     <loc>http://gitzh2017.github.io/posts/python-001/</loc>
     <lastmod>2019-11-06T19:59:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/posts/beego-001/</loc>
-    <lastmod>2019-10-11T20:40:07+08:00</lastmod>
   </url>
   
   <url>
@@ -130,30 +100,6 @@
   </url>
   
   <url>
-    <loc>http://gitzh2017.github.io/tags/spring-boot/</loc>
-    <lastmod>2020-03-23T09:59:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/categories/java/</loc>
-    <lastmod>2020-03-23T09:59:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/tags/java/</loc>
-    <lastmod>2020-03-23T09:59:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2020-03-23T09:59:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://gitzh2017.github.io/categories/python/</loc>
     <lastmod>2019-11-08T21:39:04+08:00</lastmod>
     <priority>0</priority>
@@ -174,24 +120,6 @@
   <url>
     <loc>http://gitzh2017.github.io/tags/pip/</loc>
     <lastmod>2019-11-06T19:59:40+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/categories/beego/</loc>
-    <lastmod>2019-10-11T20:40:07+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/tags/beego/</loc>
-    <lastmod>2019-10-11T20:40:07+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://gitzh2017.github.io/tags/golang/</loc>
-    <lastmod>2019-10-11T20:40:07+08:00</lastmod>
     <priority>0</priority>
   </url>
   
