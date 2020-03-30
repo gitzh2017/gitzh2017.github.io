@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>[Django系列] 二:基本配置信息 | 凡夫俗子的博客</title>
-    <meta property="og:title" content="[Django系列] 二:基本配置信息 - 凡夫俗子的博客">
+    <title>【Django系列】 二. Django 配置文件详解 | 凡夫俗子的博客</title>
+    <meta property="og:title" content="【Django系列】 二. Django 配置文件详解 - 凡夫俗子的博客">
     <meta property="og:type" content="article">
         
     <meta property="article:published_time" content="2020-03-30T16:42:05&#43;08:00">
@@ -72,7 +72,7 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">[Django系列] 二:基本配置信息</h1>
+                            <h1 class="post-title">【Django系列】 二. Django 配置文件详解</h1>
                         </header>
                         <date class="post-meta meta-date">
                             2020年3月30日
@@ -88,18 +88,213 @@
                         
                         
                         <div class="post-content">
-                            
+                            <p>本章节我们主要讲一下Django的配置，Django的配置主要在settings.py里面，里面基本包含了Django的所有配置，我们只需在这个文件里面配置项目就行了，我们以后每个项目都要配置这个配置文件，而且经常需要改动，所以我们必须要掌握好这里面的各项指标的配置</p>
 
-<h1 id="基本配置">基本配置</h1>
+<h1 id="base-dir">BASE_DIR</h1>
 
-<h1 id="静态资源">静态资源</h1>
+<pre><code class="language-python">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  #  获取整个项目的根路径
+</code></pre>
 
-<h1 id="模板配置">模板配置</h1>
+<p><code>__file__</code>：可以获取自身文件的文件名。
+<code>os.path.abspath</code>：可以获取文件的当前路径。
+<code>os.path.dirname</code>：可以获取文件的父级目录。</p>
+
+<h1 id="allowed-hosts">ALLOWED_HOSTS</h1>
+
+<p>设置你的WEB项目可以通过哪些域名进行访问，即便是在Apache或Nginx等中绑定了，但是如果这里不允许的话，仍然是不能访问的。
+当<code>DEBUG = False</code>时，此项为必填项，如果不想填写，可通过<code>ALLOW_HOST = [&quot;*&quot;]</code>来允许所有的。</p>
+
+<h1 id="secret-key">SECRET_KEY</h1>
+
+<p>Django根据自己算法生成的一大串随机数，本质是个加密盐，用于方式CSRF跨站请求伪造攻击。<strong>如果将Django项目部署到生产环境中，建议不要使用settings.py中输入字符串，而是采取以下两种方法读取:</strong></p>
+
+<ol>
+<li>存储在环境变量中</li>
+</ol>
+
+<pre><code class="language-python">   import os
+   SECRET_KEY = os.environ[&quot;SECRET_KEY&quot;]
+</code></pre>
+
+<ol>
+<li>服务器上某个文件读取</li>
+</ol>
+
+<pre><code class="language-python">   with open('secrect_key_file_path') as f:
+    SECRET_KEY = f.read().strip()
+</code></pre>
+
+<h1 id="installed-apps">INSTALLED_APPS</h1>
+
+<p>当我们新建一个App时，需要将我们创建的App注册到其中。</p>
+
+<pre><code class="language-python">INSTALLED_APPS = [
+    'django.contrib.admin',  # 管理员站点
+    'django.contrib.auth',  # 认证授权系统
+    'django.contrib.contenttypes',  # 内容类型矿建
+    'django.contrib.sessions',  # 会话框架
+    'django.contrib.messages',  # 消息框架
+    'django.contrib.staticfiles',  # 管理静态文件的框架
+]
+</code></pre>
+
+<p><strong>为什么需要注册</strong>
+新建的App如果不加到INSTALLED_APPS中，Django就不能找到App中的模板文件(appname/templates)和静态文件(appname/static)。
+<strong>创建的app为什么有时不在INSTALLED_APPS里填写也可以正常使用</strong>
+INSTALLED_APPS注册应用是为了和models.py里的模型/数据库交互使用的。</p>
+
+<h1 id="middleware">MIDDLEWARE</h1>
+
+<p>处理Django的request和response对象的钩子，Django接受到用户请求经过中间件处理请求，并执行相关处理反馈给用户。</p>
+
+<pre><code class="language-python">MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',                # 内置的安全机制，保护用户与网站的通信安全
+    'django.contrib.sessions.middleware.SessionMiddleware',         # 会话session功能
+    'django.middlewart.locale.LocaleMiddleware',                    # 支持中文语言
+    'django.middleware.common.CommonMiddleware',                    # 处理请求信息，规范化请求内容
+    'django.middleware.csrf.CsrfViewMiddleware',                    # 开启 CSRF(跨站请求伪造) 防护功能
+    'django.contrib.auth.middleware.AuthenticationMiddleware',      # 内置的用户认证系统
+    'django.contrib.messages.middleware.MessageMiddleware',         # 内置的信息提示功能
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',       # 防止恶意程序点击劫持
+    # 添加自定义中间件时，需要些在系统中的最后面
+]
+</code></pre>
+
+<h1 id="templates">TEMPLATES</h1>
+
+<p>处理模板信息配置</p>
+
+<pre><code class="language-python">TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',       # 定义模版引擎
+        # 内置模版引擎有 Django Templates 和 jinja2.Jinja2
+        'DIRS': [os.path.join(BASE_DIR, 'APP/templates')],                 # 指定模版静态文件的物理路径,该目录下直接存放html文件
+        'APP_DIRS': True,                                                   # 是否在APP里查找模版
+        'OPTIONS': {                                                        # 用户填充在 RequestContext 上下文的调用函数选项，一般不需要修改
+            'context_processors': [                                         # 上下文处理列表
+                'django.template.context_processors.debug',                 # 调试
+                'django.template.context_processors.request',               # 请求
+                'django.contrib.auth.context_processors.auth',              # 认证
+                'django.contrib.messages.context_processors.messages',      # 消息
+            ],
+        },
+    },
+]
+</code></pre>
 
 <h1 id="数据库配置">数据库配置</h1>
 
-<h1 id="中间件配置">中间件配置</h1>
+<pre><code class="language-python">DATABASES = {
+    'default': {
+     'ENGINE': 'django.db.backends.sqlite3',  # 使用默认的sqlite3数据库
+     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ }
+}
+</code></pre>
 
+<p>如果需要使用MySql数据库需将配成修改为如下样式</p>
+
+<pre><code class="language-python">DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'OPTIONS': {
+            &quot;init_command&quot;: &quot;SET sql_mode='STRICT_TRANS_TABLES'&quot;,  # 设置为严格模式
+            'charset': 'utf8mb4'，  # 如果数据库需要存储emoji表情时，需将charset设置为utf8mb4
+        }
+
+    }
+}
+</code></pre>
+
+<p><strong>如果使用pymysql连接MySql数据库的话，还需要在应用的init.py文件中添加如下代码</strong></p>
+
+<pre><code class="language-python">import pymysql
+pymysql.install_as_MySqldb()
+</code></pre>
+
+<h1 id="auth-user-model">AUTH_USER_MODEL</h1>
+
+<p>默认为<code>auth.user</code>，也可以为自定义用户模型。</p>
+
+<h1 id="静态文件目录">静态文件目录</h1>
+
+<pre><code class="language-python">STATIC_URL = '/static/'  # 调用时的目录
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, &quot;static&quot;)  # 具体路径
+]
+</code></pre>
+
+<h1 id="国际化">国际化</h1>
+
+<pre><code class="language-python">TIME_ZONE = 'Asia/Shanghai'  # 设置时区
+USE_I18N = True  # 默认为True，是否启用自动翻译系统
+USE_L10N = True  # 默认为False，以本地格式显示数字和时间
+USE_TZ = False  # 默认值为True，若使用了本地时间，必须设置为False
+</code></pre>
+
+<h1 id="邮件服务配置">邮件服务配置</h1>
+
+<pre><code class="language-python">EMAIL_HOST = &quot;&quot;  # 发送者邮箱服务器
+EMAIL_PORT = 25  # 端口
+EMAIL_HOST_USER = &quot;&quot;  # 发送者用户名(邮箱地址)
+EMAIL_USE_PASSWORD = &quot;&quot;  # 发送者密码
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = &quot;&quot;
+</code></pre>
+
+<h1 id="cookie与session设置">COOKIE与SESSION设置</h1>
+
+<ol>
+<li>数据库配置(默认)</li>
+</ol>
+
+<pre><code class="language-python">   # Django默认支持Session，并且默认是将Session数据存储在数据库中(django_session表)。
+   SESSION_ENGINE = &quot;django.contrib.sessions.backends.db&quot;  # 引擎(默认)
+   SESSION_COOKIE_NAME = &quot;sessionid&quot;  # Session的cookie保存在浏览器上时的key，即：session=随机字符串(默认)
+   SESSION_COOKIE_PATH = &quot;/&quot;  # Session的cookie保存的路径(默认)
+   SESSION_COOKIE_DOMAIN = None  # Session的cookie保存的域名(默认)
+   SESSION_COOKIE_SECURE = False  # 是否Https传输cookie(默认)
+   SESSION_COOKIE_HTTPONLY = True  # 是否Session的cookie只支持http传输(默认)
+   SESSION_COOKIE_AGE = 1209600  # Session的cookie失效时间(2周)(默认)
+   SESSION_EXPIRE_AT_BROSWER_CLOSE = False  # 是否关闭浏览器使用Session过期(默认)
+   SESSION_SAVE_EVERY_REQUEST = False  # 是否每次请求都保存Session，默认修改之后才保存(默认)改之后才保存(默认)
+</code></pre>
+
+<ol>
+<li>缓存配置</li>
+</ol>
+
+<pre><code class="language-python">   SESSION_ENGINE = &quot;django.contrib.sessions.backends.db&quot;  # 引擎
+   SESSION_CACHE_ALIAS = &quot;default&quot;  # 使用缓存别名，此处别名依赖于缓存配置
+   SESSION_COOKIE_NAME = &quot;sessionid&quot;  # Session的cookie保存在浏览器上时的key，即：session=随机字符串(默认)
+   SESSION_COOKIE_PATH = &quot;/&quot;  # Session的cookie保存的路径(默认)
+   SESSION_COOKIE_DOMAIN = None  # Session的cookie保存的域名(默认)
+   SESSION_COOKIE_SECURE = False  # 是否Https传输cookie(默认)
+   SESSION_COOKIE_HTTPONLY = True  # 是否Session的cookie只支持http传输(默认)
+   SESSION_COOKIE_AGE = 1209600  # Session的cookie失效时间(2周)(默认)
+   SESSION_EXPIRE_AT_BROSWER_CLOSE = False  # 是否关闭浏览器使用Session过期(默认)
+   SESSION_SAVE_EVERY_REQUEST = False  # 是否每次请求都保存Session，默认修改之后才保存(默认)
+</code></pre>
+
+<ol>
+<li>默认配置</li>
+</ol>
+
+<pre><code class="language-python">   SESSION_ENGINE = &quot;django.contrib.sessions.backends.file&quot; # 引擎
+   SESSION_FILE_PATH = None     # 缓存文件路径，如果为None，则使用tempfile模块获取一个临时地址tempfile.gettempdir() 
+   SESSION_COOKIE_NAME ＝ &quot;sessionid&quot;    # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串
+   SESSION_COOKIE_PATH ＝ &quot;/&quot;     # Session的cookie保存的路径
+   SESSION_COOKIE_DOMAIN = None    # Session的cookie保存的域名
+   SESSION_COOKIE_SECURE = False    # 是否Https传输cookie
+   SESSION_COOKIE_HTTPONLY = True    # 是否Session的cookie只支持http传输
+   SESSION_COOKIE_AGE = 1209600    # Session的cookie失效日期（2周）
+   SESSION_EXPIRE_AT_BROWSER_CLOSE = False   # 是否关闭浏览器使得Session过期
+   SESSION_SAVE_EVERY_REQUEST = False    # 是否每次请求都保存Session，默认修改之后才保存
+</code></pre>
                         </div>
 
                         
@@ -111,7 +306,7 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/posts/django-001/">[Django系列] 一:环境配置</a></li>
+        <li><a href="/posts/django-001/">【Django系列】 一. Django 环境配置</a></li>
         
         <li><a href="/posts/python-004/">Python基础-Python 函数</a></li>
         
@@ -159,15 +354,15 @@
 <ul class="widget-list">
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/django-003/" title="[Django系列] 三:URL">[Django系列] 三:URL</a>
+        <a href="http://gitzh2017.github.io/posts/django-003/" title="【Django系列】 三. Django URL">【Django系列】 三. Django URL</a>
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/django-002/" title="[Django系列] 二:基本配置信息">[Django系列] 二:基本配置信息</a>
+        <a href="http://gitzh2017.github.io/posts/django-002/" title="【Django系列】 二. Django 配置文件详解">【Django系列】 二. Django 配置文件详解</a>
     </li>
     
     <li>
-        <a href="http://gitzh2017.github.io/posts/django-001/" title="[Django系列] 一:环境配置">[Django系列] 一:环境配置</a>
+        <a href="http://gitzh2017.github.io/posts/django-001/" title="【Django系列】 一. Django 环境配置">【Django系列】 一. Django 环境配置</a>
     </li>
     
     <li>

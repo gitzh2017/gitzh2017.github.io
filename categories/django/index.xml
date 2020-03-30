@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>[Django系列] 三:URL</title>
+      <title>【Django系列】 三. Django URL</title>
       <link>http://gitzh2017.github.io/posts/django-003/</link>
       <pubDate>Mon, 30 Mar 2020 16:42:07 +0800</pubDate>
       
@@ -21,16 +21,16 @@
     </item>
     
     <item>
-      <title>[Django系列] 二:基本配置信息</title>
+      <title>【Django系列】 二. Django 配置文件详解</title>
       <link>http://gitzh2017.github.io/posts/django-002/</link>
       <pubDate>Mon, 30 Mar 2020 16:42:05 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/django-002/</guid>
-      <description> 基本配置 静态资源 模板配置 数据库配置 中间件配置 </description>
+      <description>&lt;p&gt;本章节我们主要讲一下Django的配置，Django的配置主要在settings.py里面，里面基本包含了Django的所有配置，我们只需在这个文件里面配置项目就行了，我们以后每个项目都要配置这个配置文件，而且经常需要改动，所以我们必须要掌握好这里面的各项指标的配置&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>[Django系列] 一:环境配置</title>
+      <title>【Django系列】 一. Django 环境配置</title>
       <link>http://gitzh2017.github.io/posts/django-001/</link>
       <pubDate>Mon, 30 Mar 2020 16:42:03 +0800</pubDate>
       
