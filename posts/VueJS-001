@@ -1,11 +1,325 @@
 ---
-title: "01.VueJS-基础入门"
+title: "Npm 包管理工具"
 date: 2019-09-12T23:52:42+08:00
 weight: 70
 keywords: ["Vue"]
-description: "Vue基础入门"
-tags: ["Vue", "pages"]
-categories: ["pages"]
+description: "Npm 包管理工具"
+tags: ["Vue", "node","Npm"]
+categories: ["vue"]
 author: "Henry"
 ---
 
+网上的 npm 教程主要都在讲怎么安装、配置和使用 npm ，却很少告诉新人「npm 是干什么的？」「为什么要使用 npm？」。今天我就来讲讲这个话题。本文目标读者是「不太了解 npm 的新人」，老司机请绕道
+
+<!--more-->
+
+# 详解NPM包管理工具
+
+## 什么是NPM
+
+`NPM` 全称 `Node Package Manager`，它是 `JavaScrip`t 的包管理工具, 并且是 `Node.js `平台的默认包管理工具。通过 NPM 可以安装、共享、分发代码,管理项目依赖关系。 
+
+- 可从NPM服务器下载别人编写的第三方包到本地使用。 
+
+- 可从NPM服务器下载并安装别人编写的命令行程序到本地使用。 
+
+- 可将自己编写的包或命令行程序上传到NPM服务器供别人使用。 
+
+其实我们可以把 NPM 理解为前端的 `Maven`。我们通过 npm 可以很方便地安装与下载 js 库，管理前端工程。 最新版本的 Node.js 已经集成了 npm 工具，所以必须首先在本机安装 Node 环境。 
+
+Node.js 官网下载地址： 
+
+- 英文网：https://nodejs.org/en/download/ 
+
+- 中文网：http://nodejs.cn/download/
+
+装完成后，查看当前 nodejs 与 npm 版本
+
+```bash
+C:\Users\Administrator>node -v 
+v10.15.3 
+C:\Users\Administrator>npm -v 
+6.4.1
+```
+
+## NPM初始化项目
+
+`npm init`初始化项目
+
+- 新建一个`npm-demo`文件夹，通过命令提示符窗口进入到该文件夹，执行下面命令进行初始化项目
+
+  ```bash
+  npm init
+  # 根据提示输入相关内容，保持默认，直接回车就行
+  ```
+
+  - `package name`：包名，其实就是项目名字，注意不能出现大写字母
+
+  - `vaersion`: 项目版本号
+
+  - `description`：项目描述
+
+  - `keywords`:{Array}关键字，便于用户搜索到我们项目
+
+  - 最后会生成`package.json`文件，这个是包的配置文件，相当于maven的pom.xml我们可以根据需求进行更改
+
+    ```json
+    {
+      "name": "npm-demo", // 包名
+      "version": "1.0.0", // 版本号
+      "description": "", // 描述
+      "main": "index.js", // 程序的入口文件，index.js
+      "scripts": { // 脚本命令组成的对象，如果test 测试环境，dev 开发环境，prod 生产环境
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC" // 许可证，默认即可
+    }
+    ```
+
+- 初始化项目，如果全部采用默认方式，可以加`-y`选项，不会提示你一直有确认信息
+
+  ```bash
+  npm init -y
+  ```
+
+## 安装模块
+
+### 安装方式
+
+`npm intsll` 命令用于安装某个模块，安装分别为：`本地安装（local）`，`全局安装（global）`
+
+- **本地安装**：将js库安装到当前目录下所在的目录
+
+  ```bash
+  # 本地安装命令、版本号可以选择
+  npm install <Module Name>[@版本号]
+  ```
+
+- **全局安装**：将js安装到你的全局目录下
+
+  ```bash
+  npm install <Module Name>[@版本号] -g
+  ```
+
+### 本地安装
+
+本地安装会将js库安装在当前目录下
+
+- 安装最新版本`express`模块,它基于node.js平台的web开发框架，执行如下命令：
+
+  ```bash
+  npm install express
+  ```
+
+  - 如果出现黄色的是警告信息，可以忽略。
+
+  - 再该目录下面出现一个node_modules文件夹和package.json
+
+    - node_modules文件夹用于存放下载的js库(相当于maven的本地仓库)
+
+    - package-lock.json是npm install时候生成的一份文件，用于记录当前状态下的实际安装的各个包的具体来源和版本号
+
+    - 重新打开package.json，发现刚才下载的jquery.js已经添加到依赖列表中了
+
+      ```json
+      {
+        ...
+        "dependencies": {
+          "express": "^4.17.1"
+        }
+      }
+      ```
+
+- 关于模块版本号表达方式
+  - `指定版本号`：比如3.5.2，只安装指定版本，遵循`"大版本.次要版本.小版本"`的格式规定
+  - `~波浪号+指定版本`：比如~3.5.2,安装3.5.x的最新版本(不低于3.5.2),但是不按照3.6.x,也就是说安装时不改变大版本号和次要版本
+  - `^插入号+指定版本号`：比如^3.5.2，安装3.x.x的最新版本(不低于3.5.2),但是不安装4.x.x，也就是安装时候不改变大版本号，需要注意的是，如果大版本号为0，则插入号的行为与波浪号相同，这是因为此时属于开发阶段，即时版本号发生变化，也可能带来程序的不兼容
+  - `latest`：安装最新的版本
+
+- 安装指定版本号
+
+  ```bash
+  # 安装jquery 2.2.0版本的
+  npm install jquery@2.2.0
+  ```
+
+### 全局安装
+
+使用全局安装会将库安装到你的全局目录下
+
+**查看全局安装目录**
+
+- 如果你不知道你的全局目录在哪里，执行目录：
+
+  ```bash
+  npm root -g
+  /usr/local/Cellar/node/12.12.0/lib/node_modules
+  ```
+
+- 修改默认全局安装目录
+
+  ```bash
+  npm config set prefix "D:\npm"
+  ```
+
+**全局安装**
+
+- 全局安装vue模块，执行命令
+
+  ```bash
+  npm install vue -g
+  ```
+
+- 查看全局已经安装的模块
+
+  ```bash
+  npm list -g
+  ```
+
+### 生产环境模块安装
+
+安装生产需要环境的模块时候加选项`--save`或者`-s`参数意思将模块的版本信息保存package.json文件的dependencies字段中(生产环境依赖)
+
+```bash
+npm install <Module Name> [--save|-s]
+```
+
+- 举例：安装vue模块到生产环境依赖中
+
+  ```bash
+  npm install vue -S
+  ```
+
+  在`package.json`的`dependencies`字段中
+
+  ```json
+  {
+    ...
+    "dependencies": {
+      "express": "^4.17.1",
+      "vue": "^2.6.11"
+    }
+  }
+  
+  ```
+
+### 开发环境模块安装
+
+有一些模块用来调试用，只存在于开发环境，安装的时候加选项`--save-dev`或者`-D`参数会将模块的依赖信息填写到`package.json`的`devDependencies`字段中(开发环境依赖)
+
+```bash
+npm install <Module Name> [--save-dev|-D]
+```
+
+- 举例：安装eslint模块，它的语法格式效验，只能在开发环境依赖而已
+
+  ```bash
+  npm install eslint -D
+  ```
+
+  在`package.json`的`devDependencies`字段中
+
+  ```json
+  {
+    ...
+    "dependencies": {
+      "express": "^4.17.1",
+      "vue": "^2.6.11"
+    },
+    "devDependencies": {
+      "eslint": "^6.8.0"
+    }
+  }
+  ```
+
+## 批量下载模块
+
+我们在网上经常下载一些别人写的非常好的项目，你可能需要二次开发，发现只有package.json没有node_modules文件夹，这个时候我们只需在项目的根目录输入`npm install `命令会去批量下载package里面引入的依赖js库
+
+```bash
+npm install
+```
+
+## 查看模块命令
+
+### 查看本地已经安装的模块
+
+- 方式1：可以在安装目录node_modules下的查看包是否还存在
+
+- 方式2：可以使用以下命令查看
+
+  ```bash
+  # 查看本地安装的所有模块
+  npm list
+  # 查看指定版本
+  npm list <Module Name>
+  ```
+
+### 查看远程可安装的模块
+
+- 格式1：
+
+  ```bash
+  npm view <Module Name> version
+  ```
+
+- 格式2：
+
+  ```bash
+  npm view jquery version
+  ```
+
+### 查看模块的所有版本
+
+- 格式1：
+
+  ```bash
+  npm view <Module Name> versions
+  ```
+
+  举例：查看jquery模块的所有版本：
+
+  ```bash
+  npm view jquery versions
+  ```
+
+## 卸载模块
+
+- 卸载局部模块
+
+  ```bash
+  npm uninstall <Module Name>
+  ```
+
+- 卸载全局模块
+
+  ```bash
+  npm uninstall -g <Module Name>
+  ```
+
+## 配置淘宝镜像加速
+
+- 查看当前使用的镜像地址
+
+  ```bash
+  npm get registry
+  ```
+
+- 配置淘宝镜像地址
+
+  ```bash
+  npm config set registry https://registry.npm.taobao.org
+  ```
+
+- 安装下载模块
+
+  ```bash
+  npm install <Module Name>
+  ```
+
+- 还原默认镜像地址
+
+  ```bash
+  npm config set registry https://registry.npmjs.org/
+  ```
