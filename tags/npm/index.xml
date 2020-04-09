@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Npm on 凡夫俗子的博客</title>
+    <link>http://gitzh2017.github.io/tags/npm/</link>
+    <description>Recent content in Npm on 凡夫俗子的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 08 Apr 2020 23:52:42 +0800</lastBuildDate>
+    
+	<atom:link href="http://gitzh2017.github.io/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Npm 包管理工具</title>
+      <link>http://gitzh2017.github.io/posts/vuejs-001/</link>
+      <pubDate>Wed, 08 Apr 2020 23:52:42 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/vuejs-001/</guid>
+      <description>&lt;p&gt;网上的 npm 教程主要都在讲怎么安装、配置和使用 npm ，却很少告诉新人「npm 是干什么的？」「为什么要使用 npm？」。今天我就来讲讲这个话题。本文目标读者是「不太了解 npm 的新人」，老司机请绕道&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

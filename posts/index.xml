@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 凡夫俗子的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 30 Mar 2020 16:42:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 23:52:42 +0800</lastBuildDate>
     
 	<atom:link href="http://gitzh2017.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Npm 包管理工具</title>
+      <link>http://gitzh2017.github.io/posts/vuejs-001/</link>
+      <pubDate>Wed, 08 Apr 2020 23:52:42 +0800</pubDate>
+      
+      <guid>http://gitzh2017.github.io/posts/vuejs-001/</guid>
+      <description>&lt;p&gt;网上的 npm 教程主要都在讲怎么安装、配置和使用 npm ，却很少告诉新人「npm 是干什么的？」「为什么要使用 npm？」。今天我就来讲讲这个话题。本文目标读者是「不太了解 npm 的新人」，老司机请绕道&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>【Django系列】 三. Django URL</title>
@@ -53,7 +62,7 @@
       <pubDate>Fri, 08 Nov 2019 21:39:00 +0800</pubDate>
       
       <guid>http://gitzh2017.github.io/posts/python-003/</guid>
-      <description>-</description>
+      <description></description>
     </item>
     
     <item>
